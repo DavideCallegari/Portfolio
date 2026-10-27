@@ -11,9 +11,10 @@
     
     <style>
         :root {
-            --strip-dark-1: #161029;
-            --strip-dark-2: #211114;
-            --footer-dark: #0a0608;
+            --strip-dark-1: #161029; /* Viola scuro per 1° striscia */
+            --strip-dark-2: #211114; /* Rosso/marrone scuro per 2° striscia */
+            --strip-dark-3: #0e1e18; /* Verde scuro per 3° striscia (Reel) */
+            --footer-dark: #070d0a;
             --accent-dark: #1e162b;
             --text-light-pastel: #FDFBF7;
             --subtitle-pastel: #F9E2AE;
@@ -33,13 +34,15 @@
                 linear-gradient(
                     180deg, 
                     #04060f 0%, 
-                    #0b0e26 14%, 
-                    #221338 30%, 
-                    #2c142c 44%, 
-                    #381619 58%, 
-                    #3b1d12 72%, 
-                    #261214 88%, 
-                    #12090d 100%
+                    #0b0e26 11%, 
+                    #221338 24%, 
+                    #2c142c 37%, 
+                    #381619 52%, 
+                    #3b1d12 67%, 
+                    #241614 80%, 
+                    #11221c 89%, 
+                    #0c261d 96%, 
+                    #06110d 100%
                 );
             background-repeat: repeat, no-repeat;
             background-attachment: scroll;
@@ -48,7 +51,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. Top 21:9 Video (Autoplay + senza controlli finché non si clicca) */
+        /* 1. Top 21:9 Video */
         .hero-video-container {
             position: relative;
             width: 100%;
@@ -64,11 +67,14 @@
             height: 100%;
             border: none;
             display: block;
-            pointer-events: none; /* Nasconde l'hover dei controlli finché non si clicca */
+            pointer-events: none;
+            transform: scale(1.18);
+            transition: transform 0.4s ease;
         }
 
         .hero-video-container.interactive iframe {
             pointer-events: auto;
+            transform: scale(1);
         }
 
         .hero-click-overlay {
@@ -104,7 +110,7 @@
             opacity: 0.95;
         }
 
-        /* 3. Dynamic Photo Grid (Ordine in riga + effetto collage) */
+        /* 3. Dynamic Photo Grid */
         .photo-grid {
             display: flex;
             gap: 20px;
@@ -138,7 +144,7 @@
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
         }
 
-        /* 4. Video Strip + Allori + Backstage */
+        /* 4. Video Strip + Reel Strip */
         .video-strip-wrapper {
             position: relative;
             background-color: var(--strip-dark-1);
@@ -155,6 +161,11 @@
             background-color: var(--strip-dark-2);
         }
 
+        .video-strip-wrapper.green-strip {
+            background-color: var(--strip-dark-3);
+            padding: 45px 0 40px 0;
+        }
+
         .video-strip {
             position: relative;
             z-index: 5;
@@ -166,8 +177,20 @@
             margin: 0 auto;
         }
 
-        /* Video Box senza controlli finché non ci clicchi sopra */
-        .video-item {
+        /* Griglia 4 Reel */
+        .reel-strip {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(35px, 5vw, 80px);
+            padding: 0 4vw;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Video Box e Reel Box */
+        .video-item, .reel-item {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -178,45 +201,43 @@
             cursor: pointer;
         }
 
-        .video-item img.video-thumb {
+        .reel-item {
+            aspect-ratio: 9 / 16;
+        }
+
+        .video-item img.video-thumb, .reel-item img.video-thumb {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.35s ease, filter 0.35s ease;
         }
 
-        .video-item:hover img.video-thumb {
-            transform: scale(1.03);
-            filter: brightness(1.08);
-        }
-
+        /* TASTO PLAY: Stellina piccola, solo contorno bianco a 5 punte con linee curve, nessun movimento, solo bagliore giallo leggero */
         .custom-play-btn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 54px;
-            height: 54px;
-            background-color: rgba(10, 6, 18, 0.65);
-            border: 1.8px solid var(--text-light-pastel);
+            width: 50px;
+            height: 50px;
+            color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.25s ease, background-color 0.25s ease;
             pointer-events: none;
-        }
-
-        .video-item:hover .custom-play-btn {
-            transform: translate(-50%, -50%) scale(1.1);
-            background-color: rgba(249, 226, 174, 0.25);
+            transition: color 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.65));
         }
 
         .custom-play-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--text-light-pastel);
-            margin-left: 3px;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .video-item:hover .custom-play-btn, .reel-item:hover .custom-play-btn {
+            color: var(--subtitle-pastel);
+            filter: drop-shadow(0 0 8px rgba(249, 226, 174, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
         }
 
         .video-item iframe {
@@ -224,6 +245,16 @@
             height: 100%;
             border: none;
             display: block;
+        }
+
+        /* Nasconde i comandi bianchi dell'embed di Instagram */
+        .reel-item iframe.ig-embed-clean {
+            position: absolute;
+            top: -54px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 170px);
+            border: none;
         }
 
         /* Allori Festival */
@@ -369,9 +400,8 @@
             pointer-events: none;
         }
 
-        .warm-strip .leaning-cat {
-            fill: var(--strip-dark-2);
-        }
+        .warm-strip .leaning-cat { fill: var(--strip-dark-2); }
+        .green-strip .leaning-cat { fill: var(--strip-dark-3); }
 
         .cat-top { top: -35px; right: 12px; }
         .cat-top-left { top: -35px; left: 12px; }
@@ -434,6 +464,7 @@
         /* Responsive */
         @media (max-width: 950px) {
             .video-strip { grid-template-columns: 1fr; }
+            .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 30px; }
             footer {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -446,6 +477,7 @@
         }
 
         @media (max-width: 600px) {
+            .reel-strip { grid-template-columns: 1fr; padding: 0 12vw; }
             .footer-left, .footer-right {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -495,17 +527,34 @@
             <path d="M15,28 L4,24 M15,33 L4,31" />
             <path d="M30,44 Q41,42 39,31" fill="none" />
         </symbol>
-        <symbol id="play-icon" viewBox="0 0 24 24">
-            <polygon points="5,3 19,12 5,21" />
+        <!-- Stellina piccola solo contorno bianco a 5 punte con linee curve + triangolo play al centro -->
+        <symbol id="star-play-icon" viewBox="0 0 64 64">
+            <path d="M 32,5 
+                     Q 37,22 57,23 
+                     Q 41,34 47,53 
+                     Q 32,42 17,53 
+                     Q 23,34 7,23 
+                     Q 27,22 32,5 Z" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  stroke-width="2.2" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" />
+            <polygon points="28.5,26 28.5,39 39.5,32.5" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     stroke-width="2" 
+                     stroke-linecap="round" 
+                     stroke-linejoin="round" />
         </symbol>
     </svg>
 
-    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Parte da solo senza controlli; cliccando sopra compaiono i controlli e l'audio) -->
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Autoplay garantito tramite API YouTube) -->
     <div class="hero-video-container" id="heroContainer" onclick="activateHeroControls()">
         <div class="hero-click-overlay" title="Clicca per attivare audio e controlli"></div>
         <iframe 
             id="heroIframe"
-            src="https://www.youtube.com/embed/4aja6p8wSnA?autoplay=1&mute=1&controls=0&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
+            src="https://www.youtube.com/embed/4aja6p8wSnA?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
             title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -544,17 +593,17 @@
     <!-- PRIMA RIGA DI 3 VIDEO (9a40Hy3DSAI, 86RHF9YArcw, VC0OFUSWQrQ) -->
     <section class="video-strip-wrapper">
         <div class="video-strip">
-            <div class="video-item" data-video-id="9a40Hy3DSAI" onclick="playStripVideo(this)">
+            <div class="video-item" data-video-id="lRlFYfncR6w" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" onload="upgradeThumb(this, '9a40Hy3DSAI')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="86RHF9YArcw" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" onload="upgradeThumb(this, '86RHF9YArcw')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="VC0OFUSWQrQ" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
         </div>
 
@@ -596,7 +645,7 @@
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
 
-	    <div class="laurel-badge">
+            <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
                     <span class="laurel-podium">Selezione ufficiale</span>
@@ -604,7 +653,6 @@
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
-
         </div>
 
         <!-- 7 FOTO BACKSTAGE (bts001 - bts007) -->
@@ -674,15 +722,15 @@
         <div class="video-strip">
             <div class="video-item" data-video-id="nktAgFjmnHU" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" onload="upgradeThumb(this, 'nktAgFjmnHU')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="mMOQ_uHplX8" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="4HT3OBEWtPw" onclick="playStripVideo(this)">
                 <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" onload="upgradeThumb(this, '4HT3OBEWtPw')">
-                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
         </div>
 
@@ -715,7 +763,7 @@
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
 
-	    <div class="laurel-badge">
+            <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
                     <span class="laurel-podium">Finalista</span>
@@ -762,7 +810,7 @@
         </button>
     </section>
 
-    <!-- BLOCCO 3: 18 FOTO (040 - 057) -->
+    <!-- BLOCCO 3: 17 FOTO (040 - 056) -->
     <section class="photo-grid">
         <img src="img/img040.jpg" alt="Foto 40" loading="lazy">
         <img src="img/img041.jpg" alt="Foto 41" loading="lazy">
@@ -783,6 +831,80 @@
         <img src="img/img056.jpg" alt="Foto 56" loading="lazy">
     </section>
 
+    <!-- TERZA RIGA: 4 REEL VERTICALI DA INSTAGRAM -->
+    <section class="video-strip-wrapper green-strip">
+        <div class="reel-strip">
+            <div class="reel-item" data-reel-id="DBtp_pJIaGO" onclick="playIgReel(this)">
+                <img class="video-thumb" src="img/reel001.jpg" alt="Reel 1" loading="lazy">
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
+            </div>
+            <div class="reel-item" data-reel-id="DZ4XXN4ge1t" onclick="playIgReel(this)">
+                <img class="video-thumb" src="img/reel002.jpg" alt="Reel 2" loading="lazy">
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
+            </div>
+            <div class="reel-item" data-reel-id="DENng7ZOuzV" onclick="playIgReel(this)">
+                <img class="video-thumb" src="img/reel003.jpg" alt="Reel 3" loading="lazy">
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
+            </div>
+            <div class="reel-item" data-reel-id="DGcyRN5CkK0" onclick="playIgReel(this)">
+                <img class="video-thumb" src="img/reel004.jpg" alt="Reel 4" loading="lazy">
+                <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
+            </div>
+        </div>
+
+        <!-- 7 FOTO BACKSTAGE PER LA STRISCIA REEL (bts015 - bts021) -->
+        <div class="bts-layer">
+            <div class="bts-card bts-pos-1">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts015.jpg" alt="Backstage 15" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-2">
+                <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts016.jpg" alt="Backstage 16" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-3">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts017.jpg" alt="Backstage 17" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-4">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts018.jpg" alt="Backstage 18" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-5">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts019.jpg" alt="Backstage 19" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-6">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts020.jpg" alt="Backstage 20" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-7">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts021.jpg" alt="Backstage 21" loading="lazy">
+            </div>
+        </div>
+
+        <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Backstage">
+            <svg><use href="#cute-cat-face"></use></svg>
+        </button>
+    </section>
+
+    <!-- BLOCCO 4: 12 FOTO SOTTO I REEL (057 - 068) -->
+    <section class="photo-grid">
+        <img src="img/img057.jpg" alt="Foto 57" loading="lazy">
+        <img src="img/img058.jpg" alt="Foto 58" loading="lazy">
+        <img src="img/img059.jpg" alt="Foto 59" loading="lazy">
+        <img src="img/img060.jpg" alt="Foto 60" loading="lazy">
+        <img src="img/img061.jpg" alt="Foto 61" loading="lazy">
+        <img src="img/img062.jpg" alt="Foto 62" loading="lazy">
+        <img src="img/img063.jpg" alt="Foto 63" loading="lazy">
+        <img src="img/img064.jpg" alt="Foto 64" loading="lazy">
+        <img src="img/img065.jpg" alt="Foto 65" loading="lazy">
+        <img src="img/img066.jpg" alt="Foto 66" loading="lazy">
+        <img src="img/img067.jpg" alt="Foto 67" loading="lazy">
+        <img src="img/img068.jpg" alt="Foto 68" loading="lazy">
+    </section>
+
     <!-- 5. FOOTER -->
     <footer>
         <div class="footer-left">
@@ -801,18 +923,19 @@
         </div>
     </footer>
 
+    <!-- API YouTube per forzare l'Autoplay del video principale -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Carica la copertina in HD (maxresdefault) se disponibile per il video
-        function upgradeThumb(imgEl, videoId) {
-            if (imgEl.dataset.upgraded) return;
-            imgEl.dataset.upgraded = "true";
-            const hdImg = new Image();
-            hdImg.src = "https://i.ytimg.com/vi/" + videoId + "/maxresdefault.jpg";
-            hdImg.onload = function() {
-                if (hdImg.width > 120) {
-                    imgEl.src = hdImg.src;
+        let heroPlayer;
+        function onYouTubeIframeAPIReady() {
+            heroPlayer = new YT.Player('heroIframe', {
+                events: {
+                    'onReady': function(event) {
+                        event.target.mute();
+                        event.target.playVideo();
+                    }
                 }
-            };
+            });
         }
 
         // Quando clicchi sul grande video in alto, attiva i controlli e l'audio
@@ -825,12 +948,33 @@
             }
         }
 
-        // Quando clicchi su uno dei video delle strisce, avvia il player con i controlli
+        // Carica la copertina in HD (maxresdefault) se disponibile per il video YouTube
+        function upgradeThumb(imgEl, videoId) {
+            if (imgEl.dataset.upgraded) return;
+            imgEl.dataset.upgraded = "true";
+            const hdImg = new Image();
+            hdImg.src = "https://i.ytimg.com/vi/" + videoId + "/maxresdefault.jpg";
+            hdImg.onload = function() {
+                if (hdImg.width > 120) {
+                    imgEl.src = hdImg.src;
+                }
+            };
+        }
+
+        // Avvia i video YouTube delle strisce quando ci clicchi sopra
         function playStripVideo(item) {
             if (item.classList.contains('playing')) return;
             item.classList.add('playing');
             const videoId = item.getAttribute('data-video-id');
             item.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        }
+
+        // Avvia i Reel di Instagram nascondendo la cornice bianca di Instagram
+        function playIgReel(item) {
+            if (item.classList.contains('playing')) return;
+            item.classList.add('playing');
+            const reelId = item.getAttribute('data-reel-id');
+            item.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${reelId}/embed/" allow="autoplay; encrypted-media" scrolling="no" allowtransparency="true"></iframe>`;
         }
 
         // Mostra/nasconde le foto backstage
