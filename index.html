@@ -11,9 +11,10 @@
     
     <style>
         :root {
-            --strip-dark: #161029;
-            --footer-dark: #090612;
-            --accent-dark: #1e1633;
+            --strip-dark-1: #161029; /* Campitura scura viola per la 1° striscia */
+            --strip-dark-2: #211114; /* Campitura scura rosso/marrone per la 2° striscia */
+            --footer-dark: #0a0608;
+            --accent-dark: #1e162b;
             --text-light-pastel: #FDFBF7;
             --subtitle-pastel: #F9E2AE;
             --footer-text-pastel: #FCE8E6;
@@ -26,10 +27,21 @@
         }
 
         body {
+            /* Sfondo stellato: Blu notte -> Viola scuro (Blocco 1) -> Rosso scuro/Marrone/Arancio (Blocco 2) -> Notte calda (Blocco 3) */
             background-color: #050711;
             background-image: 
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Cg fill='%23FDFBF7' fill-opacity='0.45'%3E%3Cpath d='M45 35 L47 42 L54 44 L47 46 L45 53 L43 46 L36 44 L43 42 Z'/%3E%3Cpath d='M240 110 L241.5 115 L246.5 116.5 L241.5 118 L240 123 L238.5 118 L233.5 116.5 L238.5 115 Z' fill='%23F9E2AE'/%3E%3Cpath d='M130 270 L132 276 L138 278 L132 280 L130 286 L128 280 L122 278 L128 276 Z' fill='%23FCE8E6'/%3E%3Ccircle cx='180' cy='50' r='1.5'/%3E%3Ccircle cx='80' cy='180' r='1.2' fill='%23EAE4F2'/%3E%3Ccircle cx='300' cy='230' r='1.8' fill='%23F9E2AE'/%3E%3Ccircle cx='210' cy='320' r='1'/%3E%3Ccircle cx='30' cy='290' r='1.5'/%3E%3Ccircle cx='310' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E"),
-                linear-gradient(180deg, #04060f 0%, #0b0e26 35%, #1a1133 70%, #27153d 100%);
+                linear-gradient(
+                    180deg, 
+                    #04060f 0%, 
+                    #0b0e26 14%, 
+                    #221338 30%, 
+                    #2c142c 44%, 
+                    #381619 58%, 
+                    #3b1d12 72%, 
+                    #261214 88%, 
+                    #12090d 100%
+                );
             background-repeat: repeat, no-repeat;
             background-attachment: scroll;
             color: var(--text-light-pastel);
@@ -113,7 +125,7 @@
         /* 4. Video Strip + Allori + Backstage */
         .video-strip-wrapper {
             position: relative;
-            background-color: var(--strip-dark);
+            background-color: var(--strip-dark-1);
             padding: 38px 0 26px 0;
             margin: 75px 0;
             border-top: 1px solid rgba(253, 251, 247, 0.08);
@@ -121,6 +133,10 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             overflow: visible;
             z-index: 10;
+        }
+
+        .video-strip-wrapper.warm-strip {
+            background-color: var(--strip-dark-2);
         }
 
         .video-strip {
@@ -286,11 +302,15 @@
             width: 46px;
             height: 46px;
             stroke: #FFFFFF;
-            fill: var(--strip-dark);
+            fill: var(--strip-dark-1);
             stroke-width: 1.8;
             stroke-linecap: round;
             stroke-linejoin: round;
             pointer-events: none;
+        }
+
+        .warm-strip .leaning-cat {
+            fill: var(--strip-dark-2);
         }
 
         .cat-top { top: -35px; right: 12px; }
@@ -546,7 +566,7 @@
         </button>
     </section>
 
-    <!-- BLOCCO 2: 18 FOTO (019 - 036) -->
+    <!-- BLOCCO 2: 21 FOTO (019 - 039) -->
     <section class="photo-grid">
         <img src="img/img019.jpg" alt="Foto 19" loading="lazy">
         <img src="img/img020.jpg" alt="Foto 20" loading="lazy">
@@ -566,10 +586,13 @@
         <img src="img/img034.jpg" alt="Foto 34" loading="lazy">
         <img src="img/img035.jpg" alt="Foto 35" loading="lazy">
         <img src="img/img036.jpg" alt="Foto 36" loading="lazy">
+        <img src="img/img037.jpg" alt="Foto 37" loading="lazy">
+        <img src="img/img038.jpg" alt="Foto 38" loading="lazy">
+        <img src="img/img039.jpg" alt="Foto 39" loading="lazy">
     </section>
 
     <!-- SECONDA RIGA DI 3 VIDEO + ALLORI + PULSANTE GATTINO BACKSTAGE -->
-    <section class="video-strip-wrapper">
+    <section class="video-strip-wrapper warm-strip">
         <div class="video-strip">
             <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -649,11 +672,8 @@
         </button>
     </section>
 
-    <!-- BLOCCO 3: 18 FOTO (037 - 054) -->
+    <!-- BLOCCO 3: 18 FOTO (040 - 057) -->
     <section class="photo-grid">
-        <img src="img/img037.jpg" alt="Foto 37" loading="lazy">
-        <img src="img/img038.jpg" alt="Foto 38" loading="lazy">
-        <img src="img/img039.jpg" alt="Foto 39" loading="lazy">
         <img src="img/img040.jpg" alt="Foto 40" loading="lazy">
         <img src="img/img041.jpg" alt="Foto 41" loading="lazy">
         <img src="img/img042.jpg" alt="Foto 42" loading="lazy">
@@ -669,6 +689,9 @@
         <img src="img/img052.jpg" alt="Foto 52" loading="lazy">
         <img src="img/img053.jpg" alt="Foto 53" loading="lazy">
         <img src="img/img054.jpg" alt="Foto 54" loading="lazy">
+        <img src="img/img055.jpg" alt="Foto 55" loading="lazy">
+        <img src="img/img056.jpg" alt="Foto 56" loading="lazy">
+        <img src="img/img057.jpg" alt="Foto 57" loading="lazy">
     </section>
 
     <!-- 5. FOOTER -->
@@ -690,14 +713,12 @@
     </footer>
 
     <script>
-        // Funzione per aprire/chiudere le foto backstage col gattino
         function toggleBts(button) {
             const wrapper = button.closest('.video-strip-wrapper');
             wrapper.classList.toggle('show-bts');
             button.classList.toggle('active');
         }
 
-        // Script per disporre le foto in ordine di RIGA (da sinistra a destra) mantenendo l'effetto collage (Masonry)
         const grids = document.querySelectorAll('.photo-grid');
         
         grids.forEach(grid => {
@@ -713,7 +734,6 @@
                 grid.dataset.cols = colCount;
                 grid.innerHTML = '';
 
-                // Crea le colonne
                 const cols = [];
                 for (let i = 0; i < colCount; i++) {
                     const col = document.createElement('div');
@@ -722,7 +742,6 @@
                     cols.push(col);
                 }
 
-                // Inserisce le foto in ordine orizzontale (1° a sinistra, 2° al centro, 3° a destra, ecc.)
                 grid.originalImages.forEach((img, index) => {
                     cols[index % colCount].appendChild(img);
                 });
