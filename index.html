@@ -209,6 +209,11 @@
             display: block;
         }
 
+        /* Link invisibile che si attiva nel PDF per rendere cliccabili i video */
+        .pdf-video-link {
+            display: none;
+        }
+
         /* Tasto Play Stellina */
         .custom-play-btn {
             position: absolute;
@@ -446,6 +451,84 @@
             .reel-strip { grid-template-columns: 1fr; padding: 0 12vw; }
             .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; }
         }
+
+        /* =========================================================
+           OTTIMIZZAZIONE SPECIFICA PER ESPORTAZIONE PORTFOLIO PDF
+           ========================================================= */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* 1. Rimuove il video grande 21:9 in alto nel PDF */
+            .hero-video-container {
+                display: none !important;
+            }
+
+            /* 2. Intestazione elegante in cima alla prima pagina del PDF */
+            .header-text {
+                padding: 55px 20px 45px !important;
+            }
+
+            /* 3. Tutte le foto subito visibili a piena risoluzione e mai tagliate a metà pagina */
+            .photo-grid {
+                gap: 14px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .masonry-col {
+                gap: 14px !important;
+            }
+
+            .photo-grid img {
+                opacity: 1 !important;
+                min-height: 0 !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            /* 4. Strisce video e Reel compatti, non spezzati tra le pagine e cliccabili nel PDF */
+            .video-strip-wrapper {
+                margin: 40px 0 !important;
+                padding: 28px 0 22px !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .video-strip {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 14px !important;
+            }
+
+            .reel-strip {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 24px !important;
+            }
+
+            .pdf-video-link {
+                display: block !important;
+                position: absolute;
+                inset: 0;
+                z-index: 15;
+            }
+
+            .cat-toggle-btn {
+                display: none !important;
+            }
+
+            footer {
+                margin-top: 40px !important;
+                padding: 25px 4vw !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -488,7 +571,7 @@
         </symbol>
     </svg>
 
-    <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Nascosto automaticamente nel PDF) -->
     <div class="hero-video-container" id="heroContainer" onclick="activateHeroControls()">
         <div class="hero-click-overlay" title="Clicca per attivare l'audio"></div>
         <iframe 
@@ -515,14 +598,17 @@
         <section class="video-strip-wrapper" data-bts-start="1">
             <div class="video-strip">
                 <div class="video-item" data-video-id="9a40Hy3DSAI" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=9a40Hy3DSAI" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" loading="lazy" decoding="async" onload="upgradeThumb(this, '9a40Hy3DSAI')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="video-item" data-video-id="86RHF9YArcw" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=86RHF9YArcw" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" loading="lazy" decoding="async" onload="upgradeThumb(this, '86RHF9YArcw')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="video-item" data-video-id="VC0OFUSWQrQ" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=VC0OFUSWQrQ" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" loading="lazy" decoding="async" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
@@ -569,14 +655,17 @@
         <section class="video-strip-wrapper warm-strip" data-bts-start="8">
             <div class="video-strip">
                 <div class="video-item" data-video-id="nktAgFjmnHU" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=nktAgFjmnHU" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" loading="lazy" decoding="async" onload="upgradeThumb(this, 'nktAgFjmnHU')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="video-item" data-video-id="mMOQ_uHplX8" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=mMOQ_uHplX8" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" loading="lazy" decoding="async" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="video-item" data-video-id="4HT3OBEWtPw" onclick="playStripVideo(this)">
+                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=4HT3OBEWtPw" target="_blank"></a>
                     <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" loading="lazy" decoding="async" onload="upgradeThumb(this, '4HT3OBEWtPw')">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
@@ -618,18 +707,22 @@
         <section class="video-strip-wrapper green-strip" data-bts-start="15">
             <div class="reel-strip">
                 <div class="reel-item" data-reel-id="DBtp_pJIaGO" onclick="playIgReel(this)">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DBtp_pJIaGO/" target="_blank"></a>
                     <img class="video-thumb" src="img/reel001.jpg" alt="Reel 1" loading="lazy" decoding="async">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="reel-item" data-reel-id="DZ4XXN4ge1t" onclick="playIgReel(this)">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DZ4XXN4ge1t/" target="_blank"></a>
                     <img class="video-thumb" src="img/reel002.jpg" alt="Reel 2" loading="lazy" decoding="async">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="reel-item" data-reel-id="DENng7ZOuzV" onclick="playIgReel(this)">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DENng7ZOuzV/" target="_blank"></a>
                     <img class="video-thumb" src="img/reel003.jpg" alt="Reel 3" loading="lazy" decoding="async">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="reel-item" data-reel-id="DGcyRN5CkK0" onclick="playIgReel(this)">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DGcyRN5CkK0/" target="_blank"></a>
                     <img class="video-thumb" src="img/reel004.jpg" alt="Reel 4" loading="lazy" decoding="async">
                     <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
@@ -667,10 +760,12 @@
     <script src="https://www.youtube.com/iframe_api" async></script>
     <script>
         const pad3 = num => String(num).padStart(3, '0');
+        const isPdfMode = window.location.search.includes('pdf');
 
-        // 1. GESTIONE HERO VIDEO (Autoplay + Sblocco audio istantaneo senza ricaricare l'iframe)
+        // 1. GESTIONE HERO VIDEO
         let heroPlayer;
         function onYouTubeIframeAPIReady() {
+            if (isPdfMode) return;
             heroPlayer = new YT.Player('heroIframe', {
                 events: {
                     onReady: e => {
@@ -716,7 +811,7 @@
             item.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${id}/embed/" allow="autoplay; encrypted-media" scrolling="no"></iframe>`;
         }
 
-        // 3. GENERAZIONE ON-DEMAND FOTO BACKSTAGE (Create e scaricate SOLO quando clicchi sul gattino)
+        // 3. GENERAZIONE ON-DEMAND FOTO BACKSTAGE
         const btsCatPoses = [
             { pos: 'cat-top', icon: '#cat-pose-top' },
             { pos: 'cat-side-right', icon: '#cat-pose-side' },
@@ -752,7 +847,7 @@
             });
         }
 
-        // 4. GENERAZIONE GRIGLIE FOTOGRAFICHE (Preserva il vero Lazy Loading nativo)
+        // 4. GENERAZIONE GRIGLIE FOTOGRAFICHE
         const grids = document.querySelectorAll('.photo-grid');
 
         grids.forEach(grid => {
@@ -766,8 +861,7 @@
                 img.alt = `Fotografia ${i}`;
                 img.decoding = 'async';
 
-                // Solo le prime 6 foto della pagina hanno priorità massima, tutte le altre vero lazy loading
-                if (i <= 6) {
+                if (isPdfMode || i <= 6) {
                     img.fetchPriority = 'high';
                 } else {
                     img.loading = 'lazy';
@@ -778,9 +872,9 @@
             }
         });
 
-        function renderMasonryGrids() {
+        function renderMasonryGrids(forceThreeCols = false) {
             const w = window.innerWidth;
-            const colCount = w <= 600 ? 1 : (w <= 950 ? 2 : 3);
+            const colCount = forceThreeCols ? 3 : (w <= 600 ? 1 : (w <= 950 ? 2 : 3));
 
             grids.forEach(grid => {
                 if (grid.dataset.cols == colCount) return;
@@ -802,12 +896,30 @@
             });
         }
 
-        renderMasonryGrids();
+        renderMasonryGrids(isPdfMode);
+
+        // Prepara tutte le immagini quando si preme Ctrl+P / Cmd+P o si apre ?pdf
+        function prepareForPrint() {
+            renderMasonryGrids(true);
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.removeAttribute('loading');
+                img.classList.add('loaded');
+            });
+        }
+
+        window.addEventListener('beforeprint', prepareForPrint);
+
+        if (isPdfMode) {
+            prepareForPrint();
+            window.addEventListener('load', () => {
+                setTimeout(() => window.print(), 800);
+            });
+        }
 
         let resizeTimer;
         window.addEventListener('resize', () => {
             cancelAnimationFrame(resizeTimer);
-            resizeTimer = requestAnimationFrame(renderMasonryGrids);
+            resizeTimer = requestAnimationFrame(() => renderMasonryGrids(false));
         });
     </script>
 
