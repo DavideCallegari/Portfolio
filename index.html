@@ -11,8 +11,8 @@
     
     <style>
         :root {
-            --strip-dark-1: #161029; /* Campitura scura viola per la 1° striscia */
-            --strip-dark-2: #211114; /* Campitura scura rosso/marrone per la 2° striscia */
+            --strip-dark-1: #161029;
+            --strip-dark-2: #211114;
             --footer-dark: #0a0608;
             --accent-dark: #1e162b;
             --text-light-pastel: #FDFBF7;
@@ -27,7 +27,6 @@
         }
 
         body {
-            /* Sfondo stellato: Blu notte -> Viola scuro (Blocco 1) -> Rosso scuro/Marrone/Arancio (Blocco 2) -> Notte calda (Blocco 3) */
             background-color: #050711;
             background-image: 
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Cg fill='%23FDFBF7' fill-opacity='0.45'%3E%3Cpath d='M45 35 L47 42 L54 44 L47 46 L45 53 L43 46 L36 44 L43 42 Z'/%3E%3Cpath d='M240 110 L241.5 115 L246.5 116.5 L241.5 118 L240 123 L238.5 118 L233.5 116.5 L238.5 115 Z' fill='%23F9E2AE'/%3E%3Cpath d='M130 270 L132 276 L138 278 L132 280 L130 286 L128 280 L122 278 L128 276 Z' fill='%23FCE8E6'/%3E%3Ccircle cx='180' cy='50' r='1.5'/%3E%3Ccircle cx='80' cy='180' r='1.2' fill='%23EAE4F2'/%3E%3Ccircle cx='300' cy='230' r='1.8' fill='%23F9E2AE'/%3E%3Ccircle cx='210' cy='320' r='1'/%3E%3Ccircle cx='30' cy='290' r='1.5'/%3E%3Ccircle cx='310' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E"),
@@ -49,13 +48,15 @@
             overflow-x: hidden;
         }
 
-        /* 1. Top 21:9 Video */
+        /* 1. Top 21:9 Video (Autoplay + senza controlli finché non si clicca) */
         .hero-video-container {
+            position: relative;
             width: 100%;
             aspect-ratio: 21 / 9;
             background-color: #000;
             overflow: hidden;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
         }
 
         .hero-video-container iframe {
@@ -63,6 +64,21 @@
             height: 100%;
             border: none;
             display: block;
+            pointer-events: none; /* Nasconde l'hover dei controlli finché non si clicca */
+        }
+
+        .hero-video-container.interactive iframe {
+            pointer-events: auto;
+        }
+
+        .hero-click-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        .hero-video-container.interactive .hero-click-overlay {
+            display: none;
         }
 
         /* 2. Name & Subtitle */
@@ -150,13 +166,57 @@
             margin: 0 auto;
         }
 
+        /* Video Box senza controlli finché non ci clicchi sopra */
         .video-item {
+            position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
             border-radius: 0px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             background-color: #000;
+            cursor: pointer;
+        }
+
+        .video-item img.video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .video-item:hover img.video-thumb {
+            transform: scale(1.03);
+            filter: brightness(1.08);
+        }
+
+        .custom-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            background-color: rgba(10, 6, 18, 0.65);
+            border: 1.8px solid var(--text-light-pastel);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease, background-color 0.25s ease;
+            pointer-events: none;
+        }
+
+        .video-item:hover .custom-play-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+            background-color: rgba(249, 226, 174, 0.25);
+        }
+
+        .custom-play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-light-pastel);
+            margin-left: 3px;
         }
 
         .video-item iframe {
@@ -435,12 +495,17 @@
             <path d="M15,28 L4,24 M15,33 L4,31" />
             <path d="M30,44 Q41,42 39,31" fill="none" />
         </symbol>
+        <symbol id="play-icon" viewBox="0 0 24 24">
+            <polygon points="5,3 19,12 5,21" />
+        </symbol>
     </svg>
 
-    <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
-    <div class="hero-video-container">
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Parte da solo senza controlli; cliccando sopra compaiono i controlli e l'audio) -->
+    <div class="hero-video-container" id="heroContainer" onclick="activateHeroControls()">
+        <div class="hero-click-overlay" title="Clicca per attivare audio e controlli"></div>
         <iframe 
-            src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" 
+            id="heroIframe"
+            src="https://www.youtube.com/embed/4aja6p8wSnA?autoplay=1&mute=1&controls=0&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
             title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -476,17 +541,20 @@
         <img src="img/img018.jpg" alt="Foto 18" loading="lazy">
     </section>
 
-    <!-- PRIMA RIGA DI 3 VIDEO + ALLORI + PULSANTE GATTINO BACKSTAGE -->
+    <!-- PRIMA RIGA DI 3 VIDEO (9a40Hy3DSAI, 86RHF9YArcw, VC0OFUSWQrQ) -->
     <section class="video-strip-wrapper">
         <div class="video-strip">
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/lRlFYfncR6w?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="9a40Hy3DSAI" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" onload="upgradeThumb(this, '9a40Hy3DSAI')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/86RHF9YArcw?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="86RHF9YArcw" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" onload="upgradeThumb(this, '86RHF9YArcw')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/VC0OFUSWQrQ?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="VC0OFUSWQrQ" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
         </div>
 
@@ -496,7 +564,7 @@
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
                     <span class="laurel-podium">Vincitore</span>
-                    <span class="laurel-festival">Milano Film<br>Festival 2024</span>
+                    <span class="laurel-festival">PadovaCiak<br>2026</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -505,7 +573,7 @@
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
                     <span class="laurel-podium">Finalista</span>
-                    <span class="laurel-festival">Torino Short<br>Film Market</span>
+                    <span class="laurel-festival">Believe<br>FilmFestival</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -513,8 +581,8 @@
             <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
-                    <span class="laurel-podium">Selezione Ufficiale</span>
-                    <span class="laurel-festival">Roma Indie<br>Cinema Awards</span>
+                    <span class="laurel-podium">Menzione speciale</span>
+                    <span class="laurel-festival">Nebrodi<br>Cinema Doc</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -522,11 +590,21 @@
             <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
-                    <span class="laurel-podium">Miglior Fotografia</span>
-                    <span class="laurel-festival">Venice Young<br>Creators Fest</span>
+                    <span class="laurel-podium">Finalista</span>
+                    <span class="laurel-festival">Trailers<br>FilmFest</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
+
+	    <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Selezione ufficiale</span>
+                    <span class="laurel-festival">Filmmaker<br>Session</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
         </div>
 
         <!-- 7 FOTO BACKSTAGE (bts001 - bts007) -->
@@ -591,17 +669,20 @@
         <img src="img/img039.jpg" alt="Foto 39" loading="lazy">
     </section>
 
-    <!-- SECONDA RIGA DI 3 VIDEO + ALLORI + PULSANTE GATTINO BACKSTAGE -->
+    <!-- SECONDA RIGA DI 3 VIDEO (nktAgFjmnHU, mMOQ_uHplX8, 4HT3OBEWtPw) -->
     <section class="video-strip-wrapper warm-strip">
         <div class="video-strip">
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="nktAgFjmnHU" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" onload="upgradeThumb(this, 'nktAgFjmnHU')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="mMOQ_uHplX8" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
-            <div class="video-item">
-                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="video-item" data-video-id="4HT3OBEWtPw" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" onload="upgradeThumb(this, '4HT3OBEWtPw')">
+                <div class="custom-play-btn"><svg><use href="#play-icon"></use></svg></div>
             </div>
         </div>
 
@@ -610,8 +691,8 @@
             <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
-                    <span class="laurel-podium">Vincitore</span>
-                    <span class="laurel-festival">Bologna Doc<br>Film Fest</span>
+                    <span class="laurel-podium">Premio Pluriart</span>
+                    <span class="laurel-festival">PadovaCiak<br>2024</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -620,7 +701,7 @@
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
                     <span class="laurel-podium">Finalista</span>
-                    <span class="laurel-festival">Napoli Corto<br>Festival 2024</span>
+                    <span class="laurel-festival">Lindea d'ombra<br>UNIFEST</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -628,8 +709,17 @@
             <div class="laurel-badge">
                 <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                 <div class="laurel-content">
-                    <span class="laurel-podium">Menzione Speciale</span>
-                    <span class="laurel-festival">Firenze Vision<br>Awards</span>
+                    <span class="laurel-podium">Finalista</span>
+                    <span class="laurel-festival">Cortintelvi<br>2025</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+	    <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Finalista</span>
+                    <span class="laurel-festival">Valsusa<br>Filmfest</span>
                 </div>
                 <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
             </div>
@@ -691,7 +781,6 @@
         <img src="img/img054.jpg" alt="Foto 54" loading="lazy">
         <img src="img/img055.jpg" alt="Foto 55" loading="lazy">
         <img src="img/img056.jpg" alt="Foto 56" loading="lazy">
-        <img src="img/img057.jpg" alt="Foto 57" loading="lazy">
     </section>
 
     <!-- 5. FOOTER -->
@@ -713,12 +802,45 @@
     </footer>
 
     <script>
+        // Carica la copertina in HD (maxresdefault) se disponibile per il video
+        function upgradeThumb(imgEl, videoId) {
+            if (imgEl.dataset.upgraded) return;
+            imgEl.dataset.upgraded = "true";
+            const hdImg = new Image();
+            hdImg.src = "https://i.ytimg.com/vi/" + videoId + "/maxresdefault.jpg";
+            hdImg.onload = function() {
+                if (hdImg.width > 120) {
+                    imgEl.src = hdImg.src;
+                }
+            };
+        }
+
+        // Quando clicchi sul grande video in alto, attiva i controlli e l'audio
+        function activateHeroControls() {
+            const container = document.getElementById('heroContainer');
+            const iframe = document.getElementById('heroIframe');
+            if (!container.classList.contains('interactive')) {
+                container.classList.add('interactive');
+                iframe.src = "https://www.youtube.com/embed/4aja6p8wSnA?autoplay=1&controls=1&rel=0&modestbranding=1";
+            }
+        }
+
+        // Quando clicchi su uno dei video delle strisce, avvia il player con i controlli
+        function playStripVideo(item) {
+            if (item.classList.contains('playing')) return;
+            item.classList.add('playing');
+            const videoId = item.getAttribute('data-video-id');
+            item.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        }
+
+        // Mostra/nasconde le foto backstage
         function toggleBts(button) {
             const wrapper = button.closest('.video-strip-wrapper');
             wrapper.classList.toggle('show-bts');
             button.classList.toggle('active');
         }
 
+        // Griglia fotografica ordinata per RIGA ma con effetto collage (Masonry)
         const grids = document.querySelectorAll('.photo-grid');
         
         grids.forEach(grid => {
