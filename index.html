@@ -29,19 +29,20 @@
 
         body {
             background-color: #050711;
+            /* Sfumatura verso il verde alzata leggermente come richiesto */
             background-image: 
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Cg fill='%23FDFBF7' fill-opacity='0.45'%3E%3Cpath d='M45 35 L47 42 L54 44 L47 46 L45 53 L43 46 L36 44 L43 42 Z'/%3E%3Cpath d='M240 110 L241.5 115 L246.5 116.5 L241.5 118 L240 123 L238.5 118 L233.5 116.5 L238.5 115 Z' fill='%23F9E2AE'/%3E%3Cpath d='M130 270 L132 276 L138 278 L132 280 L130 286 L128 280 L122 278 L128 276 Z' fill='%23FCE8E6'/%3E%3Ccircle cx='180' cy='50' r='1.5'/%3E%3Ccircle cx='80' cy='180' r='1.2' fill='%23EAE4F2'/%3E%3Ccircle cx='300' cy='230' r='1.8' fill='%23F9E2AE'/%3E%3Ccircle cx='210' cy='320' r='1'/%3E%3Ccircle cx='30' cy='290' r='1.5'/%3E%3Ccircle cx='310' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E"),
                 linear-gradient(
                     180deg, 
                     #04060f 0%, 
                     #0b0e26 11%, 
-                    #221338 24%, 
-                    #2c142c 37%, 
-                    #381619 52%, 
-                    #3b1d12 67%, 
-                    #241614 80%, 
-                    #11221c 89%, 
-                    #0c261d 96%, 
+                    #221338 23%, 
+                    #2c142c 35%, 
+                    #381619 47%, 
+                    #3b1d12 58%, 
+                    #241614 67%, 
+                    #11221c 76%, 
+                    #0c261d 89%, 
                     #06110d 100%
                 );
             background-repeat: repeat, no-repeat;
@@ -133,10 +134,16 @@
         .photo-grid img {
             width: 100%;
             height: auto;
+            min-height: 240px; /* Impedisce al browser di scaricare tutte le 68 foto insieme all'avvio */
             display: block;
             border-radius: 0px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: var(--accent-dark);
+            background-color: rgba(30, 22, 43, 0.35);
+        }
+
+        .photo-grid img.loaded {
+            min-height: 0;
+            background-color: transparent;
         }
 
         .photo-grid img:hover {
@@ -212,7 +219,7 @@
             display: block;
         }
 
-        /* TASTO PLAY: Stellina piccola, solo contorno bianco a 5 punte con linee curve, nessun movimento, solo bagliore giallo leggero */
+        /* TASTO PLAY: Stellina piccola, lati leggermente curvi, nessun movimento, solo bagliore giallo leggero */
         .custom-play-btn {
             position: absolute;
             top: 50%;
@@ -527,14 +534,14 @@
             <path d="M15,28 L4,24 M15,33 L4,31" />
             <path d="M30,44 Q41,42 39,31" fill="none" />
         </symbol>
-        <!-- Stellina piccola solo contorno bianco a 5 punte con linee curve + triangolo play al centro -->
+        <!-- Stellina piccola a 5 punte con lati solo leggermente curvi + triangolo play al centro -->
         <symbol id="star-play-icon" viewBox="0 0 64 64">
-            <path d="M 32,5 
-                     Q 37,22 57,23 
-                     Q 41,34 47,53 
-                     Q 32,42 17,53 
-                     Q 23,34 7,23 
-                     Q 27,22 32,5 Z" 
+            <path d="M 32,4 
+                     Q 39,20.5 58.6,23.4 
+                     Q 43.5,35.5 48.5,54.7 
+                     Q 32,45 15.5,54.7 
+                     Q 20.5,35.5 5.4,23.4 
+                     Q 25,20.5 32,4 Z" 
                   fill="none" 
                   stroke="currentColor" 
                   stroke-width="2.2" 
@@ -549,7 +556,7 @@
         </symbol>
     </svg>
 
-    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Autoplay garantito tramite API YouTube) -->
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
     <div class="hero-video-container" id="heroContainer" onclick="activateHeroControls()">
         <div class="hero-click-overlay" title="Clicca per attivare audio e controlli"></div>
         <iframe 
@@ -568,41 +575,41 @@
         <p>Filmmaker, videomaker e fotografo</p>
     </header>
 
-    <!-- BLOCCO 1: 18 FOTO (001 - 018) -->
+    <!-- BLOCCO 1: 18 FOTO (001 - 018) - Prime 6 con priorità alta per caricamento istantaneo -->
     <section class="photo-grid">
-        <img src="img/img001.jpg" alt="Foto 1" loading="lazy">
-        <img src="img/img002.jpg" alt="Foto 2" loading="lazy">
-        <img src="img/img003.jpg" alt="Foto 3" loading="lazy">
-        <img src="img/img004.jpg" alt="Foto 4" loading="lazy">
-        <img src="img/img005.jpg" alt="Foto 5" loading="lazy">
-        <img src="img/img006.jpg" alt="Foto 6" loading="lazy">
-        <img src="img/img007.jpg" alt="Foto 7" loading="lazy">
-        <img src="img/img008.jpg" alt="Foto 8" loading="lazy">
-        <img src="img/img009.jpg" alt="Foto 9" loading="lazy">
-        <img src="img/img010.jpg" alt="Foto 10" loading="lazy">
-        <img src="img/img011.jpg" alt="Foto 11" loading="lazy">
-        <img src="img/img012.jpg" alt="Foto 12" loading="lazy">
-        <img src="img/img013.jpg" alt="Foto 13" loading="lazy">
-        <img src="img/img014.jpg" alt="Foto 14" loading="lazy">
-        <img src="img/img015.jpg" alt="Foto 15" loading="lazy">
-        <img src="img/img016.jpg" alt="Foto 16" loading="lazy">
-        <img src="img/img017.jpg" alt="Foto 17" loading="lazy">
-        <img src="img/img018.jpg" alt="Foto 18" loading="lazy">
+        <img src="img/img001.jpg" alt="Foto 1" fetchpriority="high" decoding="async">
+        <img src="img/img002.jpg" alt="Foto 2" fetchpriority="high" decoding="async">
+        <img src="img/img003.jpg" alt="Foto 3" fetchpriority="high" decoding="async">
+        <img src="img/img004.jpg" alt="Foto 4" fetchpriority="high" decoding="async">
+        <img src="img/img005.jpg" alt="Foto 5" fetchpriority="high" decoding="async">
+        <img src="img/img006.jpg" alt="Foto 6" fetchpriority="high" decoding="async">
+        <img src="img/img007.jpg" alt="Foto 7" loading="lazy" decoding="async">
+        <img src="img/img008.jpg" alt="Foto 8" loading="lazy" decoding="async">
+        <img src="img/img009.jpg" alt="Foto 9" loading="lazy" decoding="async">
+        <img src="img/img010.jpg" alt="Foto 10" loading="lazy" decoding="async">
+        <img src="img/img011.jpg" alt="Foto 11" loading="lazy" decoding="async">
+        <img src="img/img012.jpg" alt="Foto 12" loading="lazy" decoding="async">
+        <img src="img/img013.jpg" alt="Foto 13" loading="lazy" decoding="async">
+        <img src="img/img014.jpg" alt="Foto 14" loading="lazy" decoding="async">
+        <img src="img/img015.jpg" alt="Foto 15" loading="lazy" decoding="async">
+        <img src="img/img016.jpg" alt="Foto 16" loading="lazy" decoding="async">
+        <img src="img/img017.jpg" alt="Foto 17" loading="lazy" decoding="async">
+        <img src="img/img018.jpg" alt="Foto 18" loading="lazy" decoding="async">
     </section>
 
     <!-- PRIMA RIGA DI 3 VIDEO (9a40Hy3DSAI, 86RHF9YArcw, VC0OFUSWQrQ) -->
     <section class="video-strip-wrapper">
         <div class="video-strip">
-            <div class="video-item" data-video-id="lRlFYfncR6w" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" onload="upgradeThumb(this, '9a40Hy3DSAI')">
+            <div class="video-item" data-video-id="9a40Hy3DSAI" onclick="playStripVideo(this)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" loading="lazy" decoding="async" onload="upgradeThumb(this, '9a40Hy3DSAI')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="86RHF9YArcw" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" onload="upgradeThumb(this, '86RHF9YArcw')">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" loading="lazy" decoding="async" onload="upgradeThumb(this, '86RHF9YArcw')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="VC0OFUSWQrQ" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" loading="lazy" decoding="async" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
         </div>
@@ -655,35 +662,35 @@
             </div>
         </div>
 
-        <!-- 7 FOTO BACKSTAGE (bts001 - bts007) -->
+        <!-- 7 FOTO BACKSTAGE (Caricate solo quando si clicca sul gattino!) -->
         <div class="bts-layer">
             <div class="bts-card bts-pos-1">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts001.jpg" alt="Backstage 1" loading="lazy">
+                <img data-src="img/bts001.jpg" alt="Backstage 1">
             </div>
             <div class="bts-card bts-pos-2">
                 <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts002.jpg" alt="Backstage 2" loading="lazy">
+                <img data-src="img/bts002.jpg" alt="Backstage 2">
             </div>
             <div class="bts-card bts-pos-3">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts003.jpg" alt="Backstage 3" loading="lazy">
+                <img data-src="img/bts003.jpg" alt="Backstage 3">
             </div>
             <div class="bts-card bts-pos-4">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts004.jpg" alt="Backstage 4" loading="lazy">
+                <img data-src="img/bts004.jpg" alt="Backstage 4">
             </div>
             <div class="bts-card bts-pos-5">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts005.jpg" alt="Backstage 5" loading="lazy">
+                <img data-src="img/bts005.jpg" alt="Backstage 5">
             </div>
             <div class="bts-card bts-pos-6">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts006.jpg" alt="Backstage 6" loading="lazy">
+                <img data-src="img/bts006.jpg" alt="Backstage 6">
             </div>
             <div class="bts-card bts-pos-7">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts007.jpg" alt="Backstage 7" loading="lazy">
+                <img data-src="img/bts007.jpg" alt="Backstage 7">
             </div>
         </div>
 
@@ -694,42 +701,42 @@
 
     <!-- BLOCCO 2: 21 FOTO (019 - 039) -->
     <section class="photo-grid">
-        <img src="img/img019.jpg" alt="Foto 19" loading="lazy">
-        <img src="img/img020.jpg" alt="Foto 20" loading="lazy">
-        <img src="img/img021.jpg" alt="Foto 21" loading="lazy">
-        <img src="img/img022.jpg" alt="Foto 22" loading="lazy">
-        <img src="img/img023.jpg" alt="Foto 23" loading="lazy">
-        <img src="img/img024.jpg" alt="Foto 24" loading="lazy">
-        <img src="img/img025.jpg" alt="Foto 25" loading="lazy">
-        <img src="img/img026.jpg" alt="Foto 26" loading="lazy">
-        <img src="img/img027.jpg" alt="Foto 27" loading="lazy">
-        <img src="img/img028.jpg" alt="Foto 28" loading="lazy">
-        <img src="img/img029.jpg" alt="Foto 29" loading="lazy">
-        <img src="img/img030.jpg" alt="Foto 30" loading="lazy">
-        <img src="img/img031.jpg" alt="Foto 31" loading="lazy">
-        <img src="img/img032.jpg" alt="Foto 32" loading="lazy">
-        <img src="img/img033.jpg" alt="Foto 33" loading="lazy">
-        <img src="img/img034.jpg" alt="Foto 34" loading="lazy">
-        <img src="img/img035.jpg" alt="Foto 35" loading="lazy">
-        <img src="img/img036.jpg" alt="Foto 36" loading="lazy">
-        <img src="img/img037.jpg" alt="Foto 37" loading="lazy">
-        <img src="img/img038.jpg" alt="Foto 38" loading="lazy">
-        <img src="img/img039.jpg" alt="Foto 39" loading="lazy">
+        <img src="img/img019.jpg" alt="Foto 19" loading="lazy" decoding="async">
+        <img src="img/img020.jpg" alt="Foto 20" loading="lazy" decoding="async">
+        <img src="img/img021.jpg" alt="Foto 21" loading="lazy" decoding="async">
+        <img src="img/img022.jpg" alt="Foto 22" loading="lazy" decoding="async">
+        <img src="img/img023.jpg" alt="Foto 23" loading="lazy" decoding="async">
+        <img src="img/img024.jpg" alt="Foto 24" loading="lazy" decoding="async">
+        <img src="img/img025.jpg" alt="Foto 25" loading="lazy" decoding="async">
+        <img src="img/img026.jpg" alt="Foto 26" loading="lazy" decoding="async">
+        <img src="img/img027.jpg" alt="Foto 27" loading="lazy" decoding="async">
+        <img src="img/img028.jpg" alt="Foto 28" loading="lazy" decoding="async">
+        <img src="img/img029.jpg" alt="Foto 29" loading="lazy" decoding="async">
+        <img src="img/img030.jpg" alt="Foto 30" loading="lazy" decoding="async">
+        <img src="img/img031.jpg" alt="Foto 31" loading="lazy" decoding="async">
+        <img src="img/img032.jpg" alt="Foto 32" loading="lazy" decoding="async">
+        <img src="img/img033.jpg" alt="Foto 33" loading="lazy" decoding="async">
+        <img src="img/img034.jpg" alt="Foto 34" loading="lazy" decoding="async">
+        <img src="img/img035.jpg" alt="Foto 35" loading="lazy" decoding="async">
+        <img src="img/img036.jpg" alt="Foto 36" loading="lazy" decoding="async">
+        <img src="img/img037.jpg" alt="Foto 37" loading="lazy" decoding="async">
+        <img src="img/img038.jpg" alt="Foto 38" loading="lazy" decoding="async">
+        <img src="img/img039.jpg" alt="Foto 39" loading="lazy" decoding="async">
     </section>
 
     <!-- SECONDA RIGA DI 3 VIDEO (nktAgFjmnHU, mMOQ_uHplX8, 4HT3OBEWtPw) -->
     <section class="video-strip-wrapper warm-strip">
         <div class="video-strip">
             <div class="video-item" data-video-id="nktAgFjmnHU" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" onload="upgradeThumb(this, 'nktAgFjmnHU')">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" loading="lazy" decoding="async" onload="upgradeThumb(this, 'nktAgFjmnHU')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="mMOQ_uHplX8" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" loading="lazy" decoding="async" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="video-item" data-video-id="4HT3OBEWtPw" onclick="playStripVideo(this)">
-                <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" onload="upgradeThumb(this, '4HT3OBEWtPw')">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" loading="lazy" decoding="async" onload="upgradeThumb(this, '4HT3OBEWtPw')">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
         </div>
@@ -773,35 +780,35 @@
             </div>
         </div>
 
-        <!-- 7 FOTO BACKSTAGE (bts008 - bts014) -->
+        <!-- 7 FOTO BACKSTAGE (Caricate solo al clic sul gattino) -->
         <div class="bts-layer">
             <div class="bts-card bts-pos-1">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts008.jpg" alt="Backstage 8" loading="lazy">
+                <img data-src="img/bts008.jpg" alt="Backstage 8">
             </div>
             <div class="bts-card bts-pos-2">
                 <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts009.jpg" alt="Backstage 9" loading="lazy">
+                <img data-src="img/bts009.jpg" alt="Backstage 9">
             </div>
             <div class="bts-card bts-pos-3">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts010.jpg" alt="Backstage 10" loading="lazy">
+                <img data-src="img/bts010.jpg" alt="Backstage 10">
             </div>
             <div class="bts-card bts-pos-4">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts011.jpg" alt="Backstage 11" loading="lazy">
+                <img data-src="img/bts011.jpg" alt="Backstage 11">
             </div>
             <div class="bts-card bts-pos-5">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts012.jpg" alt="Backstage 12" loading="lazy">
+                <img data-src="img/bts012.jpg" alt="Backstage 12">
             </div>
             <div class="bts-card bts-pos-6">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts013.jpg" alt="Backstage 13" loading="lazy">
+                <img data-src="img/bts013.jpg" alt="Backstage 13">
             </div>
             <div class="bts-card bts-pos-7">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts014.jpg" alt="Backstage 14" loading="lazy">
+                <img data-src="img/bts014.jpg" alt="Backstage 14">
             </div>
         </div>
 
@@ -812,75 +819,75 @@
 
     <!-- BLOCCO 3: 17 FOTO (040 - 056) -->
     <section class="photo-grid">
-        <img src="img/img040.jpg" alt="Foto 40" loading="lazy">
-        <img src="img/img041.jpg" alt="Foto 41" loading="lazy">
-        <img src="img/img042.jpg" alt="Foto 42" loading="lazy">
-        <img src="img/img043.jpg" alt="Foto 43" loading="lazy">
-        <img src="img/img044.jpg" alt="Foto 44" loading="lazy">
-        <img src="img/img045.jpg" alt="Foto 45" loading="lazy">
-        <img src="img/img046.jpg" alt="Foto 46" loading="lazy">
-        <img src="img/img047.jpg" alt="Foto 47" loading="lazy">
-        <img src="img/img048.jpg" alt="Foto 48" loading="lazy">
-        <img src="img/img049.jpg" alt="Foto 49" loading="lazy">
-        <img src="img/img050.jpg" alt="Foto 50" loading="lazy">
-        <img src="img/img051.jpg" alt="Foto 51" loading="lazy">
-        <img src="img/img052.jpg" alt="Foto 52" loading="lazy">
-        <img src="img/img053.jpg" alt="Foto 53" loading="lazy">
-        <img src="img/img054.jpg" alt="Foto 54" loading="lazy">
-        <img src="img/img055.jpg" alt="Foto 55" loading="lazy">
-        <img src="img/img056.jpg" alt="Foto 56" loading="lazy">
+        <img src="img/img040.jpg" alt="Foto 40" loading="lazy" decoding="async">
+        <img src="img/img041.jpg" alt="Foto 41" loading="lazy" decoding="async">
+        <img src="img/img042.jpg" alt="Foto 42" loading="lazy" decoding="async">
+        <img src="img/img043.jpg" alt="Foto 43" loading="lazy" decoding="async">
+        <img src="img/img044.jpg" alt="Foto 44" loading="lazy" decoding="async">
+        <img src="img/img045.jpg" alt="Foto 45" loading="lazy" decoding="async">
+        <img src="img/img046.jpg" alt="Foto 46" loading="lazy" decoding="async">
+        <img src="img/img047.jpg" alt="Foto 47" loading="lazy" decoding="async">
+        <img src="img/img048.jpg" alt="Foto 48" loading="lazy" decoding="async">
+        <img src="img/img049.jpg" alt="Foto 49" loading="lazy" decoding="async">
+        <img src="img/img050.jpg" alt="Foto 50" loading="lazy" decoding="async">
+        <img src="img/img051.jpg" alt="Foto 51" loading="lazy" decoding="async">
+        <img src="img/img052.jpg" alt="Foto 52" loading="lazy" decoding="async">
+        <img src="img/img053.jpg" alt="Foto 53" loading="lazy" decoding="async">
+        <img src="img/img054.jpg" alt="Foto 54" loading="lazy" decoding="async">
+        <img src="img/img055.jpg" alt="Foto 55" loading="lazy" decoding="async">
+        <img src="img/img056.jpg" alt="Foto 56" loading="lazy" decoding="async">
     </section>
 
     <!-- TERZA RIGA: 4 REEL VERTICALI DA INSTAGRAM -->
     <section class="video-strip-wrapper green-strip">
         <div class="reel-strip">
             <div class="reel-item" data-reel-id="DBtp_pJIaGO" onclick="playIgReel(this)">
-                <img class="video-thumb" src="img/reel001.jpg" alt="Reel 1" loading="lazy">
+                <img class="video-thumb" src="img/reel001.jpg" alt="Reel 1" loading="lazy" decoding="async">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="reel-item" data-reel-id="DZ4XXN4ge1t" onclick="playIgReel(this)">
-                <img class="video-thumb" src="img/reel002.jpg" alt="Reel 2" loading="lazy">
+                <img class="video-thumb" src="img/reel002.jpg" alt="Reel 2" loading="lazy" decoding="async">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="reel-item" data-reel-id="DENng7ZOuzV" onclick="playIgReel(this)">
-                <img class="video-thumb" src="img/reel003.jpg" alt="Reel 3" loading="lazy">
+                <img class="video-thumb" src="img/reel003.jpg" alt="Reel 3" loading="lazy" decoding="async">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
             <div class="reel-item" data-reel-id="DGcyRN5CkK0" onclick="playIgReel(this)">
-                <img class="video-thumb" src="img/reel004.jpg" alt="Reel 4" loading="lazy">
+                <img class="video-thumb" src="img/reel004.jpg" alt="Reel 4" loading="lazy" decoding="async">
                 <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
             </div>
         </div>
 
-        <!-- 7 FOTO BACKSTAGE PER LA STRISCIA REEL (bts015 - bts021) -->
+        <!-- 7 FOTO BACKSTAGE PER LA STRISCIA REEL (Caricate solo al clic sul gattino) -->
         <div class="bts-layer">
             <div class="bts-card bts-pos-1">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts015.jpg" alt="Backstage 15" loading="lazy">
+                <img data-src="img/bts015.jpg" alt="Backstage 15">
             </div>
             <div class="bts-card bts-pos-2">
                 <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts016.jpg" alt="Backstage 16" loading="lazy">
+                <img data-src="img/bts016.jpg" alt="Backstage 16">
             </div>
             <div class="bts-card bts-pos-3">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts017.jpg" alt="Backstage 17" loading="lazy">
+                <img data-src="img/bts017.jpg" alt="Backstage 17">
             </div>
             <div class="bts-card bts-pos-4">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts018.jpg" alt="Backstage 18" loading="lazy">
+                <img data-src="img/bts018.jpg" alt="Backstage 18">
             </div>
             <div class="bts-card bts-pos-5">
                 <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts019.jpg" alt="Backstage 19" loading="lazy">
+                <img data-src="img/bts019.jpg" alt="Backstage 19">
             </div>
             <div class="bts-card bts-pos-6">
                 <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
-                <img src="img/bts020.jpg" alt="Backstage 20" loading="lazy">
+                <img data-src="img/bts020.jpg" alt="Backstage 20">
             </div>
             <div class="bts-card bts-pos-7">
                 <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
-                <img src="img/bts021.jpg" alt="Backstage 21" loading="lazy">
+                <img data-src="img/bts021.jpg" alt="Backstage 21">
             </div>
         </div>
 
@@ -891,18 +898,18 @@
 
     <!-- BLOCCO 4: 12 FOTO SOTTO I REEL (057 - 068) -->
     <section class="photo-grid">
-        <img src="img/img057.jpg" alt="Foto 57" loading="lazy">
-        <img src="img/img058.jpg" alt="Foto 58" loading="lazy">
-        <img src="img/img059.jpg" alt="Foto 59" loading="lazy">
-        <img src="img/img060.jpg" alt="Foto 60" loading="lazy">
-        <img src="img/img061.jpg" alt="Foto 61" loading="lazy">
-        <img src="img/img062.jpg" alt="Foto 62" loading="lazy">
-        <img src="img/img063.jpg" alt="Foto 63" loading="lazy">
-        <img src="img/img064.jpg" alt="Foto 64" loading="lazy">
-        <img src="img/img065.jpg" alt="Foto 65" loading="lazy">
-        <img src="img/img066.jpg" alt="Foto 66" loading="lazy">
-        <img src="img/img067.jpg" alt="Foto 67" loading="lazy">
-        <img src="img/img068.jpg" alt="Foto 68" loading="lazy">
+        <img src="img/img057.jpg" alt="Foto 57" loading="lazy" decoding="async">
+        <img src="img/img058.jpg" alt="Foto 58" loading="lazy" decoding="async">
+        <img src="img/img059.jpg" alt="Foto 59" loading="lazy" decoding="async">
+        <img src="img/img060.jpg" alt="Foto 60" loading="lazy" decoding="async">
+        <img src="img/img061.jpg" alt="Foto 61" loading="lazy" decoding="async">
+        <img src="img/img062.jpg" alt="Foto 62" loading="lazy" decoding="async">
+        <img src="img/img063.jpg" alt="Foto 63" loading="lazy" decoding="async">
+        <img src="img/img064.jpg" alt="Foto 64" loading="lazy" decoding="async">
+        <img src="img/img065.jpg" alt="Foto 65" loading="lazy" decoding="async">
+        <img src="img/img066.jpg" alt="Foto 66" loading="lazy" decoding="async">
+        <img src="img/img067.jpg" alt="Foto 67" loading="lazy" decoding="async">
+        <img src="img/img068.jpg" alt="Foto 68" loading="lazy" decoding="async">
     </section>
 
     <!-- 5. FOOTER -->
@@ -977,18 +984,30 @@
             item.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${reelId}/embed/" allow="autoplay; encrypted-media" scrolling="no" allowtransparency="true"></iframe>`;
         }
 
-        // Mostra/nasconde le foto backstage
+        // Mostra/nasconde le foto backstage e le scarica SOLO al primo clic sul gattino
         function toggleBts(button) {
             const wrapper = button.closest('.video-strip-wrapper');
+            wrapper.querySelectorAll('.bts-card img[data-src]').forEach(img => {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+            });
             wrapper.classList.toggle('show-bts');
             button.classList.toggle('active');
         }
 
-        // Griglia fotografica ordinata per RIGA ma con effetto collage (Masonry)
+        // Griglia fotografica ordinata per RIGA ma con effetto collage (Masonry) + Rimuove min-height appena la foto è caricata
         const grids = document.querySelectorAll('.photo-grid');
         
         grids.forEach(grid => {
-            grid.originalImages = Array.from(grid.querySelectorAll('img'));
+            const imgs = Array.from(grid.querySelectorAll('img'));
+            imgs.forEach(img => {
+                if (img.complete) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', () => img.classList.add('loaded'));
+                }
+            });
+            grid.originalImages = imgs;
         });
 
         function buildHorizontalMasonry() {
