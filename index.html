@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davide Callegari - Portfolio</title>
+    <!-- Whimsical Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --strip-dark: #161029;
+            --footer-dark: #090612;
+            --accent-dark: #1e1633;
+            --text-light-pastel: #FDFBF7;
+            --subtitle-pastel: #F9E2AE;
+            --footer-text-pastel: #FCE8E6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050711;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='350' viewBox='0 0 350 350'%3E%3Cg fill='%23FDFBF7' fill-opacity='0.45'%3E%3Cpath d='M45 35 L47 42 L54 44 L47 46 L45 53 L43 46 L36 44 L43 42 Z'/%3E%3Cpath d='M240 110 L241.5 115 L246.5 116.5 L241.5 118 L240 123 L238.5 118 L233.5 116.5 L238.5 115 Z' fill='%23F9E2AE'/%3E%3Cpath d='M130 270 L132 276 L138 278 L132 280 L130 286 L128 280 L122 278 L128 276 Z' fill='%23FCE8E6'/%3E%3Ccircle cx='180' cy='50' r='1.5'/%3E%3Ccircle cx='80' cy='180' r='1.2' fill='%23EAE4F2'/%3E%3Ccircle cx='300' cy='230' r='1.8' fill='%23F9E2AE'/%3E%3Ccircle cx='210' cy='320' r='1'/%3E%3Ccircle cx='30' cy='290' r='1.5'/%3E%3Ccircle cx='310' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(180deg, #04060f 0%, #0b0e26 35%, #1a1133 70%, #27153d 100%);
+            background-repeat: repeat, no-repeat;
+            background-attachment: scroll;
+            color: var(--text-light-pastel);
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 1. Top 21:9 Video */
+        .hero-video-container {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            background-color: #000;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 2. Name & Subtitle */
+        .header-text {
+            text-align: center;
+            padding: 70px 20px 80px 20px;
+        }
+
+        .header-text h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            color: var(--text-light-pastel);
+        }
+
+        .header-text p {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--subtitle-pastel);
+            opacity: 0.95;
+        }
+
+        /* 3. Dynamic Photo Grid (Ordine in riga + effetto collage) */
+        .photo-grid {
+            display: flex;
+            gap: 20px;
+            padding: 0 4vw;
+            max-width: 1600px;
+            margin: 0 auto 60px auto;
+            position: relative;
+            z-index: 1;
+            align-items: flex-start;
+        }
+
+        .masonry-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--accent-dark);
+        }
+
+        .photo-grid img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 4. Video Strip + Allori + Backstage */
+        .video-strip-wrapper {
+            position: relative;
+            background-color: var(--strip-dark);
+            padding: 38px 0 26px 0;
+            margin: 75px 0;
+            border-top: 1px solid rgba(253, 251, 247, 0.08);
+            border-bottom: 1px solid rgba(253, 251, 247, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: visible;
+            z-index: 10;
+        }
+
+        .video-strip {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 4vw;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .video-item {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 0px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            background-color: #000;
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Allori Festival */
+        .laurels-row {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 28px 45px;
+            margin-top: 22px;
+            padding: 0 60px;
+        }
+
+        .laurel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-light-pastel);
+        }
+
+        .laurel-branch {
+            width: 22px;
+            height: 46px;
+            stroke: var(--subtitle-pastel);
+            fill: none;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.9;
+        }
+
+        .laurel-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.15;
+        }
+
+        .laurel-podium {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--subtitle-pastel);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .laurel-festival {
+            font-family: 'Fraunces', serif;
+            font-size: 0.85rem;
+            color: var(--text-light-pastel);
+        }
+
+        /* Pulsante Gattino */
+        .cat-toggle-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 30;
+            opacity: 0.75;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .cat-toggle-btn:hover, .cat-toggle-btn.active {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .cat-toggle-btn svg {
+            width: 34px;
+            height: 34px;
+            stroke: #FFFFFF;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* 7 Foto Backstage */
+        .bts-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .bts-card {
+            position: absolute;
+            width: clamp(135px, 14vw, 210px);
+            background-color: var(--accent-dark);
+            border: 2px solid var(--text-light-pastel);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+            pointer-events: none;
+            
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(14px) scale(0.85) rotate(var(--rot, 0deg));
+            transition: 
+                opacity 0.35s ease, 
+                transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                visibility 0.35s;
+        }
+
+        .video-strip-wrapper.show-bts .bts-card {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1) rotate(var(--rot, 0deg));
+        }
+
+        .video-strip-wrapper.show-bts .bts-card:nth-child(1) { transition-delay: 0.02s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(2) { transition-delay: 0.07s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(3) { transition-delay: 0.12s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(4) { transition-delay: 0.17s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(5) { transition-delay: 0.22s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(6) { transition-delay: 0.27s; }
+        .video-strip-wrapper.show-bts .bts-card:nth-child(7) { transition-delay: 0.32s; }
+
+        .bts-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0;
+            margin: 0;
+        }
+
+        /* Gattini stilizzati appoggiati alle foto */
+        .leaning-cat {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            stroke: #FFFFFF;
+            fill: var(--strip-dark);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        .cat-top { top: -35px; right: 12px; }
+        .cat-top-left { top: -35px; left: 12px; }
+        .cat-side-right { bottom: 6px; right: -34px; }
+        .cat-side-left { bottom: 6px; left: -34px; transform: scaleX(-1); }
+
+        /* Posizioni delle 7 foto attorno ai video */
+        .bts-pos-1 { top: -65px; left: 3%; --rot: -4deg; }
+        .bts-pos-2 { top: -75px; left: 29%; --rot: 3deg; }
+        .bts-pos-3 { top: -60px; left: 61%; --rot: -2deg; }
+        .bts-pos-4 { top: -70px; right: 3%; --rot: 4deg; }
+        .bts-pos-5 { bottom: -70px; left: 8%; --rot: 3deg; }
+        .bts-pos-6 { bottom: -65px; left: 42%; --rot: -3deg; }
+        .bts-pos-7 { bottom: -70px; right: 9%; --rot: 2deg; }
+
+        /* 5. Footer */
+        footer {
+            background-color: var(--footer-dark);
+            color: var(--footer-text-pastel);
+            padding: 35px 4vw;
+            margin-top: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            border-top: 1px solid rgba(252, 232, 230, 0.1);
+            border-radius: 0px;
+        }
+
+        .footer-left, .footer-right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        footer a {
+            color: var(--footer-text-pastel);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--subtitle-pastel);
+            text-decoration: underline;
+        }
+
+        .ig-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Responsive */
+        @media (max-width: 950px) {
+            .video-strip { grid-template-columns: 1fr; }
+            footer {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            .footer-left, .footer-right {
+                gap: 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-left, .footer-right {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SVG DEFINIZIONI -->
+    <svg style="display: none;">
+        <symbol id="laurel-left" viewBox="0 0 28 56">
+            <path d="M24,52 C10,42 7,22 22,5" />
+            <path d="M18,45 C11,45 9,39 14,36 C16,40 17,43 18,45 Z" />
+            <path d="M13,34 C6,33 5,27 11,24 C13,28 13,31 13,34 Z" />
+            <path d="M13,22 C7,20 8,14 14,13 C14,16 14,19 13,22 Z" />
+            <path d="M17,12 C13,9 16,4 22,5 C20,8 19,10 17,12 Z" />
+        </symbol>
+        <symbol id="laurel-right" viewBox="0 0 28 56">
+            <path d="M4,52 C18,42 21,22 6,5" />
+            <path d="M10,45 C17,45 19,39 14,36 C12,40 11,43 10,45 Z" />
+            <path d="M15,34 C22,33 23,27 17,24 C15,28 15,31 15,34 Z" />
+            <path d="M15,22 C21,20 20,14 14,13 C14,16 14,19 15,22 Z" />
+            <path d="M11,12 C15,9 12,4 6,5 C8,8 9,10 11,12 Z" />
+        </symbol>
+        <symbol id="cute-cat-face" viewBox="0 0 40 40">
+            <path d="M8,16 L6,6 L15,12 Q20,10 25,12 L34,6 L32,16 C36,21 35,31 20,31 C5,31 4,21 8,16 Z" />
+            <circle cx="14.5" cy="20" r="1.3" fill="#FFFFFF" />
+            <circle cx="25.5" cy="20" r="1.3" fill="#FFFFFF" />
+            <path d="M18.5,23 L21.5,23 L20,24.8 Z" fill="#FFFFFF" />
+            <path d="M20,24.8 Q17.5,27 15.5,25.5 M20,24.8 Q22.5,27 24.5,25.5" />
+            <path d="M3,19 L9,20.5 M3,23 L9,23 M37,19 L31,20.5 M37,23 L31,23" />
+        </symbol>
+        <symbol id="cat-pose-top" viewBox="0 0 50 42">
+            <path d="M14,36 C13,25 18,18 25,18 C32,18 37,25 36,36" />
+            <path d="M17,20 L15,10 L22,16 Q25,15 28,16 L35,10 L33,20" />
+            <circle cx="17" cy="36" r="3" />
+            <circle cx="33" cy="36" r="3" />
+            <path d="M36,33 Q45,27 43,19" fill="none" />
+            <circle cx="22" cy="22" r="1" fill="#FFFFFF" />
+            <circle cx="28" cy="22" r="1" fill="#FFFFFF" />
+        </symbol>
+        <symbol id="cat-pose-side" viewBox="0 0 50 50">
+            <path d="M12,46 C14,32 16,25 23,25 C30,25 32,35 30,46" />
+            <circle cx="21" cy="18" r="7" />
+            <path d="M15,14 L14,6 L20,11 M27,14 L28,6 L22,11" />
+            <path d="M15,28 L4,24 M15,33 L4,31" />
+            <path d="M30,44 Q41,42 39,31" fill="none" />
+        </symbol>
+    </svg>
+
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
+    <div class="hero-video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- 2. NAME & SUBTITLE -->
+    <header class="header-text">
+        <h1>Davide Callegari</h1>
+        <p>Filmmaker, videomaker e fotografo</p>
+    </header>
+
+    <!-- BLOCCO 1: 18 FOTO (001 - 018) -->
+    <section class="photo-grid">
+        <img src="img/img001.jpg" alt="Foto 1" loading="lazy">
+        <img src="img/img002.jpg" alt="Foto 2" loading="lazy">
+        <img src="img/img003.jpg" alt="Foto 3" loading="lazy">
+        <img src="img/img004.jpg" alt="Foto 4" loading="lazy">
+        <img src="img/img005.jpg" alt="Foto 5" loading="lazy">
+        <img src="img/img006.jpg" alt="Foto 6" loading="lazy">
+        <img src="img/img007.jpg" alt="Foto 7" loading="lazy">
+        <img src="img/img008.jpg" alt="Foto 8" loading="lazy">
+        <img src="img/img009.jpg" alt="Foto 9" loading="lazy">
+        <img src="img/img010.jpg" alt="Foto 10" loading="lazy">
+        <img src="img/img011.jpg" alt="Foto 11" loading="lazy">
+        <img src="img/img012.jpg" alt="Foto 12" loading="lazy">
+        <img src="img/img013.jpg" alt="Foto 13" loading="lazy">
+        <img src="img/img014.jpg" alt="Foto 14" loading="lazy">
+        <img src="img/img015.jpg" alt="Foto 15" loading="lazy">
+        <img src="img/img016.jpg" alt="Foto 16" loading="lazy">
+        <img src="img/img017.jpg" alt="Foto 17" loading="lazy">
+        <img src="img/img018.jpg" alt="Foto 18" loading="lazy">
+    </section>
+
+    <!-- PRIMA RIGA DI 3 VIDEO + ALLORI + PULSANTE GATTINO BACKSTAGE -->
+    <section class="video-strip-wrapper">
+        <div class="video-strip">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/lRlFYfncR6w?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/86RHF9YArcw?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/VC0OFUSWQrQ?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- ALLORI FESTIVAL -->
+        <div class="laurels-row">
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Vincitore</span>
+                    <span class="laurel-festival">Milano Film<br>Festival 2024</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Finalista</span>
+                    <span class="laurel-festival">Torino Short<br>Film Market</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Selezione Ufficiale</span>
+                    <span class="laurel-festival">Roma Indie<br>Cinema Awards</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Miglior Fotografia</span>
+                    <span class="laurel-festival">Venice Young<br>Creators Fest</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+        </div>
+
+        <!-- 7 FOTO BACKSTAGE (bts001 - bts007) -->
+        <div class="bts-layer">
+            <div class="bts-card bts-pos-1">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts001.jpg" alt="Backstage 1" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-2">
+                <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts002.jpg" alt="Backstage 2" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-3">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts003.jpg" alt="Backstage 3" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-4">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts004.jpg" alt="Backstage 4" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-5">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts005.jpg" alt="Backstage 5" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-6">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts006.jpg" alt="Backstage 6" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-7">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts007.jpg" alt="Backstage 7" loading="lazy">
+            </div>
+        </div>
+
+        <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Backstage">
+            <svg><use href="#cute-cat-face"></use></svg>
+        </button>
+    </section>
+
+    <!-- BLOCCO 2: 18 FOTO (019 - 036) -->
+    <section class="photo-grid">
+        <img src="img/img019.jpg" alt="Foto 19" loading="lazy">
+        <img src="img/img020.jpg" alt="Foto 20" loading="lazy">
+        <img src="img/img021.jpg" alt="Foto 21" loading="lazy">
+        <img src="img/img022.jpg" alt="Foto 22" loading="lazy">
+        <img src="img/img023.jpg" alt="Foto 23" loading="lazy">
+        <img src="img/img024.jpg" alt="Foto 24" loading="lazy">
+        <img src="img/img025.jpg" alt="Foto 25" loading="lazy">
+        <img src="img/img026.jpg" alt="Foto 26" loading="lazy">
+        <img src="img/img027.jpg" alt="Foto 27" loading="lazy">
+        <img src="img/img028.jpg" alt="Foto 28" loading="lazy">
+        <img src="img/img029.jpg" alt="Foto 29" loading="lazy">
+        <img src="img/img030.jpg" alt="Foto 30" loading="lazy">
+        <img src="img/img031.jpg" alt="Foto 31" loading="lazy">
+        <img src="img/img032.jpg" alt="Foto 32" loading="lazy">
+        <img src="img/img033.jpg" alt="Foto 33" loading="lazy">
+        <img src="img/img034.jpg" alt="Foto 34" loading="lazy">
+        <img src="img/img035.jpg" alt="Foto 35" loading="lazy">
+        <img src="img/img036.jpg" alt="Foto 36" loading="lazy">
+    </section>
+
+    <!-- SECONDA RIGA DI 3 VIDEO + ALLORI + PULSANTE GATTINO BACKSTAGE -->
+    <section class="video-strip-wrapper">
+        <div class="video-strip">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/4aja6p8wSnA?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- ALLORI FESTIVAL -->
+        <div class="laurels-row">
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Vincitore</span>
+                    <span class="laurel-festival">Bologna Doc<br>Film Fest</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Finalista</span>
+                    <span class="laurel-festival">Napoli Corto<br>Festival 2024</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+
+            <div class="laurel-badge">
+                <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                <div class="laurel-content">
+                    <span class="laurel-podium">Menzione Speciale</span>
+                    <span class="laurel-festival">Firenze Vision<br>Awards</span>
+                </div>
+                <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+            </div>
+        </div>
+
+        <!-- 7 FOTO BACKSTAGE (bts008 - bts014) -->
+        <div class="bts-layer">
+            <div class="bts-card bts-pos-1">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts008.jpg" alt="Backstage 8" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-2">
+                <svg class="leaning-cat cat-side-right"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts009.jpg" alt="Backstage 9" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-3">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts010.jpg" alt="Backstage 10" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-4">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts011.jpg" alt="Backstage 11" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-5">
+                <svg class="leaning-cat cat-top"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts012.jpg" alt="Backstage 12" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-6">
+                <svg class="leaning-cat cat-side-left"><use href="#cat-pose-side"></use></svg>
+                <img src="img/bts013.jpg" alt="Backstage 13" loading="lazy">
+            </div>
+            <div class="bts-card bts-pos-7">
+                <svg class="leaning-cat cat-top-left"><use href="#cat-pose-top"></use></svg>
+                <img src="img/bts014.jpg" alt="Backstage 14" loading="lazy">
+            </div>
+        </div>
+
+        <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Backstage">
+            <svg><use href="#cute-cat-face"></use></svg>
+        </button>
+    </section>
+
+    <!-- BLOCCO 3: 18 FOTO (037 - 054) -->
+    <section class="photo-grid">
+        <img src="img/img037.jpg" alt="Foto 37" loading="lazy">
+        <img src="img/img038.jpg" alt="Foto 38" loading="lazy">
+        <img src="img/img039.jpg" alt="Foto 39" loading="lazy">
+        <img src="img/img040.jpg" alt="Foto 40" loading="lazy">
+        <img src="img/img041.jpg" alt="Foto 41" loading="lazy">
+        <img src="img/img042.jpg" alt="Foto 42" loading="lazy">
+        <img src="img/img043.jpg" alt="Foto 43" loading="lazy">
+        <img src="img/img044.jpg" alt="Foto 44" loading="lazy">
+        <img src="img/img045.jpg" alt="Foto 45" loading="lazy">
+        <img src="img/img046.jpg" alt="Foto 46" loading="lazy">
+        <img src="img/img047.jpg" alt="Foto 47" loading="lazy">
+        <img src="img/img048.jpg" alt="Foto 48" loading="lazy">
+        <img src="img/img049.jpg" alt="Foto 49" loading="lazy">
+        <img src="img/img050.jpg" alt="Foto 50" loading="lazy">
+        <img src="img/img051.jpg" alt="Foto 51" loading="lazy">
+        <img src="img/img052.jpg" alt="Foto 52" loading="lazy">
+        <img src="img/img053.jpg" alt="Foto 53" loading="lazy">
+        <img src="img/img054.jpg" alt="Foto 54" loading="lazy">
+    </section>
+
+    <!-- 5. FOOTER -->
+    <footer>
+        <div class="footer-left">
+            <a href="mailto:dkalle@libero.it">dkalle@libero.it</a>
+            <a href="tel:+393756703753">+39 3756703753</a>
+        </div>
+        <div class="footer-right">
+            <a href="https://instagram.com/inquadratidadavide" target="_blank">
+                <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @inquadratidadavide
+            </a>
+            <a href="https://instagram.com/youngsproduzioni" target="_blank">
+                <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @youngsproduzioni
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Funzione per aprire/chiudere le foto backstage col gattino
+        function toggleBts(button) {
+            const wrapper = button.closest('.video-strip-wrapper');
+            wrapper.classList.toggle('show-bts');
+            button.classList.toggle('active');
+        }
+
+        // Script per disporre le foto in ordine di RIGA (da sinistra a destra) mantenendo l'effetto collage (Masonry)
+        const grids = document.querySelectorAll('.photo-grid');
+        
+        grids.forEach(grid => {
+            grid.originalImages = Array.from(grid.querySelectorAll('img'));
+        });
+
+        function buildHorizontalMasonry() {
+            const width = window.innerWidth;
+            const colCount = width <= 600 ? 1 : (width <= 950 ? 2 : 3);
+
+            grids.forEach(grid => {
+                if (grid.dataset.cols == colCount) return;
+                grid.dataset.cols = colCount;
+                grid.innerHTML = '';
+
+                // Crea le colonne
+                const cols = [];
+                for (let i = 0; i < colCount; i++) {
+                    const col = document.createElement('div');
+                    col.className = 'masonry-col';
+                    grid.appendChild(col);
+                    cols.push(col);
+                }
+
+                // Inserisce le foto in ordine orizzontale (1° a sinistra, 2° al centro, 3° a destra, ecc.)
+                grid.originalImages.forEach((img, index) => {
+                    cols[index % colCount].appendChild(img);
+                });
+            });
+        }
+
+        buildHorizontalMasonry();
+        window.addEventListener('resize', buildHorizontalMasonry);
+    </script>
+
+</body>
+</html>
