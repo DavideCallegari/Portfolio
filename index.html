@@ -2,19 +2,73 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio di Davide Callegari - Filmmaker, videomaker e fotografo.">
-    <title>Davide Callegari — Filmmaker, Videomaker e Fotografo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050711">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Davide Callegari — Filmmaker, videomaker e fotografo a Venezia. Portfolio fotografico, cortometraggi e produzioni video.">
+    <link rel="canonical" href="https://davidecallegari.github.io/Portfolio/">
+    <title>Davide Callegari — Filmmaker, Videomaker e Fotografo | Venezia</title>
 
-    <!-- Preconnect per velocizzare font e copertine video -->
+    <!-- Favicon SVG: Stellina morbida a 5 punte nello stile del sito su cielo blu notte -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0e26'/%3E%3Cpath d='M 32,6 Q 38.5,21.5 56,24 Q 42,35 46.5,53 Q 32,44 17.5,53 Q 22,35 8,24 Q 25.5,21.5 32,6 Z' fill='%23F9E2AE' stroke='%23FDFBF7' stroke-width='2.5' stroke-linejoin='round'/%3E%3Ccircle cx='14' cy='14' r='2' fill='%23FDFBF7' opacity='0.8'/%3E%3Cpath d='M 52,10 L 53.2,13.8 L 57,15 L 53.2,16.2 L 52,20 L 50.8,16.2 L 47,15 L 50.8,13.8 Z' fill='%23FCE8E6'/%3E%3C/svg%3E">
+
+    <!-- Anteprima Social / WhatsApp / Telegram (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:url" content="https://davidecallegari.github.io/Portfolio/">
+    <meta property="og:title" content="Davide Callegari — Filmmaker, Videomaker e Fotografo (Venezia)">
+    <meta property="og:description" content="Portfolio fotografico, cortometraggi e produzioni video.">
+    <meta property="og:image" content="https://davidecallegari.github.io/Portfolio/img/img020.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://davidecallegari.github.io/Portfolio/img/img020.jpg">
+
+    <!-- Dati Strutturati SEO per Google (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Davide Callegari",
+      "jobTitle": "Filmmaker, Videomaker e Fotografo",
+      "url": "https://davidecallegari.github.io/Portfolio/",
+      "image": "https://davidecallegari.github.io/Portfolio/img/img020.jpg",
+      "email": "mailto:dkalle@libero.it",
+      "telephone": "+393756703753",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Venezia",
+        "addressRegion": "Veneto",
+        "addressCountry": "IT"
+      },
+      "sameAs": [
+        "https://instagram.com/inquadratidadavide",
+        "https://instagram.com/youngsproduzioni"
+      ],
+      "award": [
+        "Vincitore PadovaCiak 2026",
+        "Premio Pluriart PadovaCiak 2024",
+        "Menzione speciale Nebrodi Cinema Doc",
+        "Finalista Believe FilmFestival",
+        "Finalista Trailers FilmFest",
+        "Finalista Linea d'ombra UNIFEST",
+        "Finalista Cortintelvi 2025",
+        "Finalista Valsusa Filmfest"
+      ]
+    }
+    </script>
+
+    <!-- Preconnect Font & YouTube -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://i.ytimg.com">
     <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://www.youtube-nocookie.com">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
+        /* =========================================================
+           1. VARIABILI, SCALA TIPOGRAFICA E SPESSORE VISIVO CALIBRATO
+           ========================================================= */
         :root {
+            color-scheme: dark;
             --strip-dark-1: #161029;
             --strip-dark-2: #211114;
             --strip-dark-3: #0e1e18;
@@ -22,13 +76,72 @@
             --accent-dark: #1e162b;
             --text-light-pastel: #FDFBF7;
             --subtitle-pastel: #F9E2AE;
-            --footer-text-pastel: #FCE8E6;
+            --grain-url: none;
+
+            /* Scala Tipografica Standardizzata */
+            --font-display: 'Fraunces', serif;
+            --font-sans: 'Quicksand', sans-serif;
+            --fs-ui: 1.02rem;
+            --fs-body: 1.02rem;
+            --fs-sm: 0.84rem;
+            --fs-xs: 0.68rem;
+
+            /* Dimensione Pulsanti Principali */
+            --icon-action-size: 38px;
+            --btn-touch-size: 46px;
+
+            /* Curve di Animazione Uniformate */
+            --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --dur-fast: 0.28s;
+            --dur-med: 0.45s;
         }
 
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        ::selection {
+            background-color: var(--subtitle-pastel);
+            color: #050711;
+        }
+
+        :focus-visible {
+            outline: 2px dashed var(--subtitle-pastel);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 3000;
+            padding: 12px 16px;
+            color: #050711;
+            background: var(--subtitle-pastel);
+            border-radius: 6px;
+            font-weight: 700;
+            transform: translateY(-160%);
+            transition: transform var(--dur-fast) var(--ease-smooth);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
         }
 
         body {
@@ -50,12 +163,28 @@
                 );
             background-repeat: repeat, no-repeat;
             color: var(--text-light-pastel);
-            font-family: 'Quicksand', sans-serif;
+            font-family: var(--font-sans);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. Top 21:9 Video */
+        /* Grana analogica 35mm 1:1 */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            background-image: var(--grain-url);
+            background-repeat: repeat;
+            background-size: 180px 180px;
+            opacity: 0.055;
+            mix-blend-mode: overlay;
+        }
+
+        /* =========================================================
+           2. HERO VIDEO 21:9 E CONTROLLO AUDIO
+           ========================================================= */
         .hero-video-container {
             position: relative;
             width: 100%;
@@ -72,48 +201,374 @@
             border: none;
             display: block;
             pointer-events: none;
-            transform: scale(1.18);
-            transition: transform 0.5s ease;
         }
 
         .hero-video-container.interactive iframe {
             pointer-events: auto;
-            transform: scale(1);
         }
 
         .hero-click-overlay {
             position: absolute;
             inset: 0;
             z-index: 2;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            cursor: pointer;
         }
 
         .hero-video-container.interactive .hero-click-overlay {
             display: none;
         }
 
-        /* 2. Name & Subtitle */
+        .hero-sound-btn {
+            position: absolute;
+            bottom: clamp(12px, 2vw, 22px);
+            right: 2.2vw;
+            z-index: 5;
+            background: none;
+            border: none;
+            color: var(--text-light-pastel);
+            width: var(--btn-touch-size);
+            height: var(--btn-touch-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.85;
+            transition: color var(--dur-fast) var(--ease-smooth), opacity var(--dur-fast) var(--ease-smooth), transform var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth);
+            filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.85));
+        }
+
+        .hero-sound-btn.unmuted {
+            opacity: 1;
+            color: var(--subtitle-pastel);
+            filter: drop-shadow(0 0 10px rgba(249, 226, 174, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+        }
+
+        .hero-sound-btn svg {
+            width: var(--icon-action-size);
+            height: var(--icon-action-size);
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+            overflow: visible;
+        }
+
+        .hero-sound-btn .icon-sound-on { display: none; }
+        .hero-sound-btn.unmuted .icon-sound-off { display: none; }
+        .hero-sound-btn.unmuted .icon-sound-on { display: block; }
+
+        /* =========================================================
+           3. HEADER, PULSANTE "chi sono" + BIO CENTRATA CON FOTO FLOTTANTE
+           ========================================================= */
         .header-text {
             text-align: center;
-            padding: 70px 20px 80px;
+            padding: 70px 20px 65px;
         }
 
         .header-text h1 {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-family: var(--font-display);
+            font-size: clamp(2.6rem, 6vw, 5rem);
             font-weight: 600;
             letter-spacing: -1px;
             margin-bottom: 12px;
         }
 
-        .header-text p {
-            font-family: 'Fraunces', serif;
+        .header-text .subtitle {
+            font-family: var(--font-display);
             font-style: italic;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.15rem, 2.5vw, 1.8rem);
             color: var(--subtitle-pastel);
             opacity: 0.95;
         }
 
-        /* 3. Dynamic Photo Grid */
+        .bio-toggle-wrap {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bio-arrow-btn {
+            background: none;
+            border: none;
+            color: var(--text-light-pastel);
+            cursor: pointer;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 6px 18px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            opacity: 0.85;
+            transition: opacity var(--dur-fast) var(--ease-smooth), color var(--dur-fast) var(--ease-smooth);
+        }
+
+        .bio-btn-label {
+            font-family: var(--font-sans);
+            font-size: var(--fs-ui);
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+        }
+
+        .bio-arrow-btn.open {
+            opacity: 1;
+            color: var(--subtitle-pastel);
+        }
+
+        .bio-icon-bobber {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+            transition: filter var(--dur-fast) var(--ease-smooth);
+        }
+
+        .bio-arrow-btn.open .bio-icon-bobber {
+            filter: drop-shadow(0 0 10px rgba(249, 226, 174, 0.85));
+        }
+
+        .bio-arrow-btn svg {
+            width: 38px;
+            height: 28px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: miter;
+            filter: url(#hand-ink);
+            overflow: visible;
+            transform-origin: 20px 14px;
+            transition: transform var(--dur-med) var(--ease-smooth);
+        }
+
+        .bio-arrow-btn.open svg {
+            transform: rotate(180deg);
+        }
+
+        .bio-sparkle {
+            fill: currentColor;
+            stroke: none;
+            transform-origin: 20px 6px;
+            opacity: 0.55;
+            transform: scale(0.45);
+            transition: transform var(--dur-med) var(--ease-spring), opacity var(--dur-fast) var(--ease-smooth);
+        }
+
+        .bio-arrow-btn.open .bio-sparkle {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes arrow-hover-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        .bio-drawer {
+            display: grid;
+            grid-template-rows: 0fr;
+            width: 100%;
+            max-width: 920px;
+            padding: 0 20px;
+            transition: grid-template-rows var(--dur-med) var(--ease-smooth);
+        }
+
+        .bio-drawer.open {
+            grid-template-rows: 1fr;
+        }
+
+        .bio-drawer-inner {
+            overflow: hidden;
+        }
+
+        .bio-content {
+            position: relative;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-med) var(--ease-smooth);
+            padding: 20px 175px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bio-drawer.open .bio-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.06s;
+        }
+
+        .bio-photo-card {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-4.5deg);
+            width: 132px;
+            aspect-ratio: 4 / 5;
+            background-color: var(--accent-dark);
+            padding: 3px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.78);
+        }
+
+        .bio-photo-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--text-light-pastel);
+            filter: url(#hand-ink);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .bio-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .bio-photo-tape {
+            position: absolute;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%) rotate(4deg);
+            width: 58px;
+            height: 20px;
+            z-index: 3;
+            pointer-events: none;
+            filter: url(#hand-ink);
+        }
+
+        .bio-text-col {
+            max-width: 540px;
+            text-align: center;
+        }
+
+        .bio-content p {
+            font-size: var(--fs-body);
+            font-weight: 500;
+            line-height: 1.75;
+            color: var(--text-light-pastel);
+            opacity: 0.92;
+            text-wrap: balance;
+        }
+
+        .bio-content .bio-cta-line {
+            margin-top: 12px;
+        }
+
+        .cv-download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 6px 4px;
+            color: var(--subtitle-pastel);
+            font-size: var(--fs-ui);
+            font-weight: 700;
+            text-decoration: none;
+            opacity: 0.92;
+            transition: opacity var(--dur-fast) var(--ease-smooth);
+        }
+
+        .cv-download-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .cv-download-link svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.85;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+        }
+
+        /* =========================================================
+           4. PULSANTE VIAGGIO (AEROPLANINO -> PALLONCINO CHE SI SOLLEVA SOPRA IL FOOTER)
+           ========================================================= */
+        .magic-travel-btn {
+            position: fixed;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            right: 2.2vw;
+            background: none;
+            border: none;
+            color: var(--text-light-pastel);
+            cursor: pointer;
+            width: var(--btn-touch-size);
+            height: var(--btn-touch-size);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+            opacity: 0.85;
+            transition: bottom var(--dur-med) var(--ease-smooth), color var(--dur-fast) var(--ease-smooth), opacity var(--dur-fast) var(--ease-smooth), transform var(--dur-med) var(--ease-spring), filter var(--dur-fast) var(--ease-smooth);
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.75));
+        }
+
+        /* Quando diventa palloncino in fondo alla pagina, sale sopra la linea del footer così non tocca mai le scritte! */
+        .magic-travel-btn.is-balloon {
+            bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+        }
+
+        .magic-travel-btn svg {
+            position: absolute;
+            width: var(--icon-action-size);
+            height: var(--icon-action-size);
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.15;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+            overflow: visible;
+            transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-med) var(--ease-spring);
+        }
+
+        .magic-travel-btn .icon-plane {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .magic-travel-btn .icon-balloon {
+            opacity: 0;
+            transform: scale(0.4) translateY(15px) rotate(-12deg);
+            pointer-events: none;
+        }
+
+        .magic-travel-btn.is-balloon .icon-plane {
+            opacity: 0;
+            transform: scale(0.4) translate(15px, -15px) rotate(25deg);
+            pointer-events: none;
+        }
+
+        .magic-travel-btn.is-balloon .icon-balloon {
+            opacity: 1;
+            transform: scale(1) translateY(0) rotate(0deg);
+        }
+
+        .magic-travel-btn.launching {
+            transform: translateY(-45px) scale(1.15) !important;
+        }
+
+        /* =========================================================
+           5. GRIGLIA FOTOGRAFICA DINAMICA (MASONRY)
+           ========================================================= */
         .photo-grid {
             display: flex;
             gap: 20px;
@@ -136,31 +591,44 @@
         .photo-grid img {
             width: 100%;
             height: auto;
-            min-height: 250px;
+            /* Nessun aspect-ratio forzato: ogni foto mantiene le sue proporzioni originali. */
+            min-height: 0;
             display: block;
+            cursor: zoom-in;
             background-color: rgba(30, 22, 43, 0.3);
             opacity: 0;
-            transition: opacity 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-fast) var(--ease-smooth), box-shadow var(--dur-fast) var(--ease-smooth);
         }
 
         .photo-grid img.loaded {
-            min-height: 0;
             opacity: 1;
             background-color: transparent;
         }
 
-        .photo-grid img:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+        .photo-grid img:focus-visible {
+            outline: 3px dashed var(--subtitle-pastel);
+            outline-offset: 3px;
         }
 
-        /* 4. Video Strip & Reel Strip */
+        .photo-grid img.load-error {
+            min-height: 6rem;
+            padding: 1rem;
+            cursor: default;
+            opacity: 1;
+            background: var(--accent-dark);
+            color: var(--text-light-pastel);
+            object-fit: contain;
+        }
+
+        /* =========================================================
+           6. STRISCE VIDEO, REEL, CREDITI AL CLIC, ALLORI E BACKSTAGE
+           ========================================================= */
         .video-strip-wrapper {
             position: relative;
             background-color: var(--strip-dark-1);
-            padding: 38px 0 26px;
+            padding: 38px 0 28px;
             margin: 75px 0;
-            border-block: 1px solid rgba(253, 251, 247, 0.08);
+            border-block: 1px solid rgba(253, 251, 247, 0.09);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             z-index: 10;
         }
@@ -168,7 +636,7 @@
         .video-strip-wrapper.warm-strip { background-color: var(--strip-dark-2); }
         .video-strip-wrapper.green-strip {
             background-color: var(--strip-dark-3);
-            padding: 45px 0 40px;
+            padding: 45px 0;
         }
 
         .video-strip, .reel-strip {
@@ -183,11 +651,19 @@
         .video-strip {
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            align-items: start;
         }
 
         .reel-strip {
             grid-template-columns: repeat(4, 1fr);
-            gap: clamp(35px, 5vw, 80px);
+            gap: clamp(20px, 4.5vw, 80px);
+            align-items: start;
+        }
+
+        .media-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
         }
 
         .video-item, .reel-item {
@@ -198,6 +674,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             background-color: #000;
             cursor: pointer;
+            transition: box-shadow var(--dur-fast) var(--ease-smooth);
         }
 
         .reel-item { aspect-ratio: 9 / 16; }
@@ -209,12 +686,15 @@
             display: block;
         }
 
-        /* Link invisibile che si attiva nel PDF per rendere cliccabili i video */
-        .pdf-video-link {
-            display: none;
+        .pdf-video-link { display: none; }
+
+        .custom-play-btn svg,
+        .laurel-branch,
+        .leaning-cat,
+        .cat-toggle-btn svg {
+            filter: url(#hand-ink);
         }
 
-        /* Tasto Play Stellina */
         .custom-play-btn {
             position: absolute;
             top: 50%;
@@ -227,7 +707,7 @@
             align-items: center;
             justify-content: center;
             pointer-events: none;
-            transition: color 0.3s ease, filter 0.3s ease;
+            transition: color var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth);
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.65));
         }
 
@@ -235,12 +715,6 @@
             width: 100%;
             height: 100%;
             overflow: visible;
-        }
-
-        .video-item:hover .custom-play-btn,
-        .reel-item:hover .custom-play-btn {
-            color: var(--subtitle-pastel);
-            filter: drop-shadow(0 0 8px rgba(249, 226, 174, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
         }
 
         .video-item iframe {
@@ -259,6 +733,46 @@
             border: none;
         }
 
+        /* CREDITI VIDEO E REEL: Senza stellina, solo anno in corsivo giallo + crediti in bianco */
+        .media-credits {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows var(--dur-med) var(--ease-smooth), opacity var(--dur-med) var(--ease-smooth), margin-top var(--dur-med) var(--ease-smooth);
+            text-align: center;
+        }
+
+        .media-card.is-active .media-credits {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        .media-credits-inner {
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: center;
+            gap: 8px;
+            font-size: var(--fs-sm);
+            line-height: 1.35;
+            padding: 2px 4px;
+        }
+
+        .credit-tag {
+            font-family: var(--font-display);
+            font-style: italic;
+            color: var(--subtitle-pastel);
+        }
+
+        .credit-role {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            color: var(--text-light-pastel);
+            opacity: 0.92;
+        }
+
         /* Allori Festival */
         .laurels-row {
             position: relative;
@@ -267,9 +781,11 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 28px 45px;
+            gap: 24px 42px;
             margin-top: 22px;
-            padding: 0 60px;
+            padding: 0 70px;
+            max-width: 1600px;
+            margin-inline: auto;
         }
 
         .laurel-badge {
@@ -283,7 +799,7 @@
             height: 46px;
             stroke: var(--subtitle-pastel);
             fill: none;
-            stroke-width: 1.7;
+            stroke-width: 1.75;
             stroke-linecap: round;
             stroke-linejoin: round;
             opacity: 0.9;
@@ -297,7 +813,7 @@
         }
 
         .laurel-podium {
-            font-size: 0.68rem;
+            font-size: var(--fs-xs);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--subtitle-pastel);
@@ -306,37 +822,66 @@
         }
 
         .laurel-festival {
-            font-family: 'Fraunces', serif;
-            font-size: 0.85rem;
+            font-family: var(--font-display);
+            font-size: var(--fs-sm);
         }
 
         /* Pulsante Gattino */
         .cat-toggle-btn {
             position: absolute;
-            bottom: 12px;
-            right: 18px;
+            bottom: 10px;
+            right: 2.2vw;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 4px;
+            width: var(--btn-touch-size);
+            height: var(--btn-touch-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 30;
-            opacity: 0.75;
-            transition: opacity 0.2s, transform 0.2s;
+            color: var(--text-light-pastel);
+            opacity: 0.85;
+            transition: opacity var(--dur-fast) var(--ease-smooth), color var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth);
         }
 
-        .cat-toggle-btn:hover, .cat-toggle-btn.active {
+        .cat-toggle-btn.active {
             opacity: 1;
-            transform: scale(1.08);
+            color: var(--subtitle-pastel);
+            filter: drop-shadow(0 0 8px rgba(249, 226, 174, 0.65));
+        }
+
+        .cat-toggle-btn.pop-anim {
+            animation: cat-press-bounce 0.45s var(--ease-spring);
         }
 
         .cat-toggle-btn svg {
-            width: 34px;
-            height: 34px;
-            stroke: #FFFFFF;
+            width: var(--icon-action-size);
+            height: var(--icon-action-size);
+            stroke: currentColor;
             fill: none;
-            stroke-width: 1.8;
+            stroke-width: 1.75;
             stroke-linecap: round;
             stroke-linejoin: round;
+            overflow: visible;
+        }
+
+        .cat-eye {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: cat-blink 5.5s infinite ease-in-out;
+        }
+
+        @keyframes cat-blink {
+            0%, 92%, 96%, 100% { transform: scaleY(1); }
+            94% { transform: scaleY(0.08); }
+        }
+
+        @keyframes cat-press-bounce {
+            0% { transform: scale(1) rotate(0deg); }
+            35% { transform: scale(1.22) rotate(-7deg); }
+            70% { transform: scale(0.95) rotate(4deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
 
         /* 7 Foto Backstage */
@@ -349,15 +894,25 @@
 
         .bts-card {
             position: absolute;
-            width: clamp(135px, 14vw, 210px);
+            width: clamp(115px, 14vw, 210px);
             background-color: var(--accent-dark);
-            border: 2px solid var(--text-light-pastel);
+            padding: 3px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
             pointer-events: none;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(14px) scale(0.85) rotate(var(--rot, 0deg));
-            transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.35s;
+            transform: translateY(16px) scale(0.82) rotate(var(--rot, 0deg));
+            transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-med) var(--ease-spring), visibility var(--dur-med);
+        }
+
+        .bts-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--text-light-pastel);
+            filter: url(#hand-ink);
+            pointer-events: none;
+            z-index: 2;
         }
 
         .video-strip-wrapper.show-bts .bts-card {
@@ -378,13 +933,13 @@
             height: 46px;
             stroke: #FFFFFF;
             fill: var(--strip-dark-1);
-            stroke-width: 1.8;
+            stroke-width: 1.85;
             stroke-linecap: round;
             stroke-linejoin: round;
+            z-index: 3;
         }
 
         .warm-strip .leaning-cat { fill: var(--strip-dark-2); }
-        .green-strip .leaning-cat { fill: var(--strip-dark-3); }
 
         .cat-top { top: -35px; right: 12px; }
         .cat-top-left { top: -35px; left: 12px; }
@@ -394,44 +949,255 @@
         .bts-pos-1 { top: -65px; left: 3%; --rot: -4deg; }
         .bts-pos-2 { top: -75px; left: 29%; --rot: 3deg; }
         .bts-pos-3 { top: -60px; left: 61%; --rot: -2deg; }
-        .bts-pos-4 { top: -70px; right: 3%; --rot: 4deg; }
-        .bts-pos-5 { bottom: -70px; left: 8%; --rot: 3deg; }
-        .bts-pos-6 { bottom: -65px; left: 42%; --rot: -3deg; }
-        .bts-pos-7 { bottom: -70px; right: 9%; --rot: 2deg; }
+        .bts-pos-4 { top: -70px; right: 4%; --rot: 4deg; }
+        .bts-pos-5 { bottom: -70px; left: 5%; --rot: 3deg; }
+        .bts-pos-6 { bottom: -65px; left: 35%; --rot: -3deg; }
+        .bts-pos-7 { bottom: -70px; left: 64%; --rot: 2deg; }
 
-        /* 5. Footer */
+        /* =========================================================
+           7. LIGHTBOX WHIMSY
+           ========================================================= */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            height: 100vh;
+            height: 100dvh;
+            z-index: 2000;
+            background-color: rgba(6, 7, 16, 0.93);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--dur-fast) var(--ease-smooth), visibility var(--dur-fast) var(--ease-smooth);
+            padding: 40px 70px;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .lightbox-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-stage {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.94);
+            transition: transform var(--dur-fast) var(--ease-smooth), opacity 0.2s ease;
+            box-shadow: 0 28px 65px rgba(0, 0, 0, 0.9), 0 0 35px rgba(249, 226, 174, 0.08);
+        }
+
+        .lightbox-modal.open .lightbox-stage {
+            transform: scale(1);
+        }
+
+        .lightbox-stage.swipe-left { transform: translateX(-18px) scale(0.98); opacity: 0.7; }
+        .lightbox-stage.swipe-right { transform: translateX(18px) scale(0.98); opacity: 0.7; }
+
+        .lightbox-img {
+            max-width: 84vw;
+            max-height: 82vh;
+            max-height: 82dvh;
+            width: auto;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            background-color: #090c18;
+            transition: opacity 0.2s ease;
+        }
+
+        .lightbox-img.is-loading {
+            opacity: 0.35;
+        }
+
+        .lb-holder-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
+        }
+
+        .lb-mount {
+            display: none;
+            position: absolute;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .lightbox-stage[data-section="1"] .mount-sec-1 { display: block; }
+        .tri-tl { top: -6px; left: -6px; width: 38px; height: 38px; color: #FFB7B2; }
+        .tri-tr { top: -6px; right: -6px; width: 38px; height: 38px; color: #F9E2AE; transform: scaleX(-1); }
+        .tri-bl { bottom: -6px; left: -6px; width: 38px; height: 38px; color: #B5EAD7; transform: scaleY(-1); }
+        .tri-br { bottom: -6px; right: -6px; width: 38px; height: 38px; color: #C7CEEA; transform: scale(-1, -1); }
+
+        .lightbox-stage[data-section="2"] .mount-sec-2 { display: block; }
+        .tape-tr { top: -14px; right: -24px; width: 82px; height: 28px; transform: rotate(36deg); }
+        .tape-bl { bottom: -14px; left: -24px; width: 82px; height: 28px; transform: rotate(36deg); }
+
+        .lightbox-stage[data-section="3"] .mount-sec-3 { display: block; }
+        .star-pin-tl { top: -14px; left: -14px; width: 34px; height: 34px; transform: rotate(-10deg); }
+        .star-pin-tr { top: -14px; right: -14px; width: 34px; height: 34px; transform: rotate(12deg); }
+        .star-pin-bl { bottom: -14px; left: -14px; width: 34px; height: 34px; transform: rotate(8deg); }
+        .star-pin-br { bottom: -14px; right: -14px; width: 34px; height: 34px; transform: rotate(-12deg); }
+
+        .lightbox-stage[data-section="4"] .mount-sec-4 { display: block; }
+        .peg-left { top: -28px; left: 18%; width: 24px; height: 44px; transform: rotate(-4deg); }
+        .peg-right { top: -28px; right: 18%; width: 24px; height: 44px; transform: rotate(4deg); }
+
+        .lb-hanging-close,
+        .lb-share-btn,
+        .lb-nav-btn {
+            position: fixed;
+            background: none;
+            border: none;
+            color: var(--text-light-pastel);
+            opacity: 0.85;
+            cursor: pointer;
+            z-index: 2010;
+            transition: opacity var(--dur-fast) var(--ease-smooth), color var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth), transform var(--dur-med) var(--ease-smooth);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+        }
+
+        .lb-hanging-close {
+            top: -10px;
+            right: clamp(20px, 5vw, 75px);
+            padding: 0 15px 15px;
+        }
+
+        .lb-hanging-close svg {
+            width: 54px;
+            height: 125px;
+            overflow: visible;
+            filter: url(#hand-ink);
+        }
+
+        .lb-share-btn {
+            top: 26px;
+            left: clamp(20px, 4.5vw, 65px);
+            min-width: var(--btn-touch-size);
+            min-height: var(--btn-touch-size);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lb-share-btn svg {
+            width: 34px;
+            height: 34px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.65;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+        }
+
+        .lb-nav-btn {
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+        }
+
+        .lb-nav-btn svg {
+            width: 48px;
+            height: 48px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.15;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+            overflow: visible;
+        }
+
+        .lb-prev { left: clamp(6px, 2.5vw, 36px); }
+        .lb-next { right: clamp(6px, 2.5vw, 36px); }
+
+        .share-toast,
+        .copy-toast {
+            font-family: var(--font-sans);
+            font-style: normal;
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--subtitle-pastel);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--dur-fast) var(--ease-smooth);
+            white-space: nowrap;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+        }
+
+        .share-toast { margin-top: 6px; }
+
+        .copy-toast {
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .share-toast.show,
+        .copy-toast.show {
+            opacity: 1;
+        }
+
+        /* =========================================================
+           8. FOOTER (Spazio pulito, il palloncino sale sopra il footer)
+           ========================================================= */
         footer {
             background-color: var(--footer-dark);
-            color: var(--footer-text-pastel);
-            padding: 35px 4vw;
+            color: var(--text-light-pastel);
+            padding: 46px 4vw calc(46px + env(safe-area-inset-bottom, 0px));
             margin-top: 90px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(252, 232, 230, 0.1);
+            border-top: 1px solid rgba(253, 251, 247, 0.14);
         }
 
         .footer-left, .footer-right {
             display: flex;
             align-items: center;
-            gap: 35px;
-            font-size: 1.1rem;
+            gap: 36px;
+            font-size: var(--fs-ui);
             font-weight: 700;
             white-space: nowrap;
         }
 
+        .footer-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-light-pastel);
+        }
+
+        .pin-icon {
+            width: 19px;
+            height: 19px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.85;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: url(#hand-ink);
+        }
+
         footer a {
-            color: var(--footer-text-pastel);
+            position: relative;
+            color: var(--text-light-pastel);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: color 0.2s;
-        }
-
-        footer a:hover {
-            color: var(--subtitle-pastel);
-            text-decoration: underline;
+            cursor: pointer;
+            transition: color var(--dur-fast) var(--ease-smooth);
         }
 
         .ig-icon {
@@ -440,20 +1206,144 @@
             fill: currentColor;
         }
 
-        @media (max-width: 950px) {
-            .video-strip { grid-template-columns: 1fr; }
-            .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            footer { flex-wrap: wrap; justify-content: center; gap: 20px; }
-            .footer-left, .footer-right { gap: 20px; font-size: 1rem; }
-        }
+        /* =========================================================
+           9. EFFETTI HOVER SOLO SU DISPOSITIVI CON MOUSE
+           ========================================================= */
+        @media (hover: hover) and (pointer: fine) {
+            .hero-sound-btn:hover {
+                opacity: 1;
+                color: var(--subtitle-pastel);
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 10px rgba(249, 226, 174, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+            }
 
-        @media (max-width: 600px) {
-            .reel-strip { grid-template-columns: 1fr; padding: 0 12vw; }
-            .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; }
+            .bio-arrow-btn:hover {
+                opacity: 1;
+                color: var(--subtitle-pastel);
+            }
+
+            .bio-arrow-btn:hover .bio-icon-bobber {
+                filter: drop-shadow(0 0 10px rgba(249, 226, 174, 0.9)) drop-shadow(0 0 18px rgba(249, 226, 174, 0.4));
+            }
+
+            .bio-arrow-btn:not(.open):hover .bio-icon-bobber {
+                animation: arrow-hover-bob 1.2s infinite ease-in-out;
+            }
+
+            .bio-arrow-btn:hover .bio-sparkle {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .magic-travel-btn:hover {
+                opacity: 1;
+                color: var(--subtitle-pastel);
+                filter: drop-shadow(0 0 12px rgba(249, 226, 174, 0.95));
+            }
+
+            .photo-grid img:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75), 0 0 22px rgba(249, 226, 174, 0.11);
+            }
+
+            .video-item:hover, .reel-item:hover {
+                box-shadow: 
+                    0 10px 30px rgba(0, 0, 0, 0.65),
+                    0 0 22px rgba(249, 226, 174, 0.24),
+                    0 0 42px rgba(249, 226, 174, 0.1);
+            }
+
+            .video-item:hover .custom-play-btn,
+            .reel-item:hover .custom-play-btn {
+                color: var(--subtitle-pastel);
+                filter: drop-shadow(0 0 9px rgba(249, 226, 174, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+            }
+
+            .cat-toggle-btn:hover {
+                opacity: 1;
+                color: var(--subtitle-pastel);
+                filter: drop-shadow(0 0 8px rgba(249, 226, 174, 0.6));
+            }
+
+            .lb-hanging-close:hover,
+            .lb-share-btn:hover,
+            .lb-nav-btn:hover {
+                opacity: 1;
+                color: var(--subtitle-pastel);
+                filter: drop-shadow(0 0 10px rgba(249, 226, 174, 0.85));
+            }
+
+            .lb-hanging-close:hover {
+                transform: translateY(8px);
+            }
+
+            .lb-prev:hover { transform: translateY(-50%) translateX(-5px); }
+            .lb-next:hover { transform: translateY(-50%) translateX(5px); }
+
+            footer a:hover {
+                color: var(--subtitle-pastel);
+                text-decoration: underline;
+            }
         }
 
         /* =========================================================
-           OTTIMIZZAZIONE SPECIFICA PER ESPORTAZIONE PORTFOLIO PDF
+           10. RESPONSIVE TABLET & SMARTPHONE + ACCESSIBILITÀ
+           ========================================================= */
+        @media (max-width: 950px) {
+            .video-strip { grid-template-columns: 1fr; }
+            .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .bio-content {
+                padding: 20px 10px 10px;
+                gap: 20px;
+            }
+            .bio-photo-card {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: rotate(-3.5deg);
+                width: 120px;
+            }
+            footer { flex-wrap: wrap; justify-content: center; gap: 22px; padding: 40px 4vw calc(85px + env(safe-area-inset-bottom, 0px)); }
+            .footer-left, .footer-right { gap: 22px; }
+            .lightbox-modal { padding: 16px; }
+            .lightbox-img { max-width: 90vw; max-height: 78vh; max-height: 78dvh; }
+        }
+
+        @media (max-width: 650px) {
+            :root {
+                --fs-ui: 0.96rem;
+                --fs-body: 0.96rem;
+                --icon-action-size: 35px;
+            }
+            .header-text { padding: 45px 16px 50px; }
+            .photo-grid { gap: 10px; padding: 0 3vw; margin-bottom: 45px; }
+            .masonry-col { gap: 10px; }
+            .photo-grid img { min-height: 0; }
+            .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 3vw; }
+            .custom-play-btn { width: 40px; height: 40px; }
+            .laurels-row { gap: 18px 24px; padding: 0 55px 0 20px; }
+            .bts-card { width: 100px; }
+            .leaning-cat { width: 34px; height: 34px; }
+            .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .lb-nav-btn { padding: 8px; }
+            .lb-nav-btn svg { width: 34px; height: 34px; }
+            .lb-share-btn { top: 18px; left: 14px; }
+            .lb-hanging-close { right: 14px; }
+            .lb-hanging-close svg { width: 44px; height: 105px; }
+            .magic-travel-btn { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 14px; }
+            .magic-travel-btn.is-balloon { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* =========================================================
+           11. ESPORTAZIONE PORTFOLIO PDF (@media print)
            ========================================================= */
         @page {
             size: A4 portrait;
@@ -466,25 +1356,20 @@
                 print-color-adjust: exact !important;
             }
 
-            /* 1. Rimuove il video grande 21:9 in alto nel PDF */
-            .hero-video-container {
+            body::after,
+            .skip-link,
+            #clipboardStatus,
+            .hero-video-container,
+            .bio-arrow-btn,
+            .magic-travel-btn,
+            .cat-toggle-btn,
+            .lightbox-modal {
                 display: none !important;
             }
 
-            /* 2. Intestazione elegante in cima alla prima pagina del PDF */
-            .header-text {
-                padding: 55px 20px 45px !important;
-            }
-
-            /* 3. Tutte le foto subito visibili a piena risoluzione e mai tagliate a metà pagina */
-            .photo-grid {
-                gap: 14px !important;
-                margin-bottom: 40px !important;
-            }
-
-            .masonry-col {
-                gap: 14px !important;
-            }
+            .header-text { padding: 55px 20px 45px !important; }
+            .photo-grid { gap: 14px !important; margin-bottom: 40px !important; }
+            .masonry-col { gap: 14px !important; }
 
             .photo-grid img {
                 opacity: 1 !important;
@@ -493,7 +1378,6 @@
                 page-break-inside: avoid !important;
             }
 
-            /* 4. Strisce video e Reel compatti, non spezzati tra le pagine e cliccabili nel PDF */
             .video-strip-wrapper {
                 margin: 40px 0 !important;
                 padding: 28px 0 22px !important;
@@ -501,25 +1385,14 @@
                 page-break-inside: avoid !important;
             }
 
-            .video-strip {
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 14px !important;
-            }
-
-            .reel-strip {
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 24px !important;
-            }
+            .video-strip { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
+            .reel-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 24px !important; }
 
             .pdf-video-link {
                 display: block !important;
                 position: absolute;
                 inset: 0;
                 z-index: 15;
-            }
-
-            .cat-toggle-btn {
-                display: none !important;
             }
 
             footer {
@@ -532,9 +1405,17 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Salta al contenuto</a>
 
-    <!-- SVG SPRITE SHEET -->
-    <svg style="display: none;">
+    <!-- SVG SPRITE SHEET CENTRALIZZATO -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+        <defs>
+            <filter id="hand-ink" x="-15%" y="-15%" width="130%" height="130%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.15" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+
         <symbol id="laurel-left" viewBox="0 0 28 56">
             <path d="M24,52 C10,42 7,22 22,5 M18,45 C11,45 9,39 14,36 C16,40 17,43 18,45 Z M13,34 C6,33 5,27 11,24 C13,28 13,31 13,34 Z M13,22 C7,20 8,14 14,13 C14,16 14,19 13,22 Z M17,12 C13,9 16,4 22,5 C20,8 19,10 17,12 Z" />
         </symbol>
@@ -543,9 +1424,9 @@
         </symbol>
         <symbol id="cute-cat-face" viewBox="0 0 40 40">
             <path d="M8,16 L6,6 L15,12 Q20,10 25,12 L34,6 L32,16 C36,21 35,31 20,31 C5,31 4,21 8,16 Z" />
-            <circle cx="14.5" cy="20" r="1.3" fill="#FFFFFF" />
-            <circle cx="25.5" cy="20" r="1.3" fill="#FFFFFF" />
-            <path d="M18.5,23 L21.5,23 L20,24.8 Z" fill="#FFFFFF" />
+            <circle class="cat-eye" cx="14.5" cy="20" r="1.4" fill="currentColor" stroke="none" />
+            <circle class="cat-eye" cx="25.5" cy="20" r="1.4" fill="currentColor" stroke="none" />
+            <path d="M18.5,23 L21.5,23 L20,24.8 Z" fill="currentColor" stroke="none" />
             <path d="M20,24.8 Q17.5,27 15.5,25.5 M20,24.8 Q22.5,27 24.5,25.5 M3,19 L9,20.5 M3,23 L9,23 M37,19 L31,20.5 M37,23 L31,23" />
         </symbol>
         <symbol id="cat-pose-top" viewBox="0 0 50 42">
@@ -553,8 +1434,8 @@
             <circle cx="17" cy="36" r="3" />
             <circle cx="33" cy="36" r="3" />
             <path d="M36,33 Q45,27 43,19" fill="none" />
-            <circle cx="22" cy="22" r="1" fill="#FFFFFF" />
-            <circle cx="28" cy="22" r="1" fill="#FFFFFF" />
+            <circle cx="22" cy="22" r="1.1" fill="#FFFFFF" />
+            <circle cx="28" cy="22" r="1.1" fill="#FFFFFF" />
         </symbol>
         <symbol id="cat-pose-side" viewBox="0 0 50 50">
             <path d="M12,46 C14,32 16,25 23,25 C30,25 32,35 30,46" />
@@ -563,20 +1444,94 @@
             <path d="M30,44 Q41,42 39,31" fill="none" />
         </symbol>
         <symbol id="star-play-icon" viewBox="0 0 64 64">
-            <path d="M 32,4 Q 39,20.5 58.6,23.4 Q 43.5,35.5 48.5,54.7 Q 32,45 15.5,54.7 Q 20.5,35.5 5.4,23.4 Q 25,20.5 32,4 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-            <polygon points="28.5,26 28.5,39 39.5,32.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 32,4 Q 39,20.5 58.6,23.4 Q 43.5,35.5 48.5,54.7 Q 32,45 15.5,54.7 Q 20.5,35.5 5.4,23.4 Q 25,20.5 32,4 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <polygon points="28.5,26 28.5,39 39.5,32.5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
         </symbol>
         <symbol id="ig-logo" viewBox="0 0 24 24">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
         </symbol>
+        <symbol id="location-pin-icon" viewBox="0 0 24 24">
+            <path d="M 12,2 C 7.5,2 4,5.5 4,10 C 4,15.5 12,22 12,22 C 12,22 20,15.5 20,10 C 20,5.5 16.5,2 12,2 Z" />
+            <circle cx="12" cy="10" r="2.8" />
+        </symbol>
+        <symbol id="letter-page-icon" viewBox="0 0 24 24">
+            <path d="M 5,3 L 15,3 L 19,7 L 19,21 L 5,21 Z" />
+            <path d="M 14.5,3 L 14.5,7.5 L 19,7.5" />
+            <line x1="8.5" y1="12" x2="15.5" y2="12" />
+            <line x1="8.5" y1="16" x2="13.5" y2="16" />
+        </symbol>
+        <symbol id="sound-off-icon" viewBox="0 0 40 40">
+            <path d="M 6,17 C 6,15 7.5,14.5 10,14.5 C 14,14.5 18.5,11 22,7.5 C 23.5,6 25,7 25,9.5 L 25,30.5 C 25,33 23.5,34 22,32.5 C 18.5,29 14,25.5 10,25.5 C 7.5,25.5 6,25 6,23 Z" />
+            <path d="M 10,15 L 10,25" opacity="0.65" />
+            <path d="M 30,16.5 L 36.5,23.5 M 36.5,16.5 L 30,23.5" />
+        </symbol>
+        <symbol id="sound-on-icon" viewBox="0 0 40 40">
+            <path d="M 6,17 C 6,15 7.5,14.5 10,14.5 C 14,14.5 18.5,11 22,7.5 C 23.5,6 25,7 25,9.5 L 25,30.5 C 25,33 23.5,34 22,32.5 C 18.5,29 14,25.5 10,25.5 C 7.5,25.5 6,25 6,23 Z" />
+            <path d="M 10,15 L 10,25" opacity="0.65" />
+            <path d="M 29.5,15 C 32.5,17.8 32.5,22.2 29.5,25" />
+            <path d="M 33.5,11 C 38,16 38,24 33.5,29" />
+        </symbol>
+        <symbol id="paper-plane-icon" viewBox="0 0 48 48">
+            <path d="M 42,8 L 6,22 L 19,27 L 42,8 Z" />
+            <path d="M 19,27 L 22,39 L 28,31" />
+            <path d="M 42,8 L 28,31 L 19,27" />
+            <path d="M 14,36 Q 9,41 4,39" stroke-dasharray="2.5 3" opacity="0.75" />
+        </symbol>
+        <symbol id="balloon-up-icon" viewBox="0 0 48 48">
+            <path d="M 24,4 C 14,4 10,12 10,20 C 10,29 18,34 24,35 C 30,34 38,29 38,20 C 38,12 34,4 24,4 Z" />
+            <polygon points="22,35 26,35 24,38" />
+            <path d="M 24,38 Q 28,42 23,45 Q 19,47 24,48" fill="none" />
+            <path d="M 16,13 Q 15,18 17,22" opacity="0.65" />
+            <path d="M 21,17 L 24,13 L 27,17" />
+        </symbol>
+        <symbol id="holder-triangle" viewBox="0 0 40 40">
+            <path d="M 3,34 L 3,6 Q 3,3 6,3 L 34,3 Q 37,3 34.5,5.5 L 5.5,34.5 Q 3,37 3,34 Z" fill="currentColor" stroke="#FDFBF7" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+        </symbol>
+        <symbol id="holder-tape" viewBox="0 0 82 28">
+            <path d="M 5,4 Q 41,2.5 77,4 Q 79,14 77,24 Q 41,25.5 5,24 Q 3,14 5,4 Z" fill="rgba(249, 226, 174, 0.42)" stroke="#FDFBF7" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+        </symbol>
+        <symbol id="holder-star-pin" viewBox="0 0 36 36">
+            <path d="M 18,3 Q 21.5,12.5 31.5,14 Q 23.5,20.5 26,30.5 Q 18,25 10,30.5 Q 12.5,20.5 4.5,14 Q 14.5,12.5 18,3 Z" fill="#F9E2AE" stroke="#FDFBF7" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+            <circle cx="18" cy="18" r="2.2" fill="#161029" />
+        </symbol>
+        <symbol id="holder-peg" viewBox="0 0 24 44">
+            <rect x="5" y="2" width="14" height="38" rx="6" fill="#FCE8E6" stroke="#FDFBF7" stroke-width="1.8" />
+            <line x1="5" y1="21" x2="19" y2="21" stroke="#161029" stroke-width="1.6" stroke-linecap="round" />
+            <circle cx="12" cy="14" r="2" fill="#161029" />
+        </symbol>
+        <symbol id="hanging-star-close" viewBox="0 0 54 125">
+            <line x1="27" y1="-25" x2="27" y2="66" stroke="currentColor" stroke-width="1.65" stroke-dasharray="3 3" />
+            <circle cx="27" cy="66" r="2.5" fill="none" stroke="currentColor" stroke-width="1.65" />
+            <path d="M 27,69 Q 33,83 49,85.5 Q 36.5,95.5 40.5,111.5 Q 27,103.5 13.5,111.5 Q 17.5,95.5 5,85.5 Q 21,83 27,69 Z" fill="#090c18" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round" />
+            <path d="M 22.5,89.5 L 31.5,98.5 M 31.5,89.5 L 22.5,98.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" />
+        </symbol>
+        <symbol id="link-chain-icon" viewBox="0 0 32 32">
+            <path d="M 13,19 L 19,13" />
+            <path d="M 15,10 L 18.5,6.5 C 20.8,4.2 24.5,4.2 26.8,6.5 C 29.1,8.8 29.1,12.5 26.8,14.8 L 23,18.5" />
+            <path d="M 17,22 L 13.5,25.5 C 11.2,27.8 7.5,27.8 5.2,25.5 C 2.9,23.2 2.9,19.5 5.2,17.2 L 9,13.5" />
+        </symbol>
+        <symbol id="whimsy-arrow-prev" viewBox="0 0 48 48">
+            <path d="M 38,24 C 28,22 18,23 10,24" />
+            <path d="M 21,13 C 16,18 13,22 9,24 C 13,26 16,30 21,35" />
+            <path d="M 41,19 L 43,24 L 41,29" stroke-width="1.6" opacity="0.75" />
+        </symbol>
+        <symbol id="whimsy-arrow-next" viewBox="0 0 48 48">
+            <path d="M 10,24 C 20,22 30,23 38,24" />
+            <path d="M 27,13 C 32,18 35,22 39,24 C 35,26 32,30 27,35" />
+            <path d="M 7,19 L 5,24 L 7,29" stroke-width="1.6" opacity="0.75" />
+        </symbol>
     </svg>
 
-    <!-- 1. BIG 21:9 YOUTUBE VIDEO (Nascosto automaticamente nel PDF) -->
-    <div class="hero-video-container" id="heroContainer" onclick="activateHeroControls()">
-        <div class="hero-click-overlay" title="Clicca per attivare l'audio"></div>
+    <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
+    <div class="hero-video-container" id="heroContainer">
+        <button class="hero-click-overlay" id="heroOverlay" type="button" aria-label="Attiva l'audio e interagisci con il video" title="Attiva audio"></button>
+        <button class="hero-sound-btn" id="heroSoundBtn" type="button" aria-label="Attiva o disattiva audio" title="Attiva audio">
+            <svg class="icon-sound-off"><use href="#sound-off-icon"></use></svg>
+            <svg class="icon-sound-on"><use href="#sound-on-icon"></use></svg>
+        </button>
         <iframe 
             id="heroIframe"
-            src="https://www.youtube.com/embed/4aja6p8wSnA?enablejsapi=1&autoplay=1&mute=1&controls=1&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
+            src="https://www.youtube.com/embed/4aja6p8wSnA?enablejsapi=1&mute=1&controls=1&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
             title="Showreel Davide Callegari" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -584,165 +1539,110 @@
         </iframe>
     </div>
 
-    <!-- 2. NAME & SUBTITLE -->
+    <!-- 2. NAME, SUBTITLE & PULSANTE "chi sono" + BIO CENTRATA CON TUA FOTO STORTA -->
     <header class="header-text">
         <h1>Davide Callegari</h1>
-        <p>Filmmaker, videomaker e fotografo</p>
+        <p class="subtitle">Filmmaker, videomaker e fotografo</p>
+
+        <div class="bio-toggle-wrap">
+            <button class="bio-arrow-btn" id="bioArrowBtn" type="button" aria-expanded="false" aria-controls="bioDrawer">
+                <span class="bio-btn-label">chi sono</span>
+                <span class="bio-icon-bobber">
+                    <svg viewBox="0 0 40 28">
+                        <path class="bio-sparkle" d="M 20,1 L 21.4,4.6 L 25,6 L 21.4,7.4 L 20,11 L 18.6,7.4 L 15,6 L 18.6,4.6 Z" />
+                        <path class="bio-chevron" d="M 8,13 L 20,23 L 32,13" />
+                    </svg>
+                </span>
+            </button>
+
+            <div class="bio-drawer" id="bioDrawer" aria-hidden="true" inert>
+                <div class="bio-drawer-inner">
+                    <div class="bio-content">
+                        <!-- Tua foto profilo (img/profile.jpg) appuntata di lato senza spezzare il testo centrato -->
+                        <div class="bio-photo-card">
+                            <svg class="bio-photo-tape"><use href="#holder-tape"></use></svg>
+                            <img src="img/profile.jpg" alt="Davide Callegari" loading="lazy" decoding="async">
+                        </div>
+
+                        <div class="bio-text-col">
+                            <p>
+                                Basato a Venezia, racconto storie attraverso il cinema, il video e la fotografia.<br>
+                                Mi occupo di direzione della fotografia e montaggio per i social, commercial, spettacoli teatrali, e la mia passione: cortometraggi e documentari.
+                            </p>
+                            <p class="bio-cta-line">
+                                Costruiamo la prossima storia insieme!
+                            </p>
+                            <a class="cv-download-link" href="Davide%20Callegari_CV.pdf" target="_blank" rel="noopener">
+                                <svg><use href="#letter-page-icon"></use></svg>
+                                Scarica il mio curriculum
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
+    <!-- PULSANTE MAGICO FISSO IN BASSO A DESTRA (Aeroplanino -> Palloncino in fondo) -->
+    <button class="magic-travel-btn" id="magicTravelBtn" type="button" aria-label="Vai ai contatti" title="Contatti">
+        <svg class="icon-plane"><use href="#paper-plane-icon"></use></svg>
+        <svg class="icon-balloon"><use href="#balloon-up-icon"></use></svg>
+    </button>
+
+    <main id="main-content">
         <!-- BLOCCO 1: FOTO 001 - 018 -->
-        <section class="photo-grid" data-start="1" data-end="18"></section>
+        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 1 a 18" data-start="1" data-end="18"></section>
 
-        <!-- PRIMA RIGA DI 3 VIDEO -->
-        <section class="video-strip-wrapper" data-bts-start="1">
-            <div class="video-strip">
-                <div class="video-item" data-video-id="9a40Hy3DSAI" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=9a40Hy3DSAI" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/9a40Hy3DSAI/hqdefault.jpg" alt="Video 1" loading="lazy" decoding="async" onload="upgradeThumb(this, '9a40Hy3DSAI')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="video-item" data-video-id="86RHF9YArcw" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=86RHF9YArcw" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/86RHF9YArcw/hqdefault.jpg" alt="Video 2" loading="lazy" decoding="async" onload="upgradeThumb(this, '86RHF9YArcw')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="video-item" data-video-id="VC0OFUSWQrQ" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=VC0OFUSWQrQ" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/VC0OFUSWQrQ/hqdefault.jpg" alt="Video 3" loading="lazy" decoding="async" onload="upgradeThumb(this, 'VC0OFUSWQrQ')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-            </div>
-
-            <div class="laurels-row">
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Vincitore</span><span class="laurel-festival">PadovaCiak<br>2026</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Finalista</span><span class="laurel-festival">Believe<br>FilmFestival</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Menzione speciale</span><span class="laurel-festival">Nebrodi<br>Cinema Doc</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Finalista</span><span class="laurel-festival">Trailers<br>FilmFest</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Selezione ufficiale</span><span class="laurel-festival">Filmmaker<br>Session</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-            </div>
-
+        <!-- PRIMA STRISCIA DI 3 VIDEO + ALLORI + BACKSTAGE -->
+        <section class="video-strip-wrapper" aria-label="Cortometraggi e riconoscimenti" data-strip-index="0" data-bts-start="1">
+            <div class="video-strip"></div>
+            <div class="laurels-row"></div>
             <div class="bts-layer"></div>
-            <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Mostra foto backstage">
+            <button class="cat-toggle-btn" type="button" aria-expanded="false" aria-label="Mostra foto backstage">
                 <svg><use href="#cute-cat-face"></use></svg>
             </button>
         </section>
 
         <!-- BLOCCO 2: FOTO 019 - 039 -->
-        <section class="photo-grid" data-start="19" data-end="39"></section>
+        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 19 a 39" data-start="19" data-end="39"></section>
 
-        <!-- SECONDA RIGA DI 3 VIDEO -->
-        <section class="video-strip-wrapper warm-strip" data-bts-start="8">
-            <div class="video-strip">
-                <div class="video-item" data-video-id="nktAgFjmnHU" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=nktAgFjmnHU" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/nktAgFjmnHU/hqdefault.jpg" alt="Video 4" loading="lazy" decoding="async" onload="upgradeThumb(this, 'nktAgFjmnHU')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="video-item" data-video-id="mMOQ_uHplX8" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=mMOQ_uHplX8" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/mMOQ_uHplX8/hqdefault.jpg" alt="Video 5" loading="lazy" decoding="async" onload="upgradeThumb(this, 'mMOQ_uHplX8')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="video-item" data-video-id="4HT3OBEWtPw" onclick="playStripVideo(this)">
-                    <a class="pdf-video-link" href="https://www.youtube.com/watch?v=4HT3OBEWtPw" target="_blank"></a>
-                    <img class="video-thumb" src="https://i.ytimg.com/vi/4HT3OBEWtPw/hqdefault.jpg" alt="Video 6" loading="lazy" decoding="async" onload="upgradeThumb(this, '4HT3OBEWtPw')">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-            </div>
-
-            <div class="laurels-row">
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Premio Pluriart</span><span class="laurel-festival">PadovaCiak<br>2024</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Finalista</span><span class="laurel-festival">Lindea d'ombra<br>UNIFEST</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Finalista</span><span class="laurel-festival">Cortintelvi<br>2025</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-                <div class="laurel-badge">
-                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
-                    <div class="laurel-content"><span class="laurel-podium">Finalista</span><span class="laurel-festival">Valsusa<br>Filmfest</span></div>
-                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
-                </div>
-            </div>
-
+        <!-- SECONDA STRISCIA DI 3 VIDEO + ALLORI + BACKSTAGE -->
+        <section class="video-strip-wrapper warm-strip" aria-label="Altri cortometraggi e riconoscimenti" data-strip-index="1" data-bts-start="8">
+            <div class="video-strip"></div>
+            <div class="laurels-row"></div>
             <div class="bts-layer"></div>
-            <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Mostra foto backstage">
+            <button class="cat-toggle-btn" type="button" aria-expanded="false" aria-label="Mostra foto backstage">
                 <svg><use href="#cute-cat-face"></use></svg>
             </button>
         </section>
 
         <!-- BLOCCO 3: FOTO 040 - 056 -->
-        <section class="photo-grid" data-start="40" data-end="56"></section>
+        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 40 a 56" data-start="40" data-end="56"></section>
 
-        <!-- TERZA RIGA: 4 REEL VERTICALI DA INSTAGRAM -->
-        <section class="video-strip-wrapper green-strip" data-bts-start="15">
-            <div class="reel-strip">
-                <div class="reel-item" data-reel-id="DBtp_pJIaGO" onclick="playIgReel(this)">
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DBtp_pJIaGO/" target="_blank"></a>
-                    <img class="video-thumb" src="img/reel001.jpg" alt="Reel 1" loading="lazy" decoding="async">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="reel-item" data-reel-id="DZ4XXN4ge1t" onclick="playIgReel(this)">
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DZ4XXN4ge1t/" target="_blank"></a>
-                    <img class="video-thumb" src="img/reel002.jpg" alt="Reel 2" loading="lazy" decoding="async">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="reel-item" data-reel-id="DENng7ZOuzV" onclick="playIgReel(this)">
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DENng7ZOuzV/" target="_blank"></a>
-                    <img class="video-thumb" src="img/reel003.jpg" alt="Reel 3" loading="lazy" decoding="async">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-                <div class="reel-item" data-reel-id="DGcyRN5CkK0" onclick="playIgReel(this)">
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/DGcyRN5CkK0/" target="_blank"></a>
-                    <img class="video-thumb" src="img/reel004.jpg" alt="Reel 4" loading="lazy" decoding="async">
-                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
-                </div>
-            </div>
-
-            <div class="bts-layer"></div>
-            <button class="cat-toggle-btn" onclick="toggleBts(this)" aria-label="Mostra foto backstage">
-                <svg><use href="#cute-cat-face"></use></svg>
-            </button>
+        <!-- TERZA STRISCIA: 4 REEL VERTICALI DA INSTAGRAM -->
+        <section class="video-strip-wrapper green-strip" aria-label="Reel video verticali">
+            <div class="reel-strip" id="reelStripContainer"></div>
         </section>
 
         <!-- BLOCCO 4: FOTO 057 - 068 -->
-        <section class="photo-grid" data-start="57" data-end="68"></section>
+        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 57 a 68" data-start="57" data-end="68"></section>
     </main>
 
     <!-- 5. FOOTER -->
-    <footer>
+    <footer id="contactFooter">
         <div class="footer-left">
-            <a href="mailto:dkalle@libero.it">dkalle@libero.it</a>
-            <a href="tel:+393756703753">+39 3756703753</a>
+            <span class="footer-location">
+                <svg class="pin-icon"><use href="#location-pin-icon"></use></svg>
+                Venezia
+            </span>
+            <a href="mailto:dkalle@libero.it" data-copy="dkalle@libero.it" data-always-copy="true" title="Clicca per copiare l'email">
+                <span class="copy-toast" aria-hidden="true">Copiato!</span>
+                dkalle@libero.it
+            </a>
+            <a href="tel:+393756703753" data-copy="+39 3756703753" title="Clicca per copiare il numero">
+                <span class="copy-toast" aria-hidden="true">Copiato!</span>
+                +39 3756703753
+            </a>
         </div>
         <div class="footer-right">
             <a href="https://instagram.com/inquadratidadavide" target="_blank" rel="noopener noreferrer">
@@ -756,99 +1656,883 @@
         </div>
     </footer>
 
-    <!-- API YouTube -->
-    <script src="https://www.youtube.com/iframe_api" async></script>
-    <script>
-        const pad3 = num => String(num).padStart(3, '0');
-        const isPdfMode = window.location.search.includes('pdf');
+    <p class="sr-only" id="clipboardStatus" role="status" aria-live="polite" aria-atomic="true"></p>
 
-        // 1. GESTIONE HERO VIDEO
-        let heroPlayer;
-        function onYouTubeIframeAPIReady() {
-            if (isPdfMode) return;
-            heroPlayer = new YT.Player('heroIframe', {
-                events: {
-                    onReady: e => {
-                        e.target.mute();
-                        e.target.playVideo();
-                    }
+    <!-- LIGHTBOX WHIMSY -->
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle" inert tabindex="-1">
+        <h2 class="sr-only" id="lightboxTitle">Visualizzatore fotografie</h2>
+        <button class="lb-share-btn" id="lbShareBtn" type="button" aria-label="Copia link foto" title="Copia link foto">
+            <svg><use href="#link-chain-icon"></use></svg>
+            <span class="share-toast" id="shareToast" aria-hidden="true">Copiato!</span>
+        </button>
+
+        <button class="lb-hanging-close" id="lbCloseBtn" type="button" aria-label="Chiudi foto" title="Chiudi">
+            <svg><use href="#hanging-star-close"></use></svg>
+        </button>
+
+        <button class="lb-nav-btn lb-prev" id="lbPrevBtn" type="button" aria-label="Foto precedente">
+            <svg><use href="#whimsy-arrow-prev"></use></svg>
+        </button>
+
+        <div class="lightbox-stage" id="lightboxStage" data-section="1">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="Fotografia ingrandita">
+
+            <div class="lb-holder-layer">
+                <!-- Sezione 1: 4 Triangolini colorati pastello -->
+                <svg class="lb-mount mount-sec-1 tri-tl"><use href="#holder-triangle"></use></svg>
+                <svg class="lb-mount mount-sec-1 tri-tr"><use href="#holder-triangle"></use></svg>
+                <svg class="lb-mount mount-sec-1 tri-bl"><use href="#holder-triangle"></use></svg>
+                <svg class="lb-mount mount-sec-1 tri-br"><use href="#holder-triangle"></use></svg>
+
+                <!-- Sezione 2: Scotch angolo inferiore sinistro e superiore destro -->
+                <svg class="lb-mount mount-sec-2 tape-tr"><use href="#holder-tape"></use></svg>
+                <svg class="lb-mount mount-sec-2 tape-bl"><use href="#holder-tape"></use></svg>
+
+                <!-- Sezione 3: 4 Puntine a stellina -->
+                <svg class="lb-mount mount-sec-3 star-pin-tl"><use href="#holder-star-pin"></use></svg>
+                <svg class="lb-mount mount-sec-3 star-pin-tr"><use href="#holder-star-pin"></use></svg>
+                <svg class="lb-mount mount-sec-3 star-pin-bl"><use href="#holder-star-pin"></use></svg>
+                <svg class="lb-mount mount-sec-3 star-pin-br"><use href="#holder-star-pin"></use></svg>
+
+                <!-- Sezione 4: 2 Mollette semplici in alto -->
+                <svg class="lb-mount mount-sec-4 peg-left"><use href="#holder-peg"></use></svg>
+                <svg class="lb-mount mount-sec-4 peg-right"><use href="#holder-peg"></use></svg>
+            </div>
+        </div>
+
+        <button class="lb-nav-btn lb-next" id="lbNextBtn" type="button" aria-label="Foto successiva">
+            <svg><use href="#whimsy-arrow-next"></use></svg>
+        </button>
+    </div>
+
+    <script>
+        /* =========================================================
+           CREDITI (Modifica qui anni, ruoli, festival e reel!)
+           ========================================================= */
+        const CREDITI = {
+            totalPhotos: 68,
+            videoStrips: [
+                {
+                    videos: [
+                        { id: '9a40Hy3DSAI', thumb: 'img/vid001.jpg', year: '2026', credits: 'Scrittura, Regia, Fotografia e Montaggio' },
+                        { id: '86RHF9YArcw', thumb: 'img/vid002.jpg', year: '2024', credits: 'Regia, Fotografia e Montaggio' },
+                        { id: 'VC0OFUSWQrQ', thumb: 'img/vid003.jpg', year: '2024', credits: 'Scrittura, Fotografia e Montaggio' }
+                    ],
+                    laurels: [
+                        { podium: 'Vincitore', festival: 'PadovaCiak<br>2026' },
+                        { podium: 'Finalista', festival: 'Believe<br>FilmFestival' },
+                        { podium: 'Menzione speciale', festival: 'Nebrodi<br>Cinema Doc' },
+                        { podium: 'Finalista', festival: 'Trailers<br>FilmFest' },
+                        { podium: 'Selezione ufficiale', festival: 'Filmmaker<br>Session' }
+                    ]
+                },
+                {
+                    videos: [
+                        { id: 'nktAgFjmnHU', thumb: 'img/vid004.jpg', year: '2025', credits: 'Scrittura, Regia, Fotografia e Montaggio' },
+                        { id: 'mMOQ_uHplX8', thumb: 'img/vid005.jpg', year: '2026', credits: 'Fotografia e Montaggio' },
+                        { id: '4HT3OBEWtPw', thumb: 'img/vid006.jpg', year: '2025', credits: 'Scrittura, Regia, Fotografia e Montaggio' }
+                    ],
+                    laurels: [
+                        { podium: 'Premio Pluriart', festival: 'PadovaCiak<br>2024' },
+                        { podium: 'Finalista', festival: "Linea d'ombra<br>UNIFEST" },
+                        { podium: 'Finalista', festival: 'Cortintelvi<br>2025' },
+                        { podium: 'Finalista', festival: 'Valsusa<br>Filmfest' }
+                    ]
                 }
-            });
+            ],
+            reels: [
+                { id: 'DBtp_pJIaGO', thumb: 'img/reel001.jpg', what: '2025', credits: 'EOS Biosapori' },
+                { id: 'DZ4XXN4ge1t', thumb: 'img/reel002.jpg', what: '2026', credits: 'EOS Calendula' },
+                { id: 'DENng7ZOuzV', thumb: 'img/reel003.jpg', what: '2024', credits: 'UniFERPI Padova' },
+                { id: 'DGcyRN5CkK0', thumb: 'img/reel004.jpg', what: '2025', credits: 'Irruzioni Festival' }
+            ],
+            btsCatPoses: [
+                { pos: 'cat-top', icon: '#cat-pose-top' },
+                { pos: 'cat-side-right', icon: '#cat-pose-side' },
+                { pos: 'cat-top-left', icon: '#cat-pose-top' },
+                { pos: 'cat-side-left', icon: '#cat-pose-side' },
+                { pos: 'cat-top', icon: '#cat-pose-top' },
+                { pos: 'cat-side-left', icon: '#cat-pose-side' },
+                { pos: 'cat-top-left', icon: '#cat-pose-top' }
+            ]
+        };
+
+        const pad3 = num => String(num).padStart(3, '0');
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPdfMode = urlParams.has('pdf') || urlParams.get('mode') === 'pdf';
+        const photoMap = new Map();
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let prefersReducedMotion = reducedMotionQuery.matches;
+        reducedMotionQuery.addEventListener?.('change', event => {
+            prefersReducedMotion = event.matches;
+            if (prefersReducedMotion && heroReady && heroPlayer) {
+                heroPlayer.pauseVideo();
+            }
+        });
+
+        let resolveYouTubeAPI;
+        const youTubeAPIReady = new Promise(resolve => {
+            resolveYouTubeAPI = resolve;
+        });
+        const stripPlayers = new Map();
+        let activeStripMedia = null;
+        let nextPlayerId = 0;
+
+        /* =========================================================
+           0. GENERATORE GRANA 35MM 1:1 SU CANVAS
+           ========================================================= */
+        (function generateFineFilmGrain() {
+            const size = 180;
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            const imgData = ctx.createImageData(size, size);
+            const data = imgData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const n = ((Math.random() + Math.random()) * 0.5) * 255;
+                data[i] = data[i + 1] = data[i + 2] = n;
+                data[i + 3] = 255;
+            }
+            ctx.putImageData(imgData, 0, 0);
+            document.documentElement.style.setProperty('--grain-url', `url(${canvas.toDataURL('image/png')})`);
+        })();
+
+        /* =========================================================
+           1. COSTRUZIONE DINAMICA STRISCE VIDEO, ALLORI E REEL
+           ========================================================= */
+        document.querySelectorAll('.video-strip-wrapper[data-strip-index]').forEach(wrapper => {
+            const stripIdx = parseInt(wrapper.dataset.stripIndex, 10);
+            const stripData = CREDITI.videoStrips[stripIdx];
+            const videoContainer = wrapper.querySelector('.video-strip');
+            const laurelsContainer = wrapper.querySelector('.laurels-row');
+
+            videoContainer.innerHTML = stripData.videos.map((v, idx) => `
+                <div class="media-card">
+                    <div class="video-item" role="button" tabindex="0" aria-label="Riproduci video ${stripIdx * 3 + idx + 1}" data-video-id="${v.id}" data-video-thumb="${v.thumb}" data-video-index="${stripIdx * 3 + idx + 1}">
+                        <a class="pdf-video-link" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer" aria-label="Apri il video ${stripIdx * 3 + idx + 1} su YouTube"></a>
+                        <img class="video-thumb" src="${v.thumb}" alt="Copertina video ${stripIdx * 3 + idx + 1}" loading="lazy" decoding="async">
+                        <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                    </div>
+                    <div class="media-credits">
+                        <div class="media-credits-inner">
+                            <span class="credit-tag">${v.year}</span>
+                            <span class="credit-role">${v.credits}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            laurelsContainer.innerHTML = stripData.laurels.map(l => `
+                <div class="laurel-badge">
+                    <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
+                    <div class="laurel-content">
+                        <span class="laurel-podium">${l.podium}</span>
+                        <span class="laurel-festival">${l.festival.split('<br>').map(part => part.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))).join('<br>')}</span>
+                    </div>
+                    <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
+                </div>
+            `).join('');
+        });
+
+        document.getElementById('reelStripContainer').innerHTML = CREDITI.reels.map((r, idx) => `
+            <div class="media-card">
+                <div class="reel-item" role="button" tabindex="0" aria-label="Riproduci reel ${idx + 1}" data-reel-id="${r.id}" data-reel-thumb="${r.thumb}" data-reel-index="${idx + 1}">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${r.id}/" target="_blank" rel="noopener noreferrer" aria-label="Apri reel Instagram ${idx + 1}"></a>
+                    <img class="video-thumb" src="${r.thumb}" alt="Copertina reel ${idx + 1}" loading="lazy" decoding="async">
+                    <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                </div>
+                <div class="media-credits">
+                    <div class="media-credits-inner">
+                        <span class="credit-tag">${r.what}</span>
+                        <span class="credit-role">${r.credits}</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        /* =========================================================
+           2. GESTIONE VIDEO PRINCIPALE, STRISCE VIDEO, REEL E BACKSTAGE
+           ========================================================= */
+        let heroPlayer;
+        let heroReady = false;
+        let stripVideoPlaying = false;
+        let requestedHeroAudio = false;
+        const heroSoundBtn = document.getElementById('heroSoundBtn');
+        const heroContainer = document.getElementById('heroContainer');
+
+        function onYouTubeIframeAPIReady() {
+            try {
+                if (!isPdfMode && window.YT?.Player) {
+                    heroPlayer = new YT.Player('heroIframe', {
+                        events: {
+                            onReady: event => {
+                                heroReady = true;
+                                event.target.mute();
+                                if (requestedHeroAudio) {
+                                    event.target.unMute();
+                                    event.target.setVolume(100);
+                                }
+                                // Autoplay soltanto se l'utente non ha chiesto movimento ridotto.
+                                if (!prefersReducedMotion && !isPdfMode) {
+                                    event.target.playVideo();
+                                } else {
+                                    event.target.pauseVideo();
+                                }
+                            }
+                        }
+                    });
+                }
+            } catch (error) {
+                console.warn('Inizializzazione del player hero non riuscita.', error);
+            } finally {
+                resolveYouTubeAPI?.();
+            }
         }
 
-        function activateHeroControls() {
-            const container = document.getElementById('heroContainer');
-            if (container.classList.contains('interactive')) return;
-            container.classList.add('interactive');
+        function setHeroAudioState(unmute) {
+            requestedHeroAudio = Boolean(unmute);
+            heroSoundBtn.classList.toggle('unmuted', requestedHeroAudio);
+            heroSoundBtn.title = requestedHeroAudio ? 'Disattiva audio' : 'Attiva audio';
+            heroSoundBtn.setAttribute('aria-label', requestedHeroAudio ? 'Disattiva audio' : 'Attiva audio');
 
-            if (heroPlayer && typeof heroPlayer.unMute === 'function') {
+            if (!heroReady || !heroPlayer || typeof heroPlayer.unMute !== 'function') return;
+            if (requestedHeroAudio) {
                 heroPlayer.unMute();
                 heroPlayer.setVolume(100);
+                // La riproduzione è consentita qui perché segue un'azione esplicita dell'utente.
+                heroPlayer.playVideo();
+            } else {
+                heroPlayer.mute();
+            }
+        }
+
+        function stopStripMediaForHero() {
+            pauseAllStripVideos();
+            activeStripMedia = null;
+            stripVideoPlaying = false;
+            if (heroReady && heroPlayer && typeof heroPlayer.playVideo === 'function' && !prefersReducedMotion) {
                 heroPlayer.playVideo();
             }
         }
 
-        // 2. VIDEO YOUTUBE & REEL INSTAGRAM
-        function upgradeThumb(imgEl, videoId) {
-            if (imgEl.dataset.upgraded) return;
-            imgEl.dataset.upgraded = 'true';
-            const hdImg = new Image();
-            hdImg.src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
-            hdImg.onload = () => { if (hdImg.width > 120) imgEl.src = hdImg.src; };
-        }
+        heroSoundBtn.addEventListener('click', event => {
+            event.stopPropagation();
+            heroContainer.classList.add('interactive');
+            stopStripMediaForHero();
+            setHeroAudioState(!requestedHeroAudio);
+        });
 
-        function playStripVideo(item) {
-            if (item.classList.contains('playing')) return;
-            item.classList.add('playing');
-            const id = item.dataset.videoId;
-            item.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-        }
+        document.getElementById('heroOverlay').addEventListener('click', () => {
+            heroContainer.classList.add('interactive');
+            stopStripMediaForHero();
+            setHeroAudioState(true);
+        });
 
-        function playIgReel(item) {
-            if (item.classList.contains('playing')) return;
-            item.classList.add('playing');
-            const id = item.dataset.reelId;
-            item.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${id}/embed/" allow="autoplay; encrypted-media" scrolling="no"></iframe>`;
-        }
-
-        // 3. GENERAZIONE ON-DEMAND FOTO BACKSTAGE
-        const btsCatPoses = [
-            { pos: 'cat-top', icon: '#cat-pose-top' },
-            { pos: 'cat-side-right', icon: '#cat-pose-side' },
-            { pos: 'cat-top-left', icon: '#cat-pose-top' },
-            { pos: 'cat-side-left', icon: '#cat-pose-side' },
-            { pos: 'cat-top', icon: '#cat-pose-top' },
-            { pos: 'cat-side-left', icon: '#cat-pose-side' },
-            { pos: 'cat-top-left', icon: '#cat-pose-top' }
-        ];
-
-        function toggleBts(button) {
-            const wrapper = button.closest('.video-strip-wrapper');
-            const layer = wrapper.querySelector('.bts-layer');
-
-            if (!layer.hasChildNodes()) {
-                const startNum = parseInt(wrapper.dataset.btsStart, 10);
-                btsCatPoses.forEach((cfg, idx) => {
-                    const num = pad3(startNum + idx);
-                    const card = document.createElement('div');
-                    card.className = `bts-card bts-pos-${idx + 1}`;
-                    card.style.transitionDelay = `${0.02 + idx * 0.05}s`;
-                    card.innerHTML = `
-                        <svg class="leaning-cat ${cfg.pos}"><use href="${cfg.icon}"></use></svg>
-                        <img src="img/bts${num}.jpg" alt="Backstage ${num}" decoding="async">
-                    `;
-                    layer.appendChild(card);
+        if ('IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver(entries => {
+                if (!heroReady || !heroPlayer) return;
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        if (typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
+                    } else {
+                        // Tornando al hero, chiudi gli embed secondari che potrebbero
+                        // essere ancora attivi (Instagram non espone un evento ended uniforme).
+                        if (activeStripMedia) pauseAllStripVideos();
+                        if (!stripVideoPlaying && !prefersReducedMotion && typeof heroPlayer.playVideo === 'function') {
+                            heroPlayer.playVideo();
+                        }
+                    }
                 });
-            }
+            }, { threshold: 0.12 });
+            heroObserver.observe(heroContainer);
+        }
 
-            requestAnimationFrame(() => {
-                wrapper.classList.toggle('show-bts');
-                button.classList.toggle('active');
+        function restoreVideoPreview(videoItem) {
+            const id = videoItem.dataset.videoId;
+            const thumb = videoItem.dataset.videoThumb;
+            const index = videoItem.dataset.videoIndex || '';
+            videoItem.classList.remove('playing');
+            videoItem.setAttribute('role', 'button');
+            videoItem.setAttribute('tabindex', '0');
+            videoItem.setAttribute('aria-label', `Riproduci video ${index}`);
+            videoItem.innerHTML = `
+                <a class="pdf-video-link" href="https://www.youtube.com/watch?v=${encodeURIComponent(id)}" target="_blank" rel="noopener noreferrer" aria-label="Apri il video ${index} su YouTube"></a>
+                <img class="video-thumb" src="${thumb}" alt="Copertina video ${index}" loading="lazy" decoding="async">
+                <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+            `;
+            videoItem.closest('.media-card')?.classList.remove('is-active');
+        }
+
+        function pauseAllStripVideos(exceptEl = null) {
+            document.querySelectorAll('.video-item.playing').forEach(item => {
+                if (item === exceptEl) return;
+                const player = stripPlayers.get(item);
+                const iframe = item.querySelector('iframe');
+                if (player) {
+                    try { player.destroy(); } catch (_) { /* Player già distrutto o non pronto. */ }
+                    stripPlayers.delete(item);
+                } else if (iframe) {
+                    // Fallback utile se il player API non è ancora stato collegato.
+                    try {
+                        iframe.contentWindow?.postMessage(
+                            JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }),
+                            'https://www.youtube-nocookie.com'
+                        );
+                    } catch (_) { /* iframe non disponibile */ }
+                }
+                restoreVideoPreview(item);
+            });
+
+            document.querySelectorAll('.reel-item.playing').forEach(reel => {
+                if (reel === exceptEl) return;
+                const id = reel.dataset.reelId;
+                const thumb = reel.dataset.reelThumb;
+                const index = reel.dataset.reelIndex || '';
+                reel.classList.remove('playing');
+                reel.innerHTML = `
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${encodeURIComponent(id)}/" target="_blank" rel="noopener noreferrer" aria-label="Apri reel Instagram ${index}"></a>
+                    <img class="video-thumb" src="${thumb}" alt="Copertina reel ${index}" loading="lazy" decoding="async">
+                    <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                `;
+                reel.setAttribute('role', 'button');
+                reel.setAttribute('tabindex', '0');
+                reel.setAttribute('aria-label', `Riproduci reel ${index}`);
+                reel.closest('.media-card')?.classList.remove('is-active');
+            });
+
+            if (activeStripMedia !== exceptEl) {
+                activeStripMedia = null;
+                stripVideoPlaying = false;
+            }
+        }
+
+        function activateVideoItem(videoItem) {
+            pauseAllStripVideos(videoItem);
+            setHeroAudioState(false);
+            if (heroReady && heroPlayer && typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
+
+            activeStripMedia = videoItem;
+            stripVideoPlaying = true;
+            videoItem.classList.add('playing');
+            videoItem.removeAttribute('role');
+            videoItem.removeAttribute('tabindex');
+            videoItem.removeAttribute('aria-label');
+
+            const card = videoItem.closest('.media-card');
+            if (card) card.classList.add('is-active');
+
+            const id = videoItem.dataset.videoId;
+            const playerId = `strip-youtube-player-${++nextPlayerId}`;
+            const iframe = document.createElement('iframe');
+            iframe.id = playerId;
+            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?enablejsapi=1&autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}`;
+            iframe.title = `Riproduzione video ${id}`;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            videoItem.replaceChildren(iframe);
+
+            // Se l'API è disponibile, osserva play/pausa/fine invece di lasciare
+            // stripVideoPlaying bloccato su true per tutta la visita.
+            youTubeAPIReady.then(() => {
+                if (!iframe.isConnected || !window.YT?.Player || stripPlayers.has(videoItem)) return;
+                try {
+                    const player = new YT.Player(playerId, {
+                        events: {
+                            onStateChange: event => {
+                                if (event.data === YT.PlayerState.PLAYING) {
+                                    activeStripMedia = videoItem;
+                                    stripVideoPlaying = true;
+                                    stripPlayers.forEach((otherPlayer, otherItem) => {
+                                        if (otherItem !== videoItem) {
+                                            try { otherPlayer.pauseVideo(); } catch (_) { /* Ignora player non pronto. */ }
+                                        }
+                                    });
+                                    if (heroReady && heroPlayer) heroPlayer.pauseVideo();
+                                } else if (
+                                    (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) &&
+                                    activeStripMedia === videoItem
+                                ) {
+                                    activeStripMedia = null;
+                                    stripVideoPlaying = false;
+                                }
+                            }
+                        }
+                    });
+                    stripPlayers.set(videoItem, player);
+                } catch (error) {
+                    console.warn('Impossibile collegare i controlli del player YouTube.', error);
+                }
             });
         }
 
-        // 4. GENERAZIONE GRIGLIE FOTOGRAFICHE
+        function activateReelItem(reelItem) {
+            pauseAllStripVideos(reelItem);
+            setHeroAudioState(false);
+            if (heroReady && heroPlayer && typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
+
+            activeStripMedia = reelItem;
+            stripVideoPlaying = true;
+            reelItem.classList.add('playing');
+            reelItem.removeAttribute('role');
+            reelItem.removeAttribute('tabindex');
+            reelItem.removeAttribute('aria-label');
+
+            const card = reelItem.closest('.media-card');
+            if (card) card.classList.add('is-active');
+            const id = reelItem.dataset.reelId;
+            reelItem.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${encodeURIComponent(id)}/embed/" title="Instagram Reel ${reelItem.dataset.reelIndex || ''}" allow="autoplay; encrypted-media" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" scrolling="no"></iframe>`;
+        }
+
+        const clipboardStatus = document.getElementById('clipboardStatus');
+
+        async function writeClipboardText(text) {
+            if (!navigator.clipboard?.writeText) {
+                throw new Error('Clipboard API non disponibile in questo contesto.');
+            }
+            await navigator.clipboard.writeText(text);
+        }
+
+        function announceCopyResult(link, message) {
+            const toast = link?.querySelector('.copy-toast');
+            if (toast) {
+                toast.textContent = message;
+                toast.setAttribute('aria-hidden', 'true');
+                toast.classList.add('show');
+                window.setTimeout(() => toast.classList.remove('show'), 2000);
+            }
+            if (clipboardStatus) clipboardStatus.textContent = message;
+        }
+
+        async function handleCopyLink(link, event) {
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const copyOnly = link.dataset.alwaysCopy === 'true' || !isMobile;
+            if (copyOnly) event.preventDefault();
+
+            try {
+                await writeClipboardText(link.dataset.copy);
+                announceCopyResult(link, 'Copiato!');
+            } catch (error) {
+                if (copyOnly) {
+                    announceCopyResult(link, 'Copia non riuscita: seleziona e copia il testo.');
+                }
+                // Su smartphone, per il telefono rimane attivo il comportamento tel: predefinito.
+            }
+        }
+
+        document.addEventListener('click', e => {
+            const videoItem = e.target.closest('.video-item:not(.playing)');
+            if (videoItem) {
+                activateVideoItem(videoItem);
+                return;
+            }
+
+            const reelItem = e.target.closest('.reel-item:not(.playing)');
+            if (reelItem) {
+                activateReelItem(reelItem);
+                return;
+            }
+
+            // Pulsante Gattino Backstage
+            const catBtn = e.target.closest('.cat-toggle-btn');
+            if (catBtn) {
+                catBtn.classList.remove('pop-anim');
+                void catBtn.offsetWidth;
+                catBtn.classList.add('pop-anim');
+
+                const wrapper = catBtn.closest('.video-strip-wrapper');
+                const layer = wrapper.querySelector('.bts-layer');
+
+                if (!layer.hasChildNodes()) {
+                    const startNum = parseInt(wrapper.dataset.btsStart, 10);
+                    CREDITI.btsCatPoses.forEach((cfg, idx) => {
+                        const num = pad3(startNum + idx);
+                        const card = document.createElement('div');
+                        card.className = `bts-card bts-pos-${idx + 1}`;
+                        card.style.transitionDelay = `${idx * 0.055}s`;
+                        card.innerHTML = `
+                            <svg class="leaning-cat ${cfg.pos}"><use href="${cfg.icon}"></use></svg>
+                            <img src="img/bts${num}.jpg" alt="Backstage ${num}">
+                        `;
+                        layer.appendChild(card);
+                    });
+
+                    void layer.offsetWidth;
+                    setTimeout(() => {
+                        wrapper.classList.add('show-bts');
+                        catBtn.classList.add('active');
+                        catBtn.setAttribute('aria-expanded', 'true');
+                        catBtn.setAttribute('aria-label', 'Nascondi foto backstage');
+                    }, 30);
+                } else {
+                    const isShown = wrapper.classList.toggle('show-bts');
+                    catBtn.classList.toggle('active', isShown);
+                    catBtn.setAttribute('aria-expanded', String(isShown));
+                    catBtn.setAttribute('aria-label', isShown ? 'Nascondi foto backstage' : 'Mostra foto backstage');
+                }
+                return;
+            }
+
+            const copyLink = e.target.closest('[data-copy]');
+            if (copyLink) {
+                handleCopyLink(copyLink, e);
+            }
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const videoItem = e.target.closest('.video-item:not(.playing)');
+            if (videoItem) {
+                e.preventDefault();
+                activateVideoItem(videoItem);
+                return;
+            }
+            const reelItem = e.target.closest('.reel-item:not(.playing)');
+            if (reelItem) {
+                e.preventDefault();
+                activateReelItem(reelItem);
+            }
+        });
+
+        /* =========================================================
+           3. BIO A SCOMPARSA E SCORRIMENTO AEROPLANINO / PALLONCINO
+           ========================================================= */
+        const bioArrowBtn = document.getElementById('bioArrowBtn');
+        const bioDrawer = document.getElementById('bioDrawer');
+
+        bioDrawer.inert = true;
+        bioDrawer.setAttribute('aria-hidden', 'true');
+        bioArrowBtn.addEventListener('click', () => {
+            const isOpen = bioArrowBtn.classList.toggle('open');
+            bioDrawer.classList.toggle('open', isOpen);
+            bioArrowBtn.setAttribute('aria-expanded', String(isOpen));
+            bioDrawer.inert = !isOpen;
+            bioDrawer.setAttribute('aria-hidden', String(!isOpen));
+        });
+
+        let scrollAnimId = null;
+        function stopCustomScroll() {
+            if (scrollAnimId) {
+                cancelAnimationFrame(scrollAnimId);
+                scrollAnimId = null;
+            }
+        }
+
+        window.addEventListener('wheel', stopCustomScroll, { passive: true });
+        window.addEventListener('touchstart', stopCustomScroll, { passive: true });
+
+        function smoothScrollToTop(duration = 1850) {
+            stopCustomScroll();
+            if (prefersReducedMotion) {
+                window.scrollTo({ top: 0, behavior: 'auto' });
+                return;
+            }
+            const startY = window.scrollY;
+            if (startY < 8) return;
+            const startTime = performance.now();
+
+            function step(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                window.scrollTo(0, startY * (1 - ease));
+                scrollAnimId = progress < 1 ? requestAnimationFrame(step) : null;
+            }
+            scrollAnimId = requestAnimationFrame(step);
+        }
+
+        function smoothScrollToBottom(duration = 950, onComplete) {
+            stopCustomScroll();
+            if (prefersReducedMotion) {
+                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' });
+                if (onComplete) onComplete();
+                return;
+            }
+            const startY = window.scrollY;
+            const startTime = performance.now();
+
+            function step(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const ease = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                const currentMaxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                window.scrollTo(0, startY + (currentMaxScroll - startY) * ease);
+
+                if (progress < 1) {
+                    scrollAnimId = requestAnimationFrame(step);
+                } else {
+                    window.scrollTo(0, document.documentElement.scrollHeight);
+                    scrollAnimId = null;
+                    if (onComplete) onComplete();
+                }
+            }
+            scrollAnimId = requestAnimationFrame(step);
+        }
+
+        const magicBtn = document.getElementById('magicTravelBtn');
+        const footerEl = document.getElementById('contactFooter');
+
+        function updateMagicButtonState() {
+            const footerRect = footerEl.getBoundingClientRect();
+            const winH = window.innerHeight;
+            const nearBottom = (footerRect.top < winH + 90) || ((winH + window.scrollY) >= document.documentElement.scrollHeight - 130);
+
+            magicBtn.classList.toggle('is-balloon', nearBottom);
+            magicBtn.title = nearBottom ? 'Torna in cima' : 'Contatti';
+            magicBtn.setAttribute('aria-label', nearBottom ? 'Torna in cima' : 'Vai ai contatti');
+        }
+
+        magicBtn.addEventListener('click', () => {
+            if (magicBtn.classList.contains('is-balloon')) {
+                magicBtn.classList.add('launching');
+                smoothScrollToTop(1850);
+                setTimeout(() => magicBtn.classList.remove('launching'), 900);
+            } else {
+                smoothScrollToBottom(950, updateMagicButtonState);
+            }
+        });
+
+        window.addEventListener('scroll', updateMagicButtonState, { passive: true });
+
+        /* =========================================================
+           4. LIGHTBOX FOTOGRAFICO + FOCUS ACCESSIBILITY + SWIPE
+           ========================================================= */
+        let currentPhotoIndex = 1;
+        let lbHistoryPushed = false;
+        let lastFocusedElement = null;
+        const lbModal = document.getElementById('lightboxModal');
+        const lbStage = document.getElementById('lightboxStage');
+        const lbImg = document.getElementById('lightboxImg');
+        const lbCloseBtn = document.getElementById('lbCloseBtn');
+        const lbFocusableSelector = 'button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])';
+        const lightboxBackground = [...document.body.children].filter(element =>
+            element !== lbModal && !['SCRIPT', 'STYLE'].includes(element.tagName)
+        );
+        let previousBodyOverflow = '';
+        let lightboxTransitionTimer = null;
+
+        function setLightboxBackgroundInert(isInert) {
+            lightboxBackground.forEach(element => {
+                element.inert = isInert;
+            });
+        }
+
+        lbImg.addEventListener('load', () => lbImg.classList.remove('is-loading', 'load-error'));
+        lbImg.addEventListener('error', () => {
+            lbImg.classList.remove('is-loading');
+            lbImg.classList.add('load-error');
+            lbImg.alt = `Fotografia ${currentPhotoIndex} non disponibile`;
+        });
+
+        function getSectionByPhoto(idx) {
+            if (idx <= 18) return 1;
+            if (idx <= 39) return 2;
+            if (idx <= 56) return 3;
+            return 4;
+        }
+
+        function preloadAdjacentPhotos(idx) {
+            const nextIdx = idx >= CREDITI.totalPhotos ? 1 : idx + 1;
+            const prevIdx = idx <= 1 ? CREDITI.totalPhotos : idx - 1;
+            new Image().src = `img/img${pad3(nextIdx)}.jpg`;
+            new Image().src = `img/img${pad3(prevIdx)}.jpg`;
+        }
+
+        function setLightboxImage(idx) {
+            const code = pad3(idx);
+            lbStage.dataset.section = getSectionByPhoto(idx);
+            lbImg.classList.add('is-loading');
+            lbImg.classList.remove('load-error');
+            lbImg.alt = `Fotografia ${idx} — Davide Callegari`;
+            lbImg.src = `img/img${code}.jpg`;
+            if (lbImg.complete) {
+                if (lbImg.naturalWidth > 0) lbImg.classList.remove('is-loading');
+                else {
+                    lbImg.classList.remove('is-loading');
+                    lbImg.classList.add('load-error');
+                    lbImg.alt = `Fotografia ${idx} non disponibile`;
+                }
+            }
+            preloadAdjacentPhotos(idx);
+        }
+
+        function openLightbox(index, fromHistory = false) {
+            const wasOpen = lbModal.classList.contains('open');
+            if (!wasOpen) lastFocusedElement = document.activeElement;
+
+            currentPhotoIndex = index;
+            const code = pad3(currentPhotoIndex);
+            setLightboxImage(currentPhotoIndex);
+
+            lbModal.inert = false;
+            lbModal.classList.add('open');
+            lbModal.setAttribute('aria-hidden', 'false');
+            if (!wasOpen) {
+                previousBodyOverflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+                setLightboxBackgroundInert(true);
+            }
+
+            if (!wasOpen) lbCloseBtn.focus({ preventScroll: true });
+
+            if (!fromHistory && window.history && window.history.pushState) {
+                const hashUrl = `${window.location.pathname}${window.location.search}#foto-${code}`;
+                if (!wasOpen) {
+                    window.history.pushState({ lbOpen: true, photo: currentPhotoIndex }, '', hashUrl);
+                    lbHistoryPushed = true;
+                } else {
+                    window.history.replaceState({ lbOpen: true, photo: currentPhotoIndex }, '', hashUrl);
+                }
+            }
+        }
+
+        function changeLightboxPhoto(direction) {
+            const animClass = direction > 0 ? 'swipe-left' : 'swipe-right';
+            window.clearTimeout(lightboxTransitionTimer);
+            lbStage.classList.remove('swipe-left', 'swipe-right');
+            lbStage.classList.add(animClass);
+
+            lightboxTransitionTimer = window.setTimeout(() => {
+                currentPhotoIndex += direction;
+                if (currentPhotoIndex > CREDITI.totalPhotos) currentPhotoIndex = 1;
+                if (currentPhotoIndex < 1) currentPhotoIndex = CREDITI.totalPhotos;
+                const code = pad3(currentPhotoIndex);
+                setLightboxImage(currentPhotoIndex);
+
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState({ lbOpen: true, photo: currentPhotoIndex }, '', `${window.location.pathname}${window.location.search}#foto-${code}`);
+                }
+                lbStage.classList.remove(animClass);
+            }, 120);
+        }
+
+        function closeLightbox(force = false, fromPopState = false) {
+            if (!force || !lbModal.classList.contains('open')) return;
+            lbModal.classList.remove('open');
+            lbModal.setAttribute('aria-hidden', 'true');
+            lbModal.inert = true;
+            setLightboxBackgroundInert(false);
+            document.body.style.overflow = previousBodyOverflow;
+            window.clearTimeout(lightboxTransitionTimer);
+            lbStage.classList.remove('swipe-left', 'swipe-right');
+
+            if (!fromPopState && lbHistoryPushed) {
+                lbHistoryPushed = false;
+                window.history.back();
+            } else if (!fromPopState && window.location.hash) {
+                window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus({ preventScroll: true });
+            }
+        }
+
+        lbModal.addEventListener('click', e => {
+            if (e.target === lbModal) closeLightbox(true);
+        });
+        lbCloseBtn.addEventListener('click', () => closeLightbox(true));
+        document.getElementById('lbPrevBtn').addEventListener('click', e => { e.stopPropagation(); changeLightboxPhoto(-1); });
+        document.getElementById('lbNextBtn').addEventListener('click', e => { e.stopPropagation(); changeLightboxPhoto(1); });
+
+        document.getElementById('lbShareBtn').addEventListener('click', async event => {
+            event.stopPropagation();
+            const shareUrl = `${window.location.origin}${window.location.pathname}${window.location.search}#foto-${pad3(currentPhotoIndex)}`;
+            const toast = document.getElementById('shareToast');
+            try {
+                await writeClipboardText(shareUrl);
+                toast.textContent = 'Copiato!';
+                clipboardStatus.textContent = 'Link della fotografia copiato.';
+            } catch (_) {
+                toast.textContent = 'Copia non riuscita';
+                clipboardStatus.textContent = 'Impossibile copiare il link della fotografia.';
+            }
+            toast.classList.add('show');
+            window.setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+
+        window.addEventListener('popstate', () => {
+            const match = window.location.hash.match(/^#(?:foto|img)-?0*(\d{1,3})$/i);
+            if (match) {
+                const photoNum = parseInt(match[1], 10);
+                if (photoNum >= 1 && photoNum <= CREDITI.totalPhotos) openLightbox(photoNum, true);
+            } else if (lbModal.classList.contains('open')) {
+                lbHistoryPushed = false;
+                closeLightbox(true, true);
+            }
+        });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        lbModal.addEventListener('touchstart', e => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        lbModal.addEventListener('touchend', e => {
+            if (!lbModal.classList.contains('open') || e.changedTouches.length === 0) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+
+            if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) {
+                changeLightboxPhoto(dx < 0 ? 1 : -1);
+            } else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) {
+                closeLightbox(true);
+            }
+        }, { passive: true });
+
+        lbModal.addEventListener('keydown', event => {
+            if (event.key !== 'Tab' || !lbModal.classList.contains('open')) return;
+            const focusable = [...lbModal.querySelectorAll(lbFocusableSelector)].filter(element =>
+                !element.disabled && element.getClientRects().length > 0
+            );
+            if (!focusable.length) {
+                event.preventDefault();
+                lbModal.focus();
+                return;
+            }
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && (document.activeElement === first || document.activeElement === lbModal)) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+
+        window.addEventListener('keydown', event => {
+            if (!lbModal.classList.contains('open')) return;
+            if (event.key === 'Escape') closeLightbox(true);
+            if (event.key === 'ArrowRight') changeLightboxPhoto(1);
+            if (event.key === 'ArrowLeft') changeLightboxPhoto(-1);
+        });
+
+        /* =========================================================
+           5. GENERAZIONE GRIGLIE FOTOGRAFICHE E MODALITÀ PDF
+           ========================================================= */
         const grids = document.querySelectorAll('.photo-grid');
+
+        function markPhotoError(img, index) {
+            img.classList.add('loaded', 'load-error');
+            img.classList.remove('is-loading');
+            img.alt = `Fotografia ${index} non disponibile`;
+            img.removeAttribute('role');
+            img.removeAttribute('tabindex');
+            img.setAttribute('aria-disabled', 'true');
+        }
+
+        function markPhotoLoaded(img) {
+            if (img.naturalWidth > 0) {
+                img.classList.add('loaded');
+                img.classList.remove('load-error');
+                img.removeAttribute('aria-disabled');
+            }
+        }
 
         grids.forEach(grid => {
             const start = parseInt(grid.dataset.start, 10);
@@ -857,24 +2541,51 @@
 
             for (let i = start; i <= end; i++) {
                 const img = document.createElement('img');
-                img.src = `img/img${pad3(i)}.jpg`;
-                img.alt = `Fotografia ${i}`;
+                img.alt = `Fotografia ${i} — Davide Callegari`;
                 img.decoding = 'async';
+                img.tabIndex = 0;
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', `Apri fotografia ${i}`);
 
-                if (isPdfMode || i <= 6) {
+                if (isPdfMode) {
+                    img.loading = 'eager';
                     img.fetchPriority = 'high';
+                } else if (i <= 6) {
+                    img.loading = 'eager';
+                    img.fetchPriority = i <= 3 ? 'high' : 'auto';
                 } else {
                     img.loading = 'lazy';
+                    img.fetchPriority = 'auto';
                 }
 
-                img.onload = () => img.classList.add('loaded');
+                img.addEventListener('load', () => markPhotoLoaded(img), { once: true });
+                img.addEventListener('error', () => markPhotoError(img, i), { once: true });
+                img.addEventListener('click', () => {
+                    if (!img.classList.contains('load-error')) openLightbox(i);
+                });
+                img.addEventListener('keydown', event => {
+                    if (img.classList.contains('load-error')) return;
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openLightbox(i);
+                    }
+                });
+
+                // Non impostiamo width/height o aspect-ratio artificiali: le fotografie
+                // hanno proporzioni diverse e devono restare naturali nella masonry.
+                img.src = `img/img${pad3(i)}.jpg`;
+                if (img.complete) {
+                    if (img.naturalWidth > 0) markPhotoLoaded(img);
+                    else markPhotoError(img, i);
+                }
+
                 grid.photoElements.push(img);
+                photoMap.set(i, img);
             }
         });
 
         function renderMasonryGrids(forceThreeCols = false) {
-            const w = window.innerWidth;
-            const colCount = forceThreeCols ? 3 : (w <= 600 ? 1 : (w <= 950 ? 2 : 3));
+            const colCount = forceThreeCols ? 3 : (window.innerWidth <= 950 ? 2 : 3);
 
             grids.forEach(grid => {
                 if (grid.dataset.cols == colCount) return;
@@ -888,7 +2599,10 @@
                 });
 
                 grid.photoElements.forEach((img, idx) => {
-                    if (img.complete) img.classList.add('loaded');
+                    if (img.complete) {
+                        if (img.naturalWidth > 0) markPhotoLoaded(img);
+                        else markPhotoError(img, Number(img.alt.match(/\d+/)?.[0] || 0));
+                    }
                     cols[idx % colCount].appendChild(img);
                 });
 
@@ -898,22 +2612,64 @@
 
         renderMasonryGrids(isPdfMode);
 
-        // Prepara tutte le immagini quando si preme Ctrl+P / Cmd+P o si apre ?pdf
+        // Controllo apertura da link diretto (#foto-034)
+        (function checkInitialDeepLink() {
+            const match = window.location.hash.match(/^#(?:foto|img)-?0*(\d{1,3})$/i);
+            if (!match) return;
+            const photoNum = parseInt(match[1], 10);
+            if (photoNum >= 1 && photoNum <= CREDITI.totalPhotos) {
+                const targetThumb = photoMap.get(photoNum);
+                if (targetThumb) {
+                    setTimeout(() => targetThumb.scrollIntoView({ behavior: 'instant', block: 'center' }), 50);
+                }
+                openLightbox(photoNum, true);
+            }
+        })();
+
         function prepareForPrint() {
             renderMasonryGrids(true);
-            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                img.removeAttribute('loading');
-                img.classList.add('loaded');
+            document.querySelectorAll('img').forEach(img => {
+                img.loading = 'eager';
+                img.removeAttribute('fetchpriority');
+                if (img.complete) {
+                    if (img.naturalWidth > 0) img.classList.add('loaded');
+                }
             });
+        }
+
+        async function waitForImagesToDecode() {
+            const images = [...document.images];
+            await Promise.all(images.map(img => {
+                if (typeof img.decode === 'function') {
+                    return img.decode().then(() => img.classList.add('loaded')).catch(() => {
+                        img.classList.add('load-error', 'loaded');
+                    });
+                }
+                if (img.complete) {
+                    if (img.naturalWidth > 0) img.classList.add('loaded');
+                    else img.classList.add('load-error', 'loaded');
+                    return Promise.resolve();
+                }
+                return new Promise(resolve => {
+                    img.addEventListener('load', () => { img.classList.add('loaded'); resolve(); }, { once: true });
+                    img.addEventListener('error', () => { img.classList.add('load-error', 'loaded'); resolve(); }, { once: true });
+                });
+            }));
         }
 
         window.addEventListener('beforeprint', prepareForPrint);
 
         if (isPdfMode) {
             prepareForPrint();
-            window.addEventListener('load', () => {
-                setTimeout(() => window.print(), 800);
-            });
+            const printWhenReady = async () => {
+                await waitForImagesToDecode();
+                window.print();
+            };
+            if (document.readyState === 'complete') {
+                printWhenReady();
+            } else {
+                window.addEventListener('load', printWhenReady, { once: true });
+            }
         }
 
         let resizeTimer;
@@ -922,6 +2678,8 @@
             resizeTimer = requestAnimationFrame(() => renderMasonryGrids(false));
         });
     </script>
+    <!-- Caricata dopo la dichiarazione di onYouTubeIframeAPIReady per evitare race condition. -->
+    <script src="https://www.youtube.com/iframe_api" async></script>
 
 </body>
 </html>
