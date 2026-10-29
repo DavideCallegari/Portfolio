@@ -114,36 +114,6 @@
             outline-offset: 4px;
         }
 
-        .skip-link {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            z-index: 3000;
-            padding: 12px 16px;
-            color: #050711;
-            background: var(--subtitle-pastel);
-            border-radius: 6px;
-            font-weight: 700;
-            transform: translateY(-160%);
-            transition: transform var(--dur-fast) var(--ease-smooth);
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        .sr-only {
-            position: absolute !important;
-            width: 1px !important;
-            height: 1px !important;
-            padding: 0 !important;
-            margin: -1px !important;
-            overflow: hidden !important;
-            clip: rect(0, 0, 0, 0) !important;
-            white-space: nowrap !important;
-            border: 0 !important;
-        }
-
         body {
             background-color: #050711;
             background-image: 
@@ -211,14 +181,6 @@
             position: absolute;
             inset: 0;
             z-index: 2;
-            display: block;
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            border: 0;
-            border-radius: 0;
-            background: transparent;
-            cursor: pointer;
         }
 
         .hero-video-container.interactive .hero-click-overlay {
@@ -591,8 +553,7 @@
         .photo-grid img {
             width: 100%;
             height: auto;
-            /* Nessun aspect-ratio forzato: ogni foto mantiene le sue proporzioni originali. */
-            min-height: 0;
+            min-height: 180px;
             display: block;
             cursor: zoom-in;
             background-color: rgba(30, 22, 43, 0.3);
@@ -601,23 +562,9 @@
         }
 
         .photo-grid img.loaded {
+            min-height: 0;
             opacity: 1;
             background-color: transparent;
-        }
-
-        .photo-grid img:focus-visible {
-            outline: 3px dashed var(--subtitle-pastel);
-            outline-offset: 3px;
-        }
-
-        .photo-grid img.load-error {
-            min-height: 6rem;
-            padding: 1rem;
-            cursor: default;
-            opacity: 1;
-            background: var(--accent-dark);
-            color: var(--text-light-pastel);
-            object-fit: contain;
         }
 
         /* =========================================================
@@ -960,7 +907,6 @@
         .lightbox-modal {
             position: fixed;
             inset: 0;
-            height: 100vh;
             height: 100dvh;
             z-index: 2000;
             background-color: rgba(6, 7, 16, 0.93);
@@ -1001,7 +947,6 @@
 
         .lightbox-img {
             max-width: 84vw;
-            max-height: 82vh;
             max-height: 82dvh;
             width: auto;
             height: auto;
@@ -1306,7 +1251,7 @@
             footer { flex-wrap: wrap; justify-content: center; gap: 22px; padding: 40px 4vw calc(85px + env(safe-area-inset-bottom, 0px)); }
             .footer-left, .footer-right { gap: 22px; }
             .lightbox-modal { padding: 16px; }
-            .lightbox-img { max-width: 90vw; max-height: 78vh; max-height: 78dvh; }
+            .lightbox-img { max-width: 90vw; max-height: 78dvh; }
         }
 
         @media (max-width: 650px) {
@@ -1318,7 +1263,7 @@
             .header-text { padding: 45px 16px 50px; }
             .photo-grid { gap: 10px; padding: 0 3vw; margin-bottom: 45px; }
             .masonry-col { gap: 10px; }
-            .photo-grid img { min-height: 0; }
+            .photo-grid img { min-height: 110px; }
             .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 3vw; }
             .custom-play-btn { width: 40px; height: 40px; }
             .laurels-row { gap: 18px 24px; padding: 0 55px 0 20px; }
@@ -1357,8 +1302,6 @@
             }
 
             body::after,
-            .skip-link,
-            #clipboardStatus,
             .hero-video-container,
             .bio-arrow-btn,
             .magic-travel-btn,
@@ -1405,7 +1348,6 @@
     </style>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Salta al contenuto</a>
 
     <!-- SVG SPRITE SHEET CENTRALIZZATO -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
@@ -1524,14 +1466,14 @@
 
     <!-- 1. BIG 21:9 YOUTUBE VIDEO -->
     <div class="hero-video-container" id="heroContainer">
-        <button class="hero-click-overlay" id="heroOverlay" type="button" aria-label="Attiva l'audio e interagisci con il video" title="Attiva audio"></button>
+        <div class="hero-click-overlay" id="heroOverlay" title="Clicca per attivare l'audio"></div>
         <button class="hero-sound-btn" id="heroSoundBtn" type="button" aria-label="Attiva o disattiva audio" title="Attiva audio">
             <svg class="icon-sound-off"><use href="#sound-off-icon"></use></svg>
             <svg class="icon-sound-on"><use href="#sound-on-icon"></use></svg>
         </button>
         <iframe 
             id="heroIframe"
-            src="https://www.youtube.com/embed/4aja6p8wSnA?enablejsapi=1&mute=1&controls=1&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
+            src="https://www.youtube.com/embed/4aja6p8wSnA?enablejsapi=1&autoplay=1&mute=1&controls=1&loop=1&playlist=4aja6p8wSnA&rel=0&modestbranding=1&playsinline=1" 
             title="Showreel Davide Callegari" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
@@ -1555,7 +1497,7 @@
                 </span>
             </button>
 
-            <div class="bio-drawer" id="bioDrawer" aria-hidden="true" inert>
+            <div class="bio-drawer" id="bioDrawer">
                 <div class="bio-drawer-inner">
                     <div class="bio-content">
                         <!-- Tua foto profilo (img/profile.jpg) appuntata di lato senza spezzare il testo centrato -->
@@ -1589,12 +1531,12 @@
         <svg class="icon-balloon"><use href="#balloon-up-icon"></use></svg>
     </button>
 
-    <main id="main-content">
+    <main>
         <!-- BLOCCO 1: FOTO 001 - 018 -->
-        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 1 a 18" data-start="1" data-end="18"></section>
+        <section class="photo-grid" data-start="1" data-end="18"></section>
 
         <!-- PRIMA STRISCIA DI 3 VIDEO + ALLORI + BACKSTAGE -->
-        <section class="video-strip-wrapper" aria-label="Cortometraggi e riconoscimenti" data-strip-index="0" data-bts-start="1">
+        <section class="video-strip-wrapper" data-strip-index="0" data-bts-start="1">
             <div class="video-strip"></div>
             <div class="laurels-row"></div>
             <div class="bts-layer"></div>
@@ -1604,10 +1546,10 @@
         </section>
 
         <!-- BLOCCO 2: FOTO 019 - 039 -->
-        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 19 a 39" data-start="19" data-end="39"></section>
+        <section class="photo-grid" data-start="19" data-end="39"></section>
 
         <!-- SECONDA STRISCIA DI 3 VIDEO + ALLORI + BACKSTAGE -->
-        <section class="video-strip-wrapper warm-strip" aria-label="Altri cortometraggi e riconoscimenti" data-strip-index="1" data-bts-start="8">
+        <section class="video-strip-wrapper warm-strip" data-strip-index="1" data-bts-start="8">
             <div class="video-strip"></div>
             <div class="laurels-row"></div>
             <div class="bts-layer"></div>
@@ -1617,15 +1559,15 @@
         </section>
 
         <!-- BLOCCO 3: FOTO 040 - 056 -->
-        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 40 a 56" data-start="40" data-end="56"></section>
+        <section class="photo-grid" data-start="40" data-end="56"></section>
 
         <!-- TERZA STRISCIA: 4 REEL VERTICALI DA INSTAGRAM -->
-        <section class="video-strip-wrapper green-strip" aria-label="Reel video verticali">
+        <section class="video-strip-wrapper green-strip">
             <div class="reel-strip" id="reelStripContainer"></div>
         </section>
 
         <!-- BLOCCO 4: FOTO 057 - 068 -->
-        <section class="photo-grid" aria-label="Galleria fotografica: fotografie da 57 a 68" data-start="57" data-end="68"></section>
+        <section class="photo-grid" data-start="57" data-end="68"></section>
     </main>
 
     <!-- 5. FOOTER -->
@@ -1636,11 +1578,11 @@
                 Venezia
             </span>
             <a href="mailto:dkalle@libero.it" data-copy="dkalle@libero.it" data-always-copy="true" title="Clicca per copiare l'email">
-                <span class="copy-toast" aria-hidden="true">Copiato!</span>
+                <span class="copy-toast" aria-live="polite">Copiato!</span>
                 dkalle@libero.it
             </a>
             <a href="tel:+393756703753" data-copy="+39 3756703753" title="Clicca per copiare il numero">
-                <span class="copy-toast" aria-hidden="true">Copiato!</span>
+                <span class="copy-toast" aria-live="polite">Copiato!</span>
                 +39 3756703753
             </a>
         </div>
@@ -1656,14 +1598,11 @@
         </div>
     </footer>
 
-    <p class="sr-only" id="clipboardStatus" role="status" aria-live="polite" aria-atomic="true"></p>
-
     <!-- LIGHTBOX WHIMSY -->
-    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle" inert tabindex="-1">
-        <h2 class="sr-only" id="lightboxTitle">Visualizzatore fotografie</h2>
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visualizzatore fotografia">
         <button class="lb-share-btn" id="lbShareBtn" type="button" aria-label="Copia link foto" title="Copia link foto">
             <svg><use href="#link-chain-icon"></use></svg>
-            <span class="share-toast" id="shareToast" aria-hidden="true">Copiato!</span>
+            <span class="share-toast" id="shareToast" aria-live="polite">Copiato!</span>
         </button>
 
         <button class="lb-hanging-close" id="lbCloseBtn" type="button" aria-label="Chiudi foto" title="Chiudi">
@@ -1705,6 +1644,8 @@
         </button>
     </div>
 
+    <!-- API YouTube -->
+    <script src="https://www.youtube.com/iframe_api" async></script>
     <script>
         /* =========================================================
            CREDITI (Modifica qui anni, ruoli, festival e reel!)
@@ -1758,25 +1699,8 @@
         };
 
         const pad3 = num => String(num).padStart(3, '0');
-        const urlParams = new URLSearchParams(window.location.search);
-        const isPdfMode = urlParams.has('pdf') || urlParams.get('mode') === 'pdf';
+        const isPdfMode = window.location.search.includes('pdf');
         const photoMap = new Map();
-        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let prefersReducedMotion = reducedMotionQuery.matches;
-        reducedMotionQuery.addEventListener?.('change', event => {
-            prefersReducedMotion = event.matches;
-            if (prefersReducedMotion && heroReady && heroPlayer) {
-                heroPlayer.pauseVideo();
-            }
-        });
-
-        let resolveYouTubeAPI;
-        const youTubeAPIReady = new Promise(resolve => {
-            resolveYouTubeAPI = resolve;
-        });
-        const stripPlayers = new Map();
-        let activeStripMedia = null;
-        let nextPlayerId = 0;
 
         /* =========================================================
            0. GENERATORE GRANA 35MM 1:1 SU CANVAS
@@ -1787,7 +1711,6 @@
             canvas.width = size;
             canvas.height = size;
             const ctx = canvas.getContext('2d');
-            if (!ctx) return;
             const imgData = ctx.createImageData(size, size);
             const data = imgData.data;
 
@@ -1811,10 +1734,10 @@
 
             videoContainer.innerHTML = stripData.videos.map((v, idx) => `
                 <div class="media-card">
-                    <div class="video-item" role="button" tabindex="0" aria-label="Riproduci video ${stripIdx * 3 + idx + 1}" data-video-id="${v.id}" data-video-thumb="${v.thumb}" data-video-index="${stripIdx * 3 + idx + 1}">
-                        <a class="pdf-video-link" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer" aria-label="Apri il video ${stripIdx * 3 + idx + 1} su YouTube"></a>
+                    <div class="video-item" role="button" tabindex="0" aria-label="Riproduci video ${stripIdx * 3 + idx + 1}" data-video-id="${v.id}">
+                        <a class="pdf-video-link" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"></a>
                         <img class="video-thumb" src="${v.thumb}" alt="Copertina video ${stripIdx * 3 + idx + 1}" loading="lazy" decoding="async">
-                        <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                        <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                     </div>
                     <div class="media-credits">
                         <div class="media-credits-inner">
@@ -1830,7 +1753,7 @@
                     <svg class="laurel-branch"><use href="#laurel-left"></use></svg>
                     <div class="laurel-content">
                         <span class="laurel-podium">${l.podium}</span>
-                        <span class="laurel-festival">${l.festival.split('<br>').map(part => part.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))).join('<br>')}</span>
+                        <span class="laurel-festival">${l.festival}</span>
                     </div>
                     <svg class="laurel-branch"><use href="#laurel-right"></use></svg>
                 </div>
@@ -1839,10 +1762,10 @@
 
         document.getElementById('reelStripContainer').innerHTML = CREDITI.reels.map((r, idx) => `
             <div class="media-card">
-                <div class="reel-item" role="button" tabindex="0" aria-label="Riproduci reel ${idx + 1}" data-reel-id="${r.id}" data-reel-thumb="${r.thumb}" data-reel-index="${idx + 1}">
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${r.id}/" target="_blank" rel="noopener noreferrer" aria-label="Apri reel Instagram ${idx + 1}"></a>
+                <div class="reel-item" role="button" tabindex="0" aria-label="Riproduci reel ${idx + 1}" data-reel-id="${r.id}" data-reel-thumb="${r.thumb}">
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${r.id}/" target="_blank" rel="noopener"></a>
                     <img class="video-thumb" src="${r.thumb}" alt="Copertina reel ${idx + 1}" loading="lazy" decoding="async">
-                    <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 </div>
                 <div class="media-credits">
                     <div class="media-credits-inner">
@@ -1859,75 +1782,46 @@
         let heroPlayer;
         let heroReady = false;
         let stripVideoPlaying = false;
-        let requestedHeroAudio = false;
         const heroSoundBtn = document.getElementById('heroSoundBtn');
         const heroContainer = document.getElementById('heroContainer');
 
         function onYouTubeIframeAPIReady() {
-            try {
-                if (!isPdfMode && window.YT?.Player) {
-                    heroPlayer = new YT.Player('heroIframe', {
-                        events: {
-                            onReady: event => {
-                                heroReady = true;
-                                event.target.mute();
-                                if (requestedHeroAudio) {
-                                    event.target.unMute();
-                                    event.target.setVolume(100);
-                                }
-                                // Autoplay soltanto se l'utente non ha chiesto movimento ridotto.
-                                if (!prefersReducedMotion && !isPdfMode) {
-                                    event.target.playVideo();
-                                } else {
-                                    event.target.pauseVideo();
-                                }
-                            }
-                        }
-                    });
+            if (isPdfMode) return;
+            heroPlayer = new YT.Player('heroIframe', {
+                events: {
+                    onReady: e => {
+                        heroReady = true;
+                        e.target.mute();
+                        e.target.playVideo();
+                    }
                 }
-            } catch (error) {
-                console.warn('Inizializzazione del player hero non riuscita.', error);
-            } finally {
-                resolveYouTubeAPI?.();
-            }
+            });
         }
 
         function setHeroAudioState(unmute) {
-            requestedHeroAudio = Boolean(unmute);
-            heroSoundBtn.classList.toggle('unmuted', requestedHeroAudio);
-            heroSoundBtn.title = requestedHeroAudio ? 'Disattiva audio' : 'Attiva audio';
-            heroSoundBtn.setAttribute('aria-label', requestedHeroAudio ? 'Disattiva audio' : 'Attiva audio');
-
             if (!heroReady || !heroPlayer || typeof heroPlayer.unMute !== 'function') return;
-            if (requestedHeroAudio) {
+            if (unmute) {
+                pauseAllStripVideos();
                 heroPlayer.unMute();
                 heroPlayer.setVolume(100);
-                // La riproduzione è consentita qui perché segue un'azione esplicita dell'utente.
                 heroPlayer.playVideo();
+                heroSoundBtn.classList.add('unmuted');
+                heroSoundBtn.title = 'Disattiva audio';
             } else {
                 heroPlayer.mute();
+                heroSoundBtn.classList.remove('unmuted');
+                heroSoundBtn.title = 'Attiva audio';
             }
         }
 
-        function stopStripMediaForHero() {
-            pauseAllStripVideos();
-            activeStripMedia = null;
-            stripVideoPlaying = false;
-            if (heroReady && heroPlayer && typeof heroPlayer.playVideo === 'function' && !prefersReducedMotion) {
-                heroPlayer.playVideo();
-            }
-        }
-
-        heroSoundBtn.addEventListener('click', event => {
-            event.stopPropagation();
+        heroSoundBtn.addEventListener('click', e => {
+            e.stopPropagation();
             heroContainer.classList.add('interactive');
-            stopStripMediaForHero();
-            setHeroAudioState(!requestedHeroAudio);
+            setHeroAudioState(!heroSoundBtn.classList.contains('unmuted'));
         });
 
         document.getElementById('heroOverlay').addEventListener('click', () => {
             heroContainer.classList.add('interactive');
-            stopStripMediaForHero();
             setHeroAudioState(true);
         });
 
@@ -1937,190 +1831,54 @@
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) {
                         if (typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
-                    } else {
-                        // Tornando al hero, chiudi gli embed secondari che potrebbero
-                        // essere ancora attivi (Instagram non espone un evento ended uniforme).
-                        if (activeStripMedia) pauseAllStripVideos();
-                        if (!stripVideoPlaying && !prefersReducedMotion && typeof heroPlayer.playVideo === 'function') {
-                            heroPlayer.playVideo();
-                        }
+                    } else if (!stripVideoPlaying) {
+                        if (typeof heroPlayer.playVideo === 'function') heroPlayer.playVideo();
                     }
                 });
             }, { threshold: 0.12 });
             heroObserver.observe(heroContainer);
         }
 
-        function restoreVideoPreview(videoItem) {
-            const id = videoItem.dataset.videoId;
-            const thumb = videoItem.dataset.videoThumb;
-            const index = videoItem.dataset.videoIndex || '';
-            videoItem.classList.remove('playing');
-            videoItem.setAttribute('role', 'button');
-            videoItem.setAttribute('tabindex', '0');
-            videoItem.setAttribute('aria-label', `Riproduci video ${index}`);
-            videoItem.innerHTML = `
-                <a class="pdf-video-link" href="https://www.youtube.com/watch?v=${encodeURIComponent(id)}" target="_blank" rel="noopener noreferrer" aria-label="Apri il video ${index} su YouTube"></a>
-                <img class="video-thumb" src="${thumb}" alt="Copertina video ${index}" loading="lazy" decoding="async">
-                <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
-            `;
-            videoItem.closest('.media-card')?.classList.remove('is-active');
-        }
-
         function pauseAllStripVideos(exceptEl = null) {
-            document.querySelectorAll('.video-item.playing').forEach(item => {
-                if (item === exceptEl) return;
-                const player = stripPlayers.get(item);
-                const iframe = item.querySelector('iframe');
-                if (player) {
-                    try { player.destroy(); } catch (_) { /* Player già distrutto o non pronto. */ }
-                    stripPlayers.delete(item);
-                } else if (iframe) {
-                    // Fallback utile se il player API non è ancora stato collegato.
-                    try {
-                        iframe.contentWindow?.postMessage(
-                            JSON.stringify({ event: 'command', func: 'pauseVideo', args: '' }),
-                            'https://www.youtube-nocookie.com'
-                        );
-                    } catch (_) { /* iframe non disponibile */ }
-                }
-                restoreVideoPreview(item);
+            document.querySelectorAll('.video-item.playing iframe').forEach(iframe => {
+                if (exceptEl && exceptEl.contains(iframe)) return;
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
             });
-
             document.querySelectorAll('.reel-item.playing').forEach(reel => {
                 if (reel === exceptEl) return;
                 const id = reel.dataset.reelId;
                 const thumb = reel.dataset.reelThumb;
-                const index = reel.dataset.reelIndex || '';
                 reel.classList.remove('playing');
                 reel.innerHTML = `
-                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${encodeURIComponent(id)}/" target="_blank" rel="noopener noreferrer" aria-label="Apri reel Instagram ${index}"></a>
-                    <img class="video-thumb" src="${thumb}" alt="Copertina reel ${index}" loading="lazy" decoding="async">
-                    <div class="custom-play-btn" aria-hidden="true"><svg><use href="#star-play-icon"></use></svg></div>
+                    <a class="pdf-video-link" href="https://www.instagram.com/reel/${id}/" target="_blank" rel="noopener"></a>
+                    <img class="video-thumb" src="${thumb}" alt="Reel" loading="lazy" decoding="async">
+                    <div class="custom-play-btn"><svg><use href="#star-play-icon"></use></svg></div>
                 `;
-                reel.setAttribute('role', 'button');
-                reel.setAttribute('tabindex', '0');
-                reel.setAttribute('aria-label', `Riproduci reel ${index}`);
-                reel.closest('.media-card')?.classList.remove('is-active');
             });
-
-            if (activeStripMedia !== exceptEl) {
-                activeStripMedia = null;
-                stripVideoPlaying = false;
-            }
         }
 
         function activateVideoItem(videoItem) {
             pauseAllStripVideos(videoItem);
+            stripVideoPlaying = true;
             setHeroAudioState(false);
             if (heroReady && heroPlayer && typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
-
-            activeStripMedia = videoItem;
-            stripVideoPlaying = true;
             videoItem.classList.add('playing');
-            videoItem.removeAttribute('role');
-            videoItem.removeAttribute('tabindex');
-            videoItem.removeAttribute('aria-label');
-
             const card = videoItem.closest('.media-card');
             if (card) card.classList.add('is-active');
-
             const id = videoItem.dataset.videoId;
-            const playerId = `strip-youtube-player-${++nextPlayerId}`;
-            const iframe = document.createElement('iframe');
-            iframe.id = playerId;
-            iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?enablejsapi=1&autoplay=1&controls=1&rel=0&modestbranding=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}`;
-            iframe.title = `Riproduzione video ${id}`;
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-            iframe.allowFullscreen = true;
-            videoItem.replaceChildren(iframe);
-
-            // Se l'API è disponibile, osserva play/pausa/fine invece di lasciare
-            // stripVideoPlaying bloccato su true per tutta la visita.
-            youTubeAPIReady.then(() => {
-                if (!iframe.isConnected || !window.YT?.Player || stripPlayers.has(videoItem)) return;
-                try {
-                    const player = new YT.Player(playerId, {
-                        events: {
-                            onStateChange: event => {
-                                if (event.data === YT.PlayerState.PLAYING) {
-                                    activeStripMedia = videoItem;
-                                    stripVideoPlaying = true;
-                                    stripPlayers.forEach((otherPlayer, otherItem) => {
-                                        if (otherItem !== videoItem) {
-                                            try { otherPlayer.pauseVideo(); } catch (_) { /* Ignora player non pronto. */ }
-                                        }
-                                    });
-                                    if (heroReady && heroPlayer) heroPlayer.pauseVideo();
-                                } else if (
-                                    (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) &&
-                                    activeStripMedia === videoItem
-                                ) {
-                                    activeStripMedia = null;
-                                    stripVideoPlaying = false;
-                                }
-                            }
-                        }
-                    });
-                    stripPlayers.set(videoItem, player);
-                } catch (error) {
-                    console.warn('Impossibile collegare i controlli del player YouTube.', error);
-                }
-            });
+            videoItem.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?enablejsapi=1&autoplay=1&controls=1&rel=0&modestbranding=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
         }
 
         function activateReelItem(reelItem) {
             pauseAllStripVideos(reelItem);
+            stripVideoPlaying = true;
             setHeroAudioState(false);
             if (heroReady && heroPlayer && typeof heroPlayer.pauseVideo === 'function') heroPlayer.pauseVideo();
-
-            activeStripMedia = reelItem;
-            stripVideoPlaying = true;
             reelItem.classList.add('playing');
-            reelItem.removeAttribute('role');
-            reelItem.removeAttribute('tabindex');
-            reelItem.removeAttribute('aria-label');
-
             const card = reelItem.closest('.media-card');
             if (card) card.classList.add('is-active');
             const id = reelItem.dataset.reelId;
-            reelItem.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${encodeURIComponent(id)}/embed/" title="Instagram Reel ${reelItem.dataset.reelIndex || ''}" allow="autoplay; encrypted-media" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" scrolling="no"></iframe>`;
-        }
-
-        const clipboardStatus = document.getElementById('clipboardStatus');
-
-        async function writeClipboardText(text) {
-            if (!navigator.clipboard?.writeText) {
-                throw new Error('Clipboard API non disponibile in questo contesto.');
-            }
-            await navigator.clipboard.writeText(text);
-        }
-
-        function announceCopyResult(link, message) {
-            const toast = link?.querySelector('.copy-toast');
-            if (toast) {
-                toast.textContent = message;
-                toast.setAttribute('aria-hidden', 'true');
-                toast.classList.add('show');
-                window.setTimeout(() => toast.classList.remove('show'), 2000);
-            }
-            if (clipboardStatus) clipboardStatus.textContent = message;
-        }
-
-        async function handleCopyLink(link, event) {
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const copyOnly = link.dataset.alwaysCopy === 'true' || !isMobile;
-            if (copyOnly) event.preventDefault();
-
-            try {
-                await writeClipboardText(link.dataset.copy);
-                announceCopyResult(link, 'Copiato!');
-            } catch (error) {
-                if (copyOnly) {
-                    announceCopyResult(link, 'Copia non riuscita: seleziona e copia il testo.');
-                }
-                // Su smartphone, per il telefono rimane attivo il comportamento tel: predefinito.
-            }
+            reelItem.innerHTML = `<iframe class="ig-embed-clean" src="https://www.instagram.com/reel/${id}/embed/" title="Instagram Reel" allow="autoplay; encrypted-media" scrolling="no"></iframe>`;
         }
 
         document.addEventListener('click', e => {
@@ -2165,20 +1923,29 @@
                         wrapper.classList.add('show-bts');
                         catBtn.classList.add('active');
                         catBtn.setAttribute('aria-expanded', 'true');
-                        catBtn.setAttribute('aria-label', 'Nascondi foto backstage');
                     }, 30);
                 } else {
                     const isShown = wrapper.classList.toggle('show-bts');
                     catBtn.classList.toggle('active', isShown);
-                    catBtn.setAttribute('aria-expanded', String(isShown));
-                    catBtn.setAttribute('aria-label', isShown ? 'Nascondi foto backstage' : 'Mostra foto backstage');
+                    catBtn.setAttribute('aria-expanded', isShown);
                 }
                 return;
             }
 
             const copyLink = e.target.closest('[data-copy]');
             if (copyLink) {
-                handleCopyLink(copyLink, e);
+                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                if (copyLink.dataset.alwaysCopy === 'true' || !isMobile) {
+                    e.preventDefault();
+                }
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(copyLink.dataset.copy).catch(() => {});
+                }
+                const toast = copyLink.querySelector('.copy-toast');
+                if (toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                }
             }
         });
 
@@ -2203,14 +1970,10 @@
         const bioArrowBtn = document.getElementById('bioArrowBtn');
         const bioDrawer = document.getElementById('bioDrawer');
 
-        bioDrawer.inert = true;
-        bioDrawer.setAttribute('aria-hidden', 'true');
         bioArrowBtn.addEventListener('click', () => {
             const isOpen = bioArrowBtn.classList.toggle('open');
             bioDrawer.classList.toggle('open', isOpen);
-            bioArrowBtn.setAttribute('aria-expanded', String(isOpen));
-            bioDrawer.inert = !isOpen;
-            bioDrawer.setAttribute('aria-hidden', String(!isOpen));
+            bioArrowBtn.setAttribute('aria-expanded', isOpen);
         });
 
         let scrollAnimId = null;
@@ -2226,10 +1989,6 @@
 
         function smoothScrollToTop(duration = 1850) {
             stopCustomScroll();
-            if (prefersReducedMotion) {
-                window.scrollTo({ top: 0, behavior: 'auto' });
-                return;
-            }
             const startY = window.scrollY;
             if (startY < 8) return;
             const startTime = performance.now();
@@ -2245,11 +2004,6 @@
 
         function smoothScrollToBottom(duration = 950, onComplete) {
             stopCustomScroll();
-            if (prefersReducedMotion) {
-                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' });
-                if (onComplete) onComplete();
-                return;
-            }
             const startY = window.scrollY;
             const startTime = performance.now();
 
@@ -2305,25 +2059,8 @@
         const lbStage = document.getElementById('lightboxStage');
         const lbImg = document.getElementById('lightboxImg');
         const lbCloseBtn = document.getElementById('lbCloseBtn');
-        const lbFocusableSelector = 'button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])';
-        const lightboxBackground = [...document.body.children].filter(element =>
-            element !== lbModal && !['SCRIPT', 'STYLE'].includes(element.tagName)
-        );
-        let previousBodyOverflow = '';
-        let lightboxTransitionTimer = null;
 
-        function setLightboxBackgroundInert(isInert) {
-            lightboxBackground.forEach(element => {
-                element.inert = isInert;
-            });
-        }
-
-        lbImg.addEventListener('load', () => lbImg.classList.remove('is-loading', 'load-error'));
-        lbImg.addEventListener('error', () => {
-            lbImg.classList.remove('is-loading');
-            lbImg.classList.add('load-error');
-            lbImg.alt = `Fotografia ${currentPhotoIndex} non disponibile`;
-        });
+        lbImg.addEventListener('load', () => lbImg.classList.remove('is-loading'));
 
         function getSectionByPhoto(idx) {
             if (idx <= 18) return 1;
@@ -2343,17 +2080,9 @@
             const code = pad3(idx);
             lbStage.dataset.section = getSectionByPhoto(idx);
             lbImg.classList.add('is-loading');
-            lbImg.classList.remove('load-error');
-            lbImg.alt = `Fotografia ${idx} — Davide Callegari`;
             lbImg.src = `img/img${code}.jpg`;
-            if (lbImg.complete) {
-                if (lbImg.naturalWidth > 0) lbImg.classList.remove('is-loading');
-                else {
-                    lbImg.classList.remove('is-loading');
-                    lbImg.classList.add('load-error');
-                    lbImg.alt = `Fotografia ${idx} non disponibile`;
-                }
-            }
+            lbImg.alt = `Fotografia ${idx} — Davide Callegari`;
+            if (lbImg.complete) lbImg.classList.remove('is-loading');
             preloadAdjacentPhotos(idx);
         }
 
@@ -2365,14 +2094,9 @@
             const code = pad3(currentPhotoIndex);
             setLightboxImage(currentPhotoIndex);
 
-            lbModal.inert = false;
             lbModal.classList.add('open');
             lbModal.setAttribute('aria-hidden', 'false');
-            if (!wasOpen) {
-                previousBodyOverflow = document.body.style.overflow;
-                document.body.style.overflow = 'hidden';
-                setLightboxBackgroundInert(true);
-            }
+            document.body.style.overflow = 'hidden';
 
             if (!wasOpen) lbCloseBtn.focus({ preventScroll: true });
 
@@ -2389,11 +2113,9 @@
 
         function changeLightboxPhoto(direction) {
             const animClass = direction > 0 ? 'swipe-left' : 'swipe-right';
-            window.clearTimeout(lightboxTransitionTimer);
-            lbStage.classList.remove('swipe-left', 'swipe-right');
             lbStage.classList.add(animClass);
 
-            lightboxTransitionTimer = window.setTimeout(() => {
+            setTimeout(() => {
                 currentPhotoIndex += direction;
                 if (currentPhotoIndex > CREDITI.totalPhotos) currentPhotoIndex = 1;
                 if (currentPhotoIndex < 1) currentPhotoIndex = CREDITI.totalPhotos;
@@ -2411,11 +2133,7 @@
             if (!force || !lbModal.classList.contains('open')) return;
             lbModal.classList.remove('open');
             lbModal.setAttribute('aria-hidden', 'true');
-            lbModal.inert = true;
-            setLightboxBackgroundInert(false);
-            document.body.style.overflow = previousBodyOverflow;
-            window.clearTimeout(lightboxTransitionTimer);
-            lbStage.classList.remove('swipe-left', 'swipe-right');
+            document.body.style.overflow = '';
 
             if (!fromPopState && lbHistoryPushed) {
                 lbHistoryPushed = false;
@@ -2436,20 +2154,15 @@
         document.getElementById('lbPrevBtn').addEventListener('click', e => { e.stopPropagation(); changeLightboxPhoto(-1); });
         document.getElementById('lbNextBtn').addEventListener('click', e => { e.stopPropagation(); changeLightboxPhoto(1); });
 
-        document.getElementById('lbShareBtn').addEventListener('click', async event => {
-            event.stopPropagation();
-            const shareUrl = `${window.location.origin}${window.location.pathname}${window.location.search}#foto-${pad3(currentPhotoIndex)}`;
-            const toast = document.getElementById('shareToast');
-            try {
-                await writeClipboardText(shareUrl);
-                toast.textContent = 'Copiato!';
-                clipboardStatus.textContent = 'Link della fotografia copiato.';
-            } catch (_) {
-                toast.textContent = 'Copia non riuscita';
-                clipboardStatus.textContent = 'Impossibile copiare il link della fotografia.';
+        document.getElementById('lbShareBtn').addEventListener('click', e => {
+            e.stopPropagation();
+            const shareUrl = `${window.location.origin}${window.location.pathname}#foto-${pad3(currentPhotoIndex)}`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl).catch(() => {});
             }
+            const toast = document.getElementById('shareToast');
             toast.classList.add('show');
-            window.setTimeout(() => toast.classList.remove('show'), 2000);
+            setTimeout(() => toast.classList.remove('show'), 2000);
         });
 
         window.addEventListener('popstate', () => {
@@ -2484,55 +2197,17 @@
             }
         }, { passive: true });
 
-        lbModal.addEventListener('keydown', event => {
-            if (event.key !== 'Tab' || !lbModal.classList.contains('open')) return;
-            const focusable = [...lbModal.querySelectorAll(lbFocusableSelector)].filter(element =>
-                !element.disabled && element.getClientRects().length > 0
-            );
-            if (!focusable.length) {
-                event.preventDefault();
-                lbModal.focus();
-                return;
-            }
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (event.shiftKey && (document.activeElement === first || document.activeElement === lbModal)) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first.focus();
-            }
-        });
-
-        window.addEventListener('keydown', event => {
+        window.addEventListener('keydown', e => {
             if (!lbModal.classList.contains('open')) return;
-            if (event.key === 'Escape') closeLightbox(true);
-            if (event.key === 'ArrowRight') changeLightboxPhoto(1);
-            if (event.key === 'ArrowLeft') changeLightboxPhoto(-1);
+            if (e.key === 'Escape') closeLightbox(true);
+            if (e.key === 'ArrowRight') changeLightboxPhoto(1);
+            if (e.key === 'ArrowLeft') changeLightboxPhoto(-1);
         });
 
         /* =========================================================
            5. GENERAZIONE GRIGLIE FOTOGRAFICHE E MODALITÀ PDF
            ========================================================= */
         const grids = document.querySelectorAll('.photo-grid');
-
-        function markPhotoError(img, index) {
-            img.classList.add('loaded', 'load-error');
-            img.classList.remove('is-loading');
-            img.alt = `Fotografia ${index} non disponibile`;
-            img.removeAttribute('role');
-            img.removeAttribute('tabindex');
-            img.setAttribute('aria-disabled', 'true');
-        }
-
-        function markPhotoLoaded(img) {
-            if (img.naturalWidth > 0) {
-                img.classList.add('loaded');
-                img.classList.remove('load-error');
-                img.removeAttribute('aria-disabled');
-            }
-        }
 
         grids.forEach(grid => {
             const start = parseInt(grid.dataset.start, 10);
@@ -2541,43 +2216,26 @@
 
             for (let i = start; i <= end; i++) {
                 const img = document.createElement('img');
+                img.src = `img/img${pad3(i)}.jpg`;
                 img.alt = `Fotografia ${i} — Davide Callegari`;
                 img.decoding = 'async';
                 img.tabIndex = 0;
                 img.setAttribute('role', 'button');
-                img.setAttribute('aria-label', `Apri fotografia ${i}`);
 
-                if (isPdfMode) {
-                    img.loading = 'eager';
+                if (isPdfMode || i <= 6) {
                     img.fetchPriority = 'high';
-                } else if (i <= 6) {
-                    img.loading = 'eager';
-                    img.fetchPriority = i <= 3 ? 'high' : 'auto';
                 } else {
                     img.loading = 'lazy';
-                    img.fetchPriority = 'auto';
                 }
 
-                img.addEventListener('load', () => markPhotoLoaded(img), { once: true });
-                img.addEventListener('error', () => markPhotoError(img, i), { once: true });
-                img.addEventListener('click', () => {
-                    if (!img.classList.contains('load-error')) openLightbox(i);
-                });
-                img.addEventListener('keydown', event => {
-                    if (img.classList.contains('load-error')) return;
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
+                img.onload = () => img.classList.add('loaded');
+                img.addEventListener('click', () => openLightbox(i));
+                img.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
                         openLightbox(i);
                     }
                 });
-
-                // Non impostiamo width/height o aspect-ratio artificiali: le fotografie
-                // hanno proporzioni diverse e devono restare naturali nella masonry.
-                img.src = `img/img${pad3(i)}.jpg`;
-                if (img.complete) {
-                    if (img.naturalWidth > 0) markPhotoLoaded(img);
-                    else markPhotoError(img, i);
-                }
 
                 grid.photoElements.push(img);
                 photoMap.set(i, img);
@@ -2599,10 +2257,7 @@
                 });
 
                 grid.photoElements.forEach((img, idx) => {
-                    if (img.complete) {
-                        if (img.naturalWidth > 0) markPhotoLoaded(img);
-                        else markPhotoError(img, Number(img.alt.match(/\d+/)?.[0] || 0));
-                    }
+                    if (img.complete) img.classList.add('loaded');
                     cols[idx % colCount].appendChild(img);
                 });
 
@@ -2628,48 +2283,17 @@
 
         function prepareForPrint() {
             renderMasonryGrids(true);
-            document.querySelectorAll('img').forEach(img => {
-                img.loading = 'eager';
-                img.removeAttribute('fetchpriority');
-                if (img.complete) {
-                    if (img.naturalWidth > 0) img.classList.add('loaded');
-                }
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.removeAttribute('loading');
+                img.classList.add('loaded');
             });
-        }
-
-        async function waitForImagesToDecode() {
-            const images = [...document.images];
-            await Promise.all(images.map(img => {
-                if (typeof img.decode === 'function') {
-                    return img.decode().then(() => img.classList.add('loaded')).catch(() => {
-                        img.classList.add('load-error', 'loaded');
-                    });
-                }
-                if (img.complete) {
-                    if (img.naturalWidth > 0) img.classList.add('loaded');
-                    else img.classList.add('load-error', 'loaded');
-                    return Promise.resolve();
-                }
-                return new Promise(resolve => {
-                    img.addEventListener('load', () => { img.classList.add('loaded'); resolve(); }, { once: true });
-                    img.addEventListener('error', () => { img.classList.add('load-error', 'loaded'); resolve(); }, { once: true });
-                });
-            }));
         }
 
         window.addEventListener('beforeprint', prepareForPrint);
 
         if (isPdfMode) {
             prepareForPrint();
-            const printWhenReady = async () => {
-                await waitForImagesToDecode();
-                window.print();
-            };
-            if (document.readyState === 'complete') {
-                printWhenReady();
-            } else {
-                window.addEventListener('load', printWhenReady, { once: true });
-            }
+            window.addEventListener('load', () => setTimeout(() => window.print(), 800));
         }
 
         let resizeTimer;
@@ -2678,8 +2302,6 @@
             resizeTimer = requestAnimationFrame(() => renderMasonryGrids(false));
         });
     </script>
-    <!-- Caricata dopo la dichiarazione di onYouTubeIframeAPIReady per evitare race condition. -->
-    <script src="https://www.youtube.com/iframe_api" async></script>
 
 </body>
 </html>
