@@ -1,5 +1,5 @@
 /* =========================================================
-   1. VARIABILI, RESET E TIPOGRAFIA
+   1. VARIABILI, SCALA TIPOGRAFICA E RESET
    ========================================================= */
 :root {
     color-scheme: dark;
@@ -10,7 +10,7 @@
     --accent-dark: #1e162b;
     --text-light-pastel: #FDFBF7;
     --subtitle-pastel: #F9E2AE;
-    --grain-url: none;
+    --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 
     --font-display: 'Fraunces', serif;
     --font-sans: 'Quicksand', sans-serif;
@@ -35,6 +35,11 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+html {
+    /* Evita lo scatto laterale di 15px quando il Lightbox blocca lo scroll */
+    scrollbar-gutter: stable;
+}
+
 ::selection {
     background-color: var(--subtitle-pastel);
     color: #050711;
@@ -50,6 +55,12 @@
     width: 0;
     height: 0;
     overflow: hidden;
+    pointer-events: none;
+}
+
+button svg,
+button span {
+    pointer-events: none;
 }
 
 body {
@@ -161,17 +172,12 @@ body::after {
     overflow: visible;
 }
 
-.hero-sound-btn .icon-sound-on,
-.hero-sound-btn.unmuted .icon-sound-off {
-    display: none;
-}
-
-.hero-sound-btn.unmuted .icon-sound-on {
-    display: block;
-}
+.hero-sound-btn .icon-sound-on { display: none; }
+.hero-sound-btn.unmuted .icon-sound-off { display: none; }
+.hero-sound-btn.unmuted .icon-sound-on { display: block; }
 
 /* =========================================================
-   3. HEADER, PULSANTE "chi sono" E BIO
+   3. HEADER, PULSANTE "chi sono" + BIO
    ========================================================= */
 .header-text {
     text-align: center;
@@ -405,7 +411,7 @@ body::after {
 }
 
 /* =========================================================
-   4. PULSANTE VIAGGIO (AEROPLANINO / PALLONCINO)
+   4. PULSANTE VIAGGIO (AEROPLANINO -> PALLONCINO)
    ========================================================= */
 .magic-travel-btn {
     position: fixed;
@@ -422,12 +428,9 @@ body::after {
     justify-content: center;
     z-index: 900;
     opacity: 0.85;
-    transition: bottom var(--dur-med) var(--ease-smooth), color var(--dur-fast) var(--ease-smooth), opacity var(--dur-fast) var(--ease-smooth), transform var(--dur-med) var(--ease-spring), filter var(--dur-fast) var(--ease-smooth);
+    transform: translateY(var(--travel-y, 0px));
+    transition: color var(--dur-fast) var(--ease-smooth), opacity var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth);
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.75));
-}
-
-.magic-travel-btn.is-balloon {
-    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
 }
 
 .magic-travel-btn svg {
@@ -441,33 +444,29 @@ body::after {
     stroke-linejoin: round;
     filter: url(#hand-ink);
     overflow: visible;
-    transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-med) var(--ease-spring);
+    transition: opacity var(--dur-fast) var(--ease-smooth), transform var(--dur-fast) var(--ease-smooth);
 }
 
 .magic-travel-btn .icon-plane {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
 }
 
 .magic-travel-btn .icon-balloon {
     opacity: 0;
-    transform: scale(0.4) translateY(15px) rotate(-12deg);
+    transform: scale(0.55);
     pointer-events: none;
 }
 
 .magic-travel-btn.is-balloon .icon-plane {
     opacity: 0;
-    transform: scale(0.4) translate(15px, -15px) rotate(25deg);
+    transform: scale(0.55);
     pointer-events: none;
 }
 
 .magic-travel-btn.is-balloon .icon-balloon {
     opacity: 1;
-    transform: scale(1) translateY(0) rotate(0deg);
-}
-
-.magic-travel-btn.launching {
-    transform: translateY(-45px) scale(1.15) !important;
+    transform: scale(1);
 }
 
 /* =========================================================
@@ -492,12 +491,22 @@ body::after {
     min-width: 0;
 }
 
+.masonry-col > a {
+    display: block;
+    width: 100%;
+}
+
+.photo-grid picture {
+    display: block;
+    width: 100%;
+}
+
 .photo-grid img {
     width: 100%;
     height: auto;
     min-height: 180px;
     display: block;
-    cursor: zoom-in;
+    cursor: pointer;
     background-color: rgba(30, 22, 43, 0.3);
     opacity: 0;
     transition: opacity var(--dur-med) var(--ease-smooth), transform var(--dur-fast) var(--ease-smooth), box-shadow var(--dur-fast) var(--ease-smooth);
@@ -510,7 +519,7 @@ body::after {
 }
 
 /* =========================================================
-   6. STRISCE VIDEO, REEL, CREDITI, ALLORI E BACKSTAGE
+   6. STRISCE VIDEO, REEL, CREDITI PERMANENTI, ALLORI E BACKSTAGE
    ========================================================= */
 .video-strip-wrapper {
     position: relative;
@@ -522,34 +531,31 @@ body::after {
     z-index: 10;
 }
 
-.video-strip-wrapper.warm-strip {
-    background-color: var(--strip-dark-2);
-}
-
+.video-strip-wrapper.warm-strip { background-color: var(--strip-dark-2); }
 .video-strip-wrapper.green-strip {
     background-color: var(--strip-dark-3);
     padding: 45px 0;
 }
 
-.video-strip,
-.reel-strip {
+.video-strip, .reel-strip {
     position: relative;
     z-index: 5;
     display: grid;
     padding: 0 4vw;
     max-width: 1600px;
     margin: 0 auto;
-    align-items: start;
 }
 
 .video-strip {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: start;
 }
 
 .reel-strip {
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(20px, 4.5vw, 80px);
+    align-items: start;
 }
 
 .media-card {
@@ -558,8 +564,7 @@ body::after {
     width: 100%;
 }
 
-.video-item,
-.reel-item {
+.video-item, .reel-item {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -570,12 +575,15 @@ body::after {
     transition: box-shadow var(--dur-fast) var(--ease-smooth);
 }
 
-.reel-item {
-    aspect-ratio: 9 / 16;
-}
+.reel-item { aspect-ratio: 9 / 16; }
 
 .video-item picture,
-.reel-item picture,
+.reel-item picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .video-thumb {
     width: 100%;
     height: 100%;
@@ -583,9 +591,7 @@ body::after {
     display: block;
 }
 
-.pdf-video-link {
-    display: none;
-}
+.pdf-video-link { display: none; }
 
 .custom-play-btn svg,
 .laurel-branch,
@@ -680,10 +686,9 @@ body::after {
     align-items: center;
     flex-wrap: wrap;
     gap: 24px 42px;
-    margin-top: 22px;
+    margin: 22px auto 0;
     padding: 0 70px;
     max-width: 1600px;
-    margin-inline: auto;
 }
 
 .laurel-badge {
@@ -838,9 +843,7 @@ body::after {
     z-index: 3;
 }
 
-.warm-strip .leaning-cat {
-    fill: var(--strip-dark-2);
-}
+.warm-strip .leaning-cat { fill: var(--strip-dark-2); }
 
 .cat-top { top: -35px; right: 12px; }
 .cat-top-left { top: -35px; left: 12px; }
@@ -888,16 +891,13 @@ body::after {
     align-items: center;
     justify-content: center;
     transform: scale(0.94);
-    transition: transform var(--dur-fast) var(--ease-smooth), opacity 0.2s ease;
+    transition: transform var(--dur-fast) var(--ease-smooth);
     box-shadow: 0 28px 65px rgba(0, 0, 0, 0.9), 0 0 35px rgba(249, 226, 174, 0.08);
 }
 
 .lightbox-modal.open .lightbox-stage {
     transform: scale(1);
 }
-
-.lightbox-stage.swipe-left { transform: translateX(-18px) scale(0.98); opacity: 0.7; }
-.lightbox-stage.swipe-right { transform: translateX(18px) scale(0.98); opacity: 0.7; }
 
 .lightbox-img {
     max-width: 84vw;
@@ -907,11 +907,6 @@ body::after {
     display: block;
     object-fit: contain;
     background-color: #090c18;
-    transition: opacity 0.2s ease;
-}
-
-.lightbox-img.is-loading {
-    opacity: 0.35;
 }
 
 .lb-holder-layer {
@@ -919,7 +914,6 @@ body::after {
     inset: 0;
     pointer-events: none;
     z-index: 5;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
 }
 
 .lb-mount {
@@ -927,28 +921,26 @@ body::after {
     position: absolute;
     pointer-events: none;
     overflow: visible;
+    filter: url(#hand-ink) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
 }
 
-.lightbox-stage[data-section="1"] .mount-sec-1,
-.lightbox-stage[data-section="2"] .mount-sec-2,
-.lightbox-stage[data-section="3"] .mount-sec-3,
-.lightbox-stage[data-section="4"] .mount-sec-4 {
-    display: block;
-}
-
+.lightbox-stage[data-section="1"] .mount-sec-1 { display: block; }
 .tri-tl { top: -6px; left: -6px; width: 38px; height: 38px; color: #FFB7B2; }
 .tri-tr { top: -6px; right: -6px; width: 38px; height: 38px; color: #F9E2AE; transform: scaleX(-1); }
 .tri-bl { bottom: -6px; left: -6px; width: 38px; height: 38px; color: #B5EAD7; transform: scaleY(-1); }
 .tri-br { bottom: -6px; right: -6px; width: 38px; height: 38px; color: #C7CEEA; transform: scale(-1, -1); }
 
+.lightbox-stage[data-section="2"] .mount-sec-2 { display: block; }
 .tape-tr { top: -14px; right: -24px; width: 82px; height: 28px; transform: rotate(36deg); }
 .tape-bl { bottom: -14px; left: -24px; width: 82px; height: 28px; transform: rotate(36deg); }
 
+.lightbox-stage[data-section="3"] .mount-sec-3 { display: block; }
 .star-pin-tl { top: -14px; left: -14px; width: 34px; height: 34px; transform: rotate(-10deg); }
 .star-pin-tr { top: -14px; right: -14px; width: 34px; height: 34px; transform: rotate(12deg); }
 .star-pin-bl { bottom: -14px; left: -14px; width: 34px; height: 34px; transform: rotate(8deg); }
 .star-pin-br { bottom: -14px; right: -14px; width: 34px; height: 34px; transform: rotate(-12deg); }
 
+.lightbox-stage[data-section="4"] .mount-sec-4 { display: block; }
 .peg-left { top: -28px; left: 18%; width: 24px; height: 44px; transform: rotate(-4deg); }
 .peg-right { top: -28px; right: 18%; width: 24px; height: 44px; transform: rotate(4deg); }
 
@@ -1036,9 +1028,7 @@ body::after {
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
 }
 
-.share-toast {
-    margin-top: 6px;
-}
+.share-toast { margin-top: 6px; }
 
 .copy-toast {
     position: absolute;
@@ -1047,9 +1037,23 @@ body::after {
     transform: translateX(-50%);
 }
 
+.copy-toast.error { color: #ffb3b3; }
+
 .share-toast.show,
 .copy-toast.show {
     opacity: 1;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* =========================================================
@@ -1066,8 +1070,7 @@ footer {
     border-top: 1px solid rgba(253, 251, 247, 0.14);
 }
 
-.footer-left,
-.footer-right {
+.footer-left, .footer-right {
     display: flex;
     align-items: center;
     gap: 36px;
@@ -1112,7 +1115,7 @@ footer a {
 }
 
 /* =========================================================
-   9. HOVER SOLO SU DISPOSITIVI CON MOUSE
+   9. HOVER SOLO SU DISPOSITIVI CON PUNTATORE FINE
    ========================================================= */
 @media (hover: hover) and (pointer: fine) {
     .hero-sound-btn:hover {
@@ -1151,8 +1154,7 @@ footer a {
         box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75), 0 0 22px rgba(249, 226, 174, 0.11);
     }
 
-    .video-item:hover,
-    .reel-item:hover {
+    .video-item:hover, .reel-item:hover {
         box-shadow:
             0 10px 30px rgba(0, 0, 0, 0.65),
             0 0 22px rgba(249, 226, 174, 0.24),
@@ -1193,7 +1195,7 @@ footer a {
 }
 
 /* =========================================================
-   10. RESPONSIVE E ACCESSIBILITÀ
+   10. RESPONSIVE TABLET, MOBILE E ACCESSIBILITÀ
    ========================================================= */
 @media (max-width: 950px) {
     .video-strip { grid-template-columns: 1fr; }
@@ -1209,12 +1211,7 @@ footer a {
         transform: rotate(-3.5deg);
         width: 120px;
     }
-    footer {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 22px;
-        padding: 40px 4vw calc(85px + env(safe-area-inset-bottom, 0px));
-    }
+    footer { flex-wrap: wrap; justify-content: center; gap: 22px; padding: 40px 4vw calc(85px + env(safe-area-inset-bottom, 0px)); }
     .footer-left, .footer-right { gap: 22px; }
     .lightbox-modal { padding: 16px; }
     .lightbox-img { max-width: 90vw; max-height: 78dvh; }
@@ -1230,7 +1227,7 @@ footer a {
     .photo-grid { gap: 10px; padding: 0 3vw; margin-bottom: 45px; }
     .masonry-col { gap: 10px; }
     .photo-grid img { min-height: 110px; }
-    .reel-strip { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0 3vw; }
+    .reel-strip { gap: 14px; padding: 0 3vw; }
     .custom-play-btn { width: 40px; height: 40px; }
     .laurels-row { gap: 18px 24px; padding: 0 55px 0 20px; }
     .bts-card { width: 100px; }
@@ -1242,7 +1239,6 @@ footer a {
     .lb-hanging-close { right: 14px; }
     .lb-hanging-close svg { width: 44px; height: 105px; }
     .magic-travel-btn { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 14px; }
-    .magic-travel-btn.is-balloon { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
