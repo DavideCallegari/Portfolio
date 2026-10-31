@@ -132,7 +132,7 @@
         const rect = contactFooter.getBoundingClientRect();
         const visibleFooter = Math.max(0, window.innerHeight - rect.top);
         const progress = Math.min(1, visibleFooter / Math.max(1, rect.height));
-        const maxLift = window.innerWidth <= 650 ? 8 : 76;
+        const maxLift = window.innerWidth <= 650 ? 0 : 76;
         const nextTravelY = `-${(progress * maxLift).toFixed(1)}px`;
 
         if (nextTravelY !== lastTravelY) {
